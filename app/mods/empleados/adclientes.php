@@ -1,6 +1,6 @@
 <?php
-require('../rq/climod.php');
-require('../rq/conexion.php');
+require('../../rq/climod.php');
+require('../../rq/conexion.php');
 require('head.php');
 ?>
 <div>
@@ -121,6 +121,6 @@ require('head.php');
     $(this).alert - success('close');
   });
 </script>
-<script src="../src/js/bootstrap.js"></script>
-<script src="../src/js/axios.js"></script>
-<script src="../src/js/vue.js"></script>
+<script src="../../src/js/bootstrap.js"></script>
+<script src="../../src/js/axios.js"></script>
+<script src="../../src/js/vue.js"></script>

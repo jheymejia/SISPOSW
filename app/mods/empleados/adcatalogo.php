@@ -1,6 +1,6 @@
 <?php
-require('../rq/catmod.php');
-require('../rq/conexion.php');
+require('../../rq/catmod.php');
+require('../../rq/conexion.php');
 require('head.php');
 ?>
     <div class="darkmode container">
@@ -108,6 +108,6 @@ require('head.php');
             $(this).alert - success('close');
         });
     </script>
-    <script src="../src/js/bootstrap.js"></script>
-    <script src="../src/js/axios.js"></script>
-    <script src="../src/js/vue.js"></script>
+    <script src="../../src/js/bootstrap.js"></script>
+    <script src="../../src/js/axios.js"></script>
+    <script src="../../src/js/vue.js"></script>
