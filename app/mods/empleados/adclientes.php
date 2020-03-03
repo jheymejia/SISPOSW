@@ -1,6 +1,6 @@
 <?php
 require('../../rq/climod.php');
-require('head.php');
+/*require('head.php'); */
 ?>
 <div>
   <form class="regf" action="adclientes.php" method="post">
@@ -79,7 +79,7 @@ require('head.php');
         Celular = '$celular',
         Email = '$email',
         Direccion = '$direccion',
-        Pass = '$pass'        
+        Pass = '$pass'
         WHERE `clientes`.`Id_Cliente`= '$id_cliente'";
         if ($conexion->query($sqlcli) === true) {
           echo "<div class='fixed-bottom'> <div class='alert alert-success alert-dismissible fade show' role='alert'> Actualizados Datos del Cliente <button type='button' class='close' data-dismiss='alert' aria-label='Close'> <span aria-hidden='true'></span> </button> </div> </div>";
@@ -120,6 +120,9 @@ require('head.php');
     $(this).alert - success('close');
   });
 </script>
+
+<!--
 <script src="../src/js/bootstrap.js"></script>
 <script src="../src/js/axios.js"></script>
 <script src="../src/js/vue.js"></script>
+!-->

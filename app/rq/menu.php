@@ -1,7 +1,7 @@
 <div class="page-wrapper chiller-theme toggled">
   <nav class="navbar fixed-top navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">SYSPOSW</a>
-</nav>
+    <a class="navbar-brand" href="#">SISPOSW</a>
+  </nav>
 
   <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
     <i class="fas fa-2x fa-bars" style="color: #fff"></i>
@@ -34,20 +34,18 @@
       <div class="sidebar-menu">
         <ul>
           <li class="header-menu">
-            <span>General</span>
+            <span>Módulos</span>
           </li>
           <li class="sidebar-dropdown">
-            <a href="#">
+            <a onclick="cargar();" href="#">
               <i class="fa fa-tachometer-alt"></i>
-              <span>Inicio</span>
+              <span>Productos</span>
 
             </a>
             <div class="sidebar-submenu">
               <ul>
                 <li>
-                  <a href="#">Dashboard 1
-
-                  </a>
+                  <a href="#">Dashboard 1</a>
                 </li>
                 <li>
                   <a href="#">Dashboard 2</a>
@@ -61,7 +59,7 @@
           <li class="sidebar-dropdown">
             <a href="#">
               <i class="fa fa-shopping-cart"></i>
-              <span>Productos</span>
+              <span>Proveedores</span>
 
             </a>
             <div class="sidebar-submenu">
@@ -83,7 +81,7 @@
           <li class="sidebar-dropdown">
             <a href="#">
               <i class="far fa-gem"></i>
-              <span>Proveedores</span>
+              <span>Empleados</span>
             </a>
             <div class="sidebar-submenu">
               <ul>
@@ -127,23 +125,6 @@
               </ul>
             </div>
           </li>
-          <li class="sidebar-dropdown">
-            <a href="#">
-              <i class="fa fa-globe"></i>
-              <span>Empleados</span>
-            </a>
-            <div class="sidebar-submenu">
-              <ul>
-                <li>
-                  <a href="#">Google maps</a>
-                </li>
-                <li>
-                  <a href="#">Open street map</a>
-                </li>
-              </ul>
-            </div>
-          </li>
-
         </ul>
       </div>
       <!-- sidebar-menu  -->
@@ -172,16 +153,7 @@
 
   <!-- sidebar-wrapper  -->
   <main class="page-content">
-    <div style="max-width: 100%">
-
-
-      <div class="containerlogo">
-        <img class="logobg" src="./src/img/logo-bg.png" alt="Logo SYSPOSW">
-      </div>
-
-
-    </div>
-
+    <div id="cargaModulo"></div>
   </main>
 
 </div>
