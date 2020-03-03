@@ -1,5 +1,5 @@
 <?php
-require('././datos/conexion.php');
+require('../../../datos/conexion.php');
 $sqltraer = "SELECT * FROM Categoria";
 $sqltraer2 = "SELECT * FROM Proveedores";
 $res1 = mysqli_query($conexion, $sqltraer) or die(mysqli_error($conexion));

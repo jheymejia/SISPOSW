@@ -1,6 +1,6 @@
 <?php
 require('../../rq/catmod.php');
-require('../../rq/conexion.php');
+require('../../../datos/conexion.php');
 require('head.php');
 ?>
     <div class="darkmode container">
