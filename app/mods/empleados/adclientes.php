@@ -120,15 +120,9 @@ require('../../rq/climod.php');
     $(this).alert - success('close');
   });
 </script>
-<<<<<<< HEAD
-<script src="../../src/js/bootstrap.js"></script>
-<script src="../../src/js/axios.js"></script>
-<script src="../../src/js/vue.js"></script>
-=======
 
 <!--
 <script src="../src/js/bootstrap.js"></script>
 <script src="../src/js/axios.js"></script>
 <script src="../src/js/vue.js"></script>
 !-->
->>>>>>> 7344acadf79c2290f17bfb8ccc287fa53502604e
