@@ -2,7 +2,7 @@
 $servidor = "localhost";
 $servuser = "root";
 $password = "";
-$db = "sysposw89";
+$db = "sisposw89";
 $conexion = new mysqli($servidor, $servuser, $password, $db);
 
 if ($conexion->connect_error) {
