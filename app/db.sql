@@ -1,7 +1,7 @@
 /*
 CREO LA BASE DE DATOS
 */
-create database sisposw89;
+create schema sisposw89;
 /*
 USO LA BASE DE DATOS
 */
