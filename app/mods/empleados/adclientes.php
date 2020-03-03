@@ -1,6 +1,5 @@
 <?php
-require('../rq/climod.php');
-require('../rq/conexion.php');
+require('../../rq/climod.php');
 require('head.php');
 ?>
 <div>
