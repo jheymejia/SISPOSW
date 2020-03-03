@@ -8,57 +8,84 @@ require('head.php');
     <h2 style="text-align: center">Administración<br>De Clientes<br></h2>
     <div class="form-row">
       <div class="col">
-        <input value aria-required="true" class="form-control" type="text" placeholder="Número de Documento" name="id_cliente">
+        <input value aria-required="true" class="form-control" type="text" placeholder="Número de Documento" name="id_cliente" required>
       </div>
       <div class="col">
-        <input value aria-required="true" class="form-control" type="text" placeholder="Correo Electrónico" name="email">
-      </div>
-    </div><br>
-    <div class="form-row">
-      <div class="col">
-        <input value aria-required="true" class="form-control" type="text" placeholder="Celular" name="celular">
-      </div>
-      <div class="col">
-        <input value aria-required="true" class="form-control" type="password" placeholder="Contraseña" name="pass">
+        <input value aria-required="true" class="form-control" type="text" placeholder="Correo Electrónico" name="email" required>
       </div>
     </div><br>
     <div class="form-row">
       <div class="col">
-        <input value aria-required="true" class="form-control" type="text" placeholder="Nombres" name="nombres">
+        <input value aria-required="true" class="form-control" type="text" placeholder="Celular" name="celular" required>
       </div>
       <div class="col">
-        <input value aria-required="true" class="form-control" type="text" placeholder="Apellidos" name="apellidos">
+        <input value aria-required="true" class="form-control" type="password" placeholder="Contraseña" name="pass" required>
       </div>
     </div><br>
     <div class="form-row">
       <div class="col">
-        <input value aria-required="true" class="form-control" type="text" placeholder="Telefonos" name="telefonos">
+        <input value aria-required="true" class="form-control" type="text" placeholder="Nombres" name="nombres" required>
       </div>
       <div class="col">
-        <input value aria-required="true" class="form-control" type="text" placeholder="Dirección" name="direccion">
+        <input value aria-required="true" class="form-control" type="text" placeholder="Apellidos" name="apellidos" required>
+      </div>
+    </div><br>
+    <div class="form-row">
+      <div class="col">
+        <input value aria-required="true" class="form-control" type="text" placeholder="Telefonos" name="telefonos" required>
+      </div>
+      <div class="col">
+        <input value aria-required="true" class="form-control" type="text" placeholder="Dirección" name="direccion" required>
       </div>
     </div>
     <div style="text-align: center" class="form-row">
       <div style="text-align: center" class="col"><br>
         <input class="btn btn-primary" type="reset" value="Limpiar">
         <input class="btn btn-primary" type="submit" value="Registrar" name="registro">
+        <input class="btn btn-primary" type="submit" value="Actualizar" name="update">
       </div>
       <?php
-      if (isset($_POST['catalogo'])) {
-        $id_producto = $_POST['id_producto'];
-        $nombre = $_POST['nombre'];
-        $descripcion = $_POST['descripcion'];
-        $precio = $_POST['precio'];
-        $id_categoria = $_POST['id_categoria'];
-        $proveedor = $_POST['proveedor'];
-        $estado = $_POST['estado'];
-        $existencias = $_POST['existencias'];
-        $sqlcat = "INSERT INTO productos(Id_Producto,Nombre,Descripcion,ValorUnitario,Nombre_Cat,Proveedor,Estado,Existencias)
-              VALUES('$id_producto','$nombre','$descripcion','$precio','$id_categoria','$proveedor','$estado','$existencias')";
-        if ($conexion->query($sqlcat) === true) {
-          echo "<div class='fixed-bottom'> <div class='alert alert-success alert-dismissible fade show' role='alert'> El producto se registró correctamente <button type='button' class='close' data-dismiss='alert' aria-label='Close'> <span aria-hidden='true'></span> </button> </div> </div>";
+      if (isset($_POST['registro'])) {
+        $id_cliente = $_POST['id_cliente'];
+        $email = $_POST['email'];
+        $celular = $_POST['celular'];
+        $pass = $_POST['pass'];
+        $nombres = $_POST['nombres'];
+        $apellidos = $_POST['apellidos'];
+        $telefonos = $_POST['telefonos'];
+        $direccion = $_POST['direccion'];
+
+        $sqlcli = "INSERT INTO clientes(Id_Cliente,Nombres,Apellidos,Telefonos,Celular,Email,Direccion,Pass)
+              VALUES('$id_cliente','$nombres','$apellidos','$telefonos','$celular','$email','$direccion','$pass')";
+        if ($conexion->query($sqlcli) === true) {
+          echo "<div class='fixed-bottom'> <div class='alert alert-success alert-dismissible fade show' role='alert'> Insertados Datos del Cliente <button type='button' class='close' data-dismiss='alert' aria-label='Close'> <span aria-hidden='true'></span> </button> </div> </div>";
         } else {
-          die("Error al insertar datos del producto: " . $conexion->error);
+          die("Error al insertar datos del Cliente: " . $conexion->error);
+        }
+      }
+      if (isset($_POST['update'])) {
+        $id_cliente = $_POST['id_cliente'];
+        $email = $_POST['email'];
+        $celular = $_POST['celular'];
+        $pass = $_POST['pass'];
+        $nombres = $_POST['nombres'];
+        $apellidos = $_POST['apellidos'];
+        $telefonos = $_POST['telefonos'];
+        $direccion = $_POST['direccion'];
+
+        $sqlcli = "UPDATE clientes SET Id_Cliente = '$id_cliente',
+        Nombres = '$nombres',
+        Apellidos = '$apellidos',
+        Telefonos = '$telefonos',
+        Celular = '$celular',
+        Email = '$email',
+        Direccion = '$direccion',
+        Pass = '$pass'        
+        WHERE `clientes`.`Id_Cliente`= '$id_cliente'";
+        if ($conexion->query($sqlcli) === true) {
+          echo "<div class='fixed-bottom'> <div class='alert alert-success alert-dismissible fade show' role='alert'> Actualizados Datos del Cliente <button type='button' class='close' data-dismiss='alert' aria-label='Close'> <span aria-hidden='true'></span> </button> </div> </div>";
+        } else {
+          die("Error al actualizar datos del Cliente: " . $conexion->error);
         }
       }
       ?>

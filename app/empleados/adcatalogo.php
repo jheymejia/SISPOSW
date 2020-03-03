@@ -8,30 +8,30 @@ require('head.php');
             <h2 style="color:#fff!important; text-align: center">Administración<br>Catalogo de Productos </h2>
             <div class="form-row">
                 <div class="col">
-                    <input value aria-required="true" class="form-control" type="text" placeholder="Código del Producto" name="id_producto" id="id_producto">
+                    <input value aria-required="true" class="form-control" type="text" placeholder="Código del Producto" name="id_producto" id="id_producto" required>
                 </div>
                 <div class="col">
-                    <input value aria-required="true" class="form-control" type="text" placeholder="Nombre del Producto" name="nombre" id="nombre">
+                    <input value aria-required="true" class="form-control" type="text" placeholder="Nombre del Producto" name="nombre" id="nombre" required>
                 </div>
                 <div class="col">
-                    <input value aria-required="true" class="form-control" type="text" placeholder="Descripción del Producto" name="descripcion" id="descripcion">
+                    <input value aria-required="true" class="form-control" type="text" placeholder="Descripción del Producto" name="descripcion" id="descripcion" required>
                 </div>
             </div><br>
             <div class="form-row">
                 <div class="col">
-                    <input value aria-required="true" class="form-control" type="text" placeholder="Precio del Producto" name="precio" id="valorunitario">
+                    <input value aria-required="true" class="form-control" type="text" placeholder="Precio del Producto" name="precio" id="valorunitario" required>
                 </div>
                 <div class="col">
-                    <input value aria-required="true" class="form-control" type="text" placeholder="Estado del Producto" name="estado" id="estado">
+                    <input value aria-required="true" class="form-control" type="text" placeholder="Estado del Producto" name="estado" id="estado" required>
                 </div>
                 <div class="col">
-                    <input value aria-required="true" class="form-control" type="text" placeholder="Existencias" name="existencias" id="existencias">
+                    <input value aria-required="true" class="form-control" type="text" placeholder="Existencias" name="existencias" id="existencias" required>
                 </div>
             </div><br>
             <div class="form-row">
                 <div class="col"><label style="color:#fff!important; display: block; text-align:right; width: 100%; height: calc(2.25rem + 2px); padding: 0.375rem 0.75rem; font-size: 1rem;" for="label1">Categoria del Producto</label></div>
                 <div class="col">
-                    <select id="label1" class="form-control" name="id_categoria" id="">
+                    <select id="label1" class="form-control" name="id_categoria" id="" required>
                         <?php /* while ($rows1 = mysqli_fetch_array($res1)) : ?>
                             <option value="<?php echo $rows1['Nombre_Cat'] ?>"><?php echo $rows1['Nombre_Cat'] ?></option>
                         <?php endwhile */ ?>
@@ -39,7 +39,7 @@ require('head.php');
                 </div>
                 <div class="col"><label style="color:#fff!important; display: block; text-align:right; width: 100%; height: calc(2.25rem + 2px); padding: 0.375rem 0.75rem; font-size: 1rem;" for="label2">Proveedor del Producto</label></div>
                 <div class="col">
-                    <select id="label2" class="form-control" name="proveedor" id="">
+                    <select id="label2" class="form-control" name="proveedor" id="" required>
                         <?php /* while ($rows2 = mysqli_fetch_array($res2)) : ?>
                             <option value="<?php echo $rows2['Nombre_Prov'] ?>"><?php echo $rows2['Nombre_Prov'] ?></option>
                         <?php endwhile */ ?>
