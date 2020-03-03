@@ -1,11 +1,11 @@
 /*
 CREO LA BASE DE DATOS
 */
-create schema sysposw89;
+create schema sisposw89;
 /*
 USO LA BASE DE DATOS
 */
-use sysposw89;
+use sisposw89;
 /*Creo las tablas necesarias*/
 create table Clientes (Id_Cliente Int (11)  primary key , Nombres varchar (50) , Apellidos Varchar (50) , Telefonos varchar (50), Celular varchar (20) , Email varchar (50) , Direccion varchar (60) , Pass varchar(30)  , Tipo Varchar (20)  );
 create table Empleados(Id_Empleado int (11) primary key auto_increment,Nombres varchar (50), Apellidos varchar (50), Telefonos varchar (50),Direccion varchar (60),Email varchar (50), Pass varchar(30)  , Tipo Varchar (20)  );
