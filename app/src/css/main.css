@@ -12,6 +12,6 @@ body {
   width: -webkit-fill-available;
   background: white;
   height: auto;
-  border: 1px dotted #888;
   margin: 3rem 1rem 0 0;
+  border-radius: 1rem;
 }

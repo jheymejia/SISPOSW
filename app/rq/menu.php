@@ -4,14 +4,14 @@
   </nav>
 
   <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
-    <i class="fas fa-2x fa-bars" style="color: #fff"></i>
+    <i class="material-icons text-light"> apps </i>
   </a>
   <nav id="sidebar" class="sidebar-wrapper pt-5">
     <div class="sidebar-content">
       <div class="sidebar-brand">
         <a href="#">Bienvenido</a>
         <div id="close-sidebar">
-          <i class="fas fa-arrow-left"></i>
+          <i class="material-icons"> arrow_back </i>
         </div>
       </div>
       <div class="sidebar-header">
@@ -24,7 +24,7 @@
           </span>
           <span class="user-role">Administrador</span>
           <span class="user-status">
-            <i class="fa fa-circle"></i>
+            <i class="material-icons"> radio_button_unchecked </i>
             <span>Online</span>
           </span>
         </div>
@@ -36,13 +36,13 @@
           <li class="header-menu">
             <span>Módulos</span>
           </li>
+
           <li class="sidebar-dropdown">
             <a onclick="cargar();" href="#">
-              <i class="fa fa-tachometer-alt"></i>
+              <i class="material-icons">shopping_cart</i>
               <span>Productos</span>
-
             </a>
-            <div class="sidebar-submenu">
+            <!-- <div class="sidebar-submenu">
               <ul>
                 <li>
                   <a href="#">Dashboard 1</a>
@@ -55,96 +55,39 @@
                 </li>
               </ul>
             </div>
-          </li>
+          </li> -->
+
           <li class="sidebar-dropdown">
             <a href="#">
-              <i class="fa fa-shopping-cart"></i>
+              <i class="material-icons"> assignment_ind </i>
               <span>Proveedores</span>
-
             </a>
-            <div class="sidebar-submenu">
-              <ul>
-                <li>
-                  <a href="#">Productos
-
-                  </a>
-                </li>
-                <li>
-                  <a href="#">Ordenes</a>
-                </li>
-                <li>
-                  <a href="#">Credit cart</a>
-                </li>
-              </ul>
-            </div>
           </li>
+
           <li class="sidebar-dropdown">
             <a href="#">
-              <i class="far fa-gem"></i>
+              <i class="material-icons">people</i>
               <span>Empleados</span>
             </a>
-            <div class="sidebar-submenu">
-              <ul>
-                <li>
-                  <a href="#">General</a>
-                </li>
-                <li>
-                  <a href="#">Paneles</a>
-                </li>
-                <li>
-                  <a href="#">Tablas</a>
-                </li>
-                <li>
-                  <a href="#">Iconos</a>
-                </li>
-                <li>
-                  <a href="#">Formularios</a>
-                </li>
-              </ul>
-            </div>
           </li>
+
           <li class="sidebar-dropdown">
             <a href="#">
-              <i class="fa fa-chart-line"></i>
+              <i class="material-icons">bar_chart</i>
               <span>Informes</span>
             </a>
-            <div class="sidebar-submenu">
-              <ul>
-                <li>
-                  <a href="#">Pie chart</a>
-                </li>
-                <li>
-                  <a href="#">Line chart</a>
-                </li>
-                <li>
-                  <a href="#">Bar chart</a>
-                </li>
-                <li>
-                  <a href="#">Histogram</a>
-                </li>
-              </ul>
-            </div>
           </li>
+
         </ul>
       </div>
-      <!-- sidebar-menu  -->
     </div>
-    <!-- sidebar-content  -->
+
     <div class="sidebar-footer">
       <a href="#">
-        <i class="fa fa-bell"></i>
-        <span class="badge badge-pill badge-warning notification">3</span>
+        <i class="material-icons">settings</i>
       </a>
       <a href="#">
-        <i class="fa fa-envelope"></i>
-        <span class="badge badge-pill badge-success notification">7</span>
-      </a>
-      <a href="#">
-        <i class="fa fa-cog"></i>
-        <span class="badge-sonar"></span>
-      </a>
-      <a href="#">
-        <i class="fa fa-power-off"></i>
+        <i class="material-icons">power_settings_new</i>
       </a>
     </div>
   </nav>
