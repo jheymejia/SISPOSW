@@ -4,8 +4,13 @@
   </nav>
 
   <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
-    <i class="material-icons text-light"> apps </i>
+    <i class="btn-menu material-icons"> apps </i>
   </a>
+
+  <a id="show-sidebar" style="top: 12rem;" class="btn btn-sm btn-dark" href="#">
+    <i class="btn-menu material-icons"> shopping_cart </i>
+  </a>
+
   <nav id="sidebar" class="sidebar-wrapper pt-5">
     <div class="sidebar-content">
       <div class="sidebar-brand">
