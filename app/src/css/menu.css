@@ -57,6 +57,7 @@
 
 body {
   font-size: 1rem;
+  overflow-y: hidden;
 }
 
 .page-wrapper .sidebar-wrapper,
@@ -68,20 +69,16 @@ body {
 .sidebar-wrapper .sidebar-search input.search-menu,
 .sidebar-wrapper .sidebar-search .input-group-text,
 .sidebar-wrapper .sidebar-menu ul li a,
-#show-sidebar,
+.menu-botones #show-sidebar,
 #close-sidebar {
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  -ms-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
-  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -ms-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
 }
 
 /*----------------page-wrapper----------------*/
-.page-wrapper {
-  height: 100vh;
-}
-
 .page-wrapper .theme {
   width: 40px;
   height: 40px;
@@ -101,28 +98,41 @@ body {
 
 @media screen and (min-width: 768px) {
   .page-wrapper.toggled .page-content {
-    padding-left: 300px;
+    padding-left: 280px;
   }
 }
 
 /*----------------show sidebar button----------------*/
 #show-sidebar {
+  position: relative;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+
+}
+
+.menu-botones {
+  display: flex;
+  height: 78%;
   position: fixed;
-    left: .8rem;
-    top: 4.2rem;
-    border-radius: 50%;
-    width: 45px;
-    height: 45px;
-    transition-delay: 0.3s;
+  top: 2.5rem;
+  left: 1rem;
+  width: auto;
+  justify-content: space-around;
+  flex-direction: column;
+  transition: all .4s ease-out;
+
 }
 
 .btn-menu {
-	font-size: 1.6rem!important;
-	color: #fff;
+  font-size: 1.6rem !important;
+  color: #fff;
 }
 
-.page-wrapper.toggled #show-sidebar {
+.page-wrapper.toggled .menu-botones {
   left: -40px;
+  opacity: 0.1;
+
 }
 
 /*----------------sidebar-wrapper----------------*/
@@ -181,18 +191,6 @@ body {
 .sidebar-wrapper .sidebar-header {
   padding: 20px;
   overflow: hidden;
-}
-
-.containerlogo {
-  width: 100%;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.logobg {
-  margin-top: 4rem;
-  width: 50%;
-  filter: opacity(0.6);
 }
 
 .sidebar-wrapper .sidebar-header .user-pic {
@@ -413,7 +411,7 @@ body {
 /*-----------------------------chiller-theme-------------------------------------------------*/
 .chiller-theme .sidebar-wrapper {
   background: #31353D;
-  }
+}
 
 .chiller-theme .sidebar-wrapper .sidebar-header,
 .chiller-theme .sidebar-wrapper .sidebar-search,

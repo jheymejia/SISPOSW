@@ -11,7 +11,8 @@ body {
 #cargaModulo {
   width: -webkit-fill-available;
   background: white;
-  height: auto;
+  max-height: 88vh;
   margin: 3rem 1rem 0 0;
-  border-radius: 1rem;
+  border-radius: .6rem;
+  overflow-y: auto;
 }
