@@ -2,94 +2,94 @@
 require('../../rq/climod.php');
 /*require('head.php'); */
 ?>
-<div>
-  <form class="regf" action="adclientes.php" method="post">
+<div id="vueapp">
+  <form>
     <h2 style="text-align: center">Administración<br>De Clientes<br></h2>
     <div class="form-row">
       <div class="col">
-        <input value aria-required="true" class="form-control" type="text" placeholder="Número de Documento" name="id_cliente" required>
+        <input v-model="idCliente" value aria-required="true" class="form-control" type="text" placeholder="Número de Documento" name="id_cliente" required>
       </div>
       <div class="col">
-        <input value aria-required="true" class="form-control" type="text" placeholder="Correo Electrónico" name="email" required>
-      </div>
-    </div><br>
-    <div class="form-row">
-      <div class="col">
-        <input value aria-required="true" class="form-control" type="text" placeholder="Celular" name="celular" required>
-      </div>
-      <div class="col">
-        <input value aria-required="true" class="form-control" type="password" placeholder="Contraseña" name="pass" required>
+        <input v-model="email" value aria-required="true" class="form-control" type="text" placeholder="Correo Electrónico" name="email" required>
       </div>
     </div><br>
     <div class="form-row">
       <div class="col">
-        <input value aria-required="true" class="form-control" type="text" placeholder="Nombres" name="nombres" required>
+        <input v-model="celular" value aria-required="true" class="form-control" type="text" placeholder="Celular" name="celular" required>
       </div>
       <div class="col">
-        <input value aria-required="true" class="form-control" type="text" placeholder="Apellidos" name="apellidos" required>
+        <input v-model="pass" value aria-required="true" class="form-control" type="password" placeholder="Contraseña" name="pass" required>
       </div>
     </div><br>
     <div class="form-row">
       <div class="col">
-        <input value aria-required="true" class="form-control" type="text" placeholder="Telefonos" name="telefonos" required>
+        <input v-model="nombres" value aria-required="true" class="form-control" type="text" placeholder="Nombres" name="nombres" required>
       </div>
       <div class="col">
-        <input value aria-required="true" class="form-control" type="text" placeholder="Dirección" name="direccion" required>
+        <input v-model="apellidos" value aria-required="true" class="form-control" type="text" placeholder="Apellidos" name="apellidos" required>
+      </div>
+    </div><br>
+    <div class="form-row">
+      <div class="col">
+        <input v-model="telefonos" value aria-required="true" class="form-control" type="text" placeholder="Telefonos" name="telefonos" required>
+      </div>
+      <div class="col">
+        <input v-model="direccion" value aria-required="true" class="form-control" type="text" placeholder="Dirección" name="direccion" required>
       </div>
     </div>
     <div style="text-align: center" class="form-row">
       <div style="text-align: center" class="col"><br>
         <input class="btn btn-primary" type="reset" value="Limpiar">
-        <input class="btn btn-primary" type="submit" value="Registrar" name="registro">
-        <input class="btn btn-primary" type="submit" value="Actualizar" name="update">
+        <input class="btn btn-primary" type="button" value="Registrar" name="registro" @click="enviarDatos()">
+        <input class="btn btn-primary" type="button" value="Actualizar" name="update">
       </div>
-      <?php
-      if (isset($_POST['registro'])) {
-        $id_cliente = $_POST['id_cliente'];
-        $email = $_POST['email'];
-        $celular = $_POST['celular'];
-        $pass = $_POST['pass'];
-        $nombres = $_POST['nombres'];
-        $apellidos = $_POST['apellidos'];
-        $telefonos = $_POST['telefonos'];
-        $direccion = $_POST['direccion'];
-
-        $sqlcli = "INSERT INTO clientes(Id_Cliente,Nombres,Apellidos,Telefonos,Celular,Email,Direccion,Pass)
-              VALUES('$id_cliente','$nombres','$apellidos','$telefonos','$celular','$email','$direccion','$pass')";
-        if ($conexion->query($sqlcli) === true) {
-          echo "<div class='fixed-bottom'> <div class='alert alert-success alert-dismissible fade show' role='alert'> Insertados Datos del Cliente <button type='button' class='close' data-dismiss='alert' aria-label='Close'> <span aria-hidden='true'></span> </button> </div> </div>";
-        } else {
-          die("Error al insertar datos del Cliente: " . $conexion->error);
-        }
-      }
-      if (isset($_POST['update'])) {
-        $id_cliente = $_POST['id_cliente'];
-        $email = $_POST['email'];
-        $celular = $_POST['celular'];
-        $pass = $_POST['pass'];
-        $nombres = $_POST['nombres'];
-        $apellidos = $_POST['apellidos'];
-        $telefonos = $_POST['telefonos'];
-        $direccion = $_POST['direccion'];
-
-        $sqlcli = "UPDATE clientes SET Id_Cliente = '$id_cliente',
-        Nombres = '$nombres',
-        Apellidos = '$apellidos',
-        Telefonos = '$telefonos',
-        Celular = '$celular',
-        Email = '$email',
-        Direccion = '$direccion',
-        Pass = '$pass'
-        WHERE `clientes`.`Id_Cliente`= '$id_cliente'";
-        if ($conexion->query($sqlcli) === true) {
-          echo "<div class='fixed-bottom'> <div class='alert alert-success alert-dismissible fade show' role='alert'> Actualizados Datos del Cliente <button type='button' class='close' data-dismiss='alert' aria-label='Close'> <span aria-hidden='true'></span> </button> </div> </div>";
-        } else {
-          die("Error al actualizar datos del Cliente: " . $conexion->error);
-        }
-      }
-      ?>
   </form>
+  <script type="text/javascript">
+    var vm = new Vue({
+      el: '#vueapp', //elemento HTML afectado por el VUE
+      data: { //enlazar datos
+        // formulario:{
+        idCliente: '',
+        email: '',
+        celular: '',
+        pass: '',
+        nombres: '',
+        apellidos: '',
+        telefonos: '',
+        direccion: ''
+        // }
+      },
+      mounted() { //Se lanza cada vez que se recarga la pagina
+        // alert('funciona');
+      },
+      methods: { //metodos personalizados
+        enviarDatos: function(event) {
+          const formulario = new FormData();
+          formulario.set('idCliente', this.idCliente);
+          formulario.set('email', this.email);
+          formulario.set('celular', this.celular);
+          formulario.set('pass', this.pass);
+          formulario.set('nombres', this.nombres);
+          formulario.set('apellidos', this.apellidos);
+          formulario.set('telefonos', this.telefonos);
+          formulario.set('direccion', this.direccion);
+          //peticion por AXIOS con POST
+          axios({
+            method: 'POST', //metodo
+            url: 'mods/empleados/procesar/adclientes.php', //archivo donde se envía la información
+            data: formulario
+          }).then(function(respuesta) { //Respuesta del servidor
+            console.log(respuesta);
+          }).catcht(function() {
+            console.log(error);
+          })
+        }
+      }
+
+    });
+  </script>
 </div>
+
 <div class="container mt-5">
   <table class="table table-dark table-hover">
     <thead>
@@ -120,6 +120,7 @@ require('../../rq/climod.php');
     $(this).alert - success('close');
   });
 </script>
+
 
 <!--
 <script src="../src/js/bootstrap.js"></script>
