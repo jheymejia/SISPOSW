@@ -3,7 +3,7 @@
 body {
   font-family: 'Open Sans', sans-serif;
   background: #fff;
-  background-image: url(../img/bg-blur.jpg);
+  background: linear-gradient(to right top, #073040, #131826, #474f61);
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -12,6 +12,6 @@ body {
   width: -webkit-fill-available;
   background: white;
   height: auto;
-  border: 1px dotted #888;
   margin: 3rem 1rem 0 0;
+  border-radius: 1rem;
 }
