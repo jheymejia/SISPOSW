@@ -16,3 +16,20 @@ body {
   border-radius: .6rem;
   overflow-y: auto;
 }
+
+nav ul li.active {
+  border-left: 3px solid #22d48c;
+  font-weight: bold;
+}
+
+.menu-botones #show-sidebar:hover {
+  border: 1px solid #fff;
+}
+
+.btn-menu:active{
+  color: #22d48c;
+}
+
+.menu-botones #show-sidebar:active {
+  border: 2px solid #22d48c;  
+}

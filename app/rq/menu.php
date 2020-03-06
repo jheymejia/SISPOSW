@@ -3,24 +3,30 @@
     <a class="navbar-brand" href="#">SISPOSW</a>
   </nav>
 
+  <!-- Módulos en Botones flotantes -->
   <div class="menu-botones">
+
     <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
       <i class="btn-menu material-icons"> apps </i>
     </a>
 
-    <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+    <a id="show-sidebar" onclick="cargarCat();" class="btn btn-sm btn-dark fabs upfab" href="#">
       <i class="btn-menu material-icons"> shopping_cart </i>
     </a>
 
-    <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+    <a id="show-sidebar" class="btn btn-sm btn-dark fabs" href="#">
       <i class="btn-menu material-icons"> assignment_ind </i>
     </a>
 
-    <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+    <a id="show-sidebar" class="btn btn-sm btn-dark fabs" href="#">
+      <i class="btn-menu material-icons"> face </i>
+    </a>
+
+    <a id="show-sidebar" class="btn btn-sm btn-dark fabs" href="#">
       <i class="btn-menu material-icons"> people </i>
     </a>
 
-    <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+    <a id="show-sidebar" class="btn btn-sm btn-dark fabs" href="#">
       <i class="btn-menu material-icons"> bar_chart </i>
     </a>
 
@@ -85,8 +91,8 @@
           </li>
 
           <li class="sidebar-dropdown">
-          <a onclick="cargarCli();" href="#">
-              <i class="material-icons">people</i>
+            <a onclick="cargarCli();" href="#">
+              <i class="material-icons">face</i>
               <span>Clientes</span>
             </a>
           </li>
