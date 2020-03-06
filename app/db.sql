@@ -1,7 +1,7 @@
 /*
 CREO LA BASE DE DATOS
 */
-create schema sisposw89;
+create database sisposw89;
 /*
 USO LA BASE DE DATOS
 */
@@ -11,7 +11,7 @@ create table Clientes (Id_Cliente Int (11)  primary key , Nombres varchar (50) ,
 create table Empleados(Id_Empleado int (11) primary key auto_increment,Nombres varchar (50), Apellidos varchar (50), Telefonos varchar (50),Direccion varchar (60),Email varchar (50), Pass varchar(30)  , Tipo Varchar (20)  );
 create table Usuarios (Id_User Int (11)  primary key , Pass Varchar (30) , Nombres varchar (50), Apellidos Varchar (50), Tipo Varchar (20) );
 create table Categoria (Id_Categoria varchar (6) primary key not null, Nombre_Cat varchar (20));
-create table Productos (Id_Producto Int (6) auto_increment primary key not null, Nombre varchar (20), Descripcion Varchar (50), ValorUnitario float (11,2), Nombre_Cat varchar (20), Proveedor varchar (20), Estado boolean, Existencias int (5));
+create table Productos (Id_Producto Int (6) auto_increment primary key not null, Nombre varchar (20), Descripcion Varchar (50), ValorUnitario float (11,2), Nombre_Cat varchar (20), Proveedor varchar (20), Estado varchar (20), Existencias int (5));
 create table Producto_Proveedor (Id_producto int (6), Id_Proveedor int(11), Nombre_Producto varchar (20), Nombre_Proveedor varchar(20));
 create table Proveedores (Id_Proveedor int (11) auto_increment primary key not null, Nombre_Prov varchar (20), Direccion Varchar (60), Email varchar (50), Telefonos varchar (50));
 create table Venta_Cabecera (Id_Venta int(11) auto_increment primary key not null,Id_Cliente int(11), fecha date,forma_pago varchar (20),Total_Factura float(13,2));
@@ -43,6 +43,8 @@ insert into proveedores(Id_Proveedor,Nombre_Prov,Direccion,Email,Telefonos) valu
 insert into proveedores(Id_Proveedor,Nombre_Prov,Direccion,Email,Telefonos) values('5','HP','Palo Alto, CA 94304 United States','support@hp.com','6508571501');
 insert into proveedores(Id_Proveedor,Nombre_Prov,Direccion,Email,Telefonos) values('6','Toshiba','Minato, Tokio, Japón','support@toshiba.com','2125960600');
 insert into proveedores(Id_Proveedor,Nombre_Prov,Direccion,Email,Telefonos) values('7','Lenovo','Quarry Bay, Hong Kong','support@lenovo.com','8552536686');
+insert into proveedores(Id_Proveedor,Nombre_Prov,Direccion,Email,Telefonos) values('8','JBL','San Francisco, CA','support@jbl.com','8245772351');
+insert into proveedores(Id_Proveedor,Nombre_Prov,Direccion,Email,Telefonos) values('9','SONY','San Francisco, CA','support@sonyes.com','9382815634');
 
 
 /*Insertar datos Categorias*/
@@ -57,3 +59,10 @@ insert into Categoria(Id_Categoria,Nombre_Cat) values('07','Escritorios');
 insert into Categoria(Id_Categoria,Nombre_Cat) values('08','AIO');
 insert into Categoria(Id_Categoria,Nombre_Cat) values('09','Monitores');
 insert into Categoria(Id_Categoria,Nombre_Cat) values('10','Audio');
+
+/*Insertar datos Productos*/
+
+insert into Productos(Id_Producto, Nombre, Descripcion, ValorUnitario, Nombre_Cat, Proveedor, Estado, Existencias) values('1','Portatil i3','Core i3, 4GB Ram, Wi-Fi, 500GB HDD','1000000','NoteBooks','HP','Nuevo','20');
+insert into Productos(Id_Producto, Nombre, Descripcion, ValorUnitario, Nombre_Cat, Proveedor, Estado, Existencias) values('2','Portatil i5','Core i5, 8GB Ram, Wi-Fi, 240GB SSD','1550000','NoteBooks','HP','Nuevo','20');
+insert into Productos(Id_Producto, Nombre, Descripcion, ValorUnitario, Nombre_Cat, Proveedor, Estado, Existencias) values('3','JBL T450BT','Audifonos Inalámbricos, Manos Libres','150000','Audio','JBL','Nuevo','50');
+insert into Productos(Id_Producto, Nombre, Descripcion, ValorUnitario, Nombre_Cat, Proveedor, Estado, Existencias) values('4','Sony Mdr-xb550ap','Audífonos Sony Extra Bass Manos Libres, Cableados','120000','Audio','SONY','Nuevo','30');

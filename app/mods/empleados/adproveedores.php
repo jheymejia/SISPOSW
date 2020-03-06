@@ -1,115 +1,94 @@
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-    <title>ADMIN CATALOGO</title>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="..\css\bootstrap.css">
-    <link rel="stylesheet" href="..\css\bootstrap.min.css">    
-</head>
-<header>
-    <!-- <nav style="text-align: center!important;" class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="..\index.php">SYSPOSW</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="ml-auto mr-auto navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="adcatalogo.php">Administrar Catalogo <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="adproveedores.php">Administrar Proovedores <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="adclientes.php">Administrar Clientes <span class="sr-only">(current)</span></a>
-                </li>
-            </ul>
+<?php
+require('../../rq/provmod.php');
+?>
+<div id="vueapp">
+    <form class="regf" action="adproveedores.php" method="POST">
+        <h2 style="text-align: center">Administración<br>De Proveedores<br><br> </h2>
+        <div class="form-row">
+            <div class="col">
+                <input v-model="idProv" value aria-required="true" class="form-control" type="text" placeholder="Código" name="id_proveedor" id="id_proveedor">
+            </div>
+            <div class="col">
+                <input v-model="nombre" value aria-required="true" class="form-control" type="text" placeholder="Nombre" name="nombre" id="nombre">
+            </div>
+            <div class="col">
+                <input v-model="direccion" value aria-required="true" class="form-control" type="text" placeholder="Dirección" name="direccion" id="direccion">
+            </div>
+        </div><br>
+        <div class="form-row">
+            <div class="col">
+                <input v-model="email" value aria-required="true" class="form-control" type="text" placeholder="Correo Electrónico" name="email" id="email">
+            </div>
+            <div class="col">
+                <input v-model="telefonos" value aria-required="true" class="form-control" type="text" placeholder="Teléfonos" name="telefonos" id="telefonos">
+            </div>
         </div>
-    </nav> -->
-</header>
-
-<body>
-    <section>
-        <form class="regf" action="adproveedores.php" method="POST">
-            <h2 style="text-align: center">Administración<br>De Proveedores<br><br> </h2>
-            <div class="form-row">
-                <div class="col">
-                    <input value aria-required="true" class="form-control" type="text" placeholder="Código" name="id_proveedor" id="id_proveedor">
-                </div>
-                <div class="col">
-                    <input value aria-required="true" class="form-control" type="text" placeholder="Nombre" name="nombre" id="nombre">
-                </div>
-                <div class="col">
-                    <input value aria-required="true" class="form-control" type="text" placeholder="Dirección" name="direccion" id="direccion">
-                </div>
-            </div><br>
-            <div class="form-row">
-                <div class="col">
-                    <input value aria-required="true" class="form-control" type="text" placeholder="Correo Electrónico" name="email" id="email">
-                </div>
-                <div class="col">
-                    <input value aria-required="true" class="form-control" type="text" placeholder="Teléfonos" name="telefonos" id="telefonos">
-                </div>
+        <div style="text-align: center" class="form-row">
+            <div style="text-align: center" class="col"><br>
+                <input class="btn btn-primary" type="reset" value="Limpiar">
+                <input class="btn btn-primary btn-succes" type="button" value="Enviar" name="proveedores" @click="enviarDatos()"><br>
             </div>
-            <div style="text-align: center" class="form-row">
-                <div style="text-align: center" class="col"><br>
-                    <input class="btn btn-primary" type="reset" value="Limpiar">
-                    <input class="btn btn-primary btn-succes" type="submit" value="Enviar" name="proveedores"><br>
-                </div>
-            </div>
-            <div style="text-align: center" class="form-row">
-                <div style="text-align: center" class="col"><br>
-                    <?php
-                    $servidor = "localhost";
-                    $nombreusuario = "root";
-                    $pass = "";
-                    $db = "sysposw89";
-                    $conexion = new mysqli($servidor, $nombreusuario, $pass, $db);
-                    if ($conexion->connect_error) {
-                        die("Conexión Fallida: <br>" . $conexion->connect_error);
-                    }
-                    if (isset($_POST['proveedores'])) {
-                        $id_proveedor = $_POST['id_proveedor'];
-                        $nombre = $_POST['nombre'];
-                        $direccion = $_POST['direccion'];
-                        $email = $_POST['email'];
-                        $telefonos = $_POST['telefonos'];
-                        $sql = "INSERT INTO proveedores(Id_Proveedor,Nombre_Prov,Direccion,Email,Telefonos)
-                        VALUES('$id_proveedor','$nombre','$direccion','$email','$telefonos')";
+        </div>
+    </form>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: '#vueapp', //elemento HTML afectado por el VUE
+            data: { //enlazar datos
+                // formulario:{
+                idProv: '',
+                nombre: '',
+                direccion: '',
+                email: '',
+                telefonos: '',
+                // }
+            },
+            mounted() { //Se lanza cada vez que se recarga la pagina
+                // alert('funciona');
+            },
+            methods: { //metodos personalizados
+                enviarDatos: function(event) {
+                    const formulario = new FormData();
+                    formulario.set('idProv', this.idProv);
+                    formulario.set('nombre', this.nombre);
+                    formulario.set('direccion', this.direccion);
+                    formulario.set('email', this.email);
+                    formulario.set('telefonos', this.telefonos);
+                    //peticion por AXIOS con POST
+                    axios({
+                        method: 'POST', //metodo
+                        url: 'mods/empleados/procesar/adproveedores.php', //archivo donde se envía la información
+                        data: formulario
+                    }).then(function(respuesta) { //Respuesta del servidor
+                        console.log(respuesta);
+                    }).catcht(function() {
+                        console.log(error);
+                    })
+                }
+            }
 
-                        if ($conexion->query($sql) === true) {
-                            echo "<br>Proveedor añadido Correctamente";
-                        } else {
-                            die("Error al insertar datos: " . $conexion->error);
-                        }
-                    }
-                    ?>
-                </div>
-            </div>
-        </form>
-    </section>
-    <br><br><br><br><br>
-</body>
-<footer style="margin-bottom:1px!important ">
-    <!-- <nav class="form-row navbar-light bg-light navbar-expand-lg navbar">
-        <ul class="col mr-auto navbar-nav">
-            <li class="nav-item active">
-                <a class="nav-link" href="catalogo.php">Contacto <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="ingresor.php">Más Sobre Nosotros <span class="sr-only">(current)</span></a>
-            </li>
-        </ul>
-        <ul style="text-align:right!important" class="col ml-auto navbar-nav">
-            <li class="ml-auto nav-item active">
-                <a class="nav-link" href="empleados.php">Empleados <span class="sr-only">(current)</span></a>
-            </li>
-        </ul>
-    </nav> -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-</footer>
-
-</html>
+        });
+    </script>
+</div>
+<div class="container mt-5">
+  <table class="table table-dark table-hover">
+    <thead>
+      <tr>
+        <th scope="col">ID Proveedor</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Direccion</th>
+        <th scope="col">Email</th>
+        <th scope="col">Telefonos</th>
+      </tr>
+    </thead>
+    <?php
+    if ($row = mysqli_fetch_array($resultset)) {
+      echo '<br>';
+      do {
+        echo "<tbody><tr><th scope='row'>" . $row["Id_Proveedor"] . "</th><td>" . $row["Nombre_Prov"] . "</td><td>" . $row["Direccion"] . "</td><td>" . $row["Email"] . "</td><td>" . $row["Telefonos"] . "</td></tr>";
+      } while ($row = mysqli_fetch_array($resultset));
+      echo "<br>";
+    } else {
+      echo "</table><div class='alert alert-warning' role='alert'> No se encontraron registros </div>";
+    }
+    ?>
+</div>

@@ -18,7 +18,29 @@ signInButton.addEventListener('click', () => {
 
 
 //Menú AJAX
-function cargar() {
+function cargarCat() {
+  var url = "mods/empleados/adcatalogo.php"
+  $.ajax({
+    type: "POST",
+    url: url,
+    data: {},
+    success: function(datos) {
+      $('#cargaModulo').html(datos);
+    }
+  });
+}
+function cargarProv() {
+  var url = "mods/empleados/adproveedores.php"
+  $.ajax({
+    type: "POST",
+    url: url,
+    data: {},
+    success: function(datos) {
+      $('#cargaModulo').html(datos);
+    }
+  });
+}
+function cargarCli() {
   var url = "mods/empleados/adclientes.php"
   $.ajax({
     type: "POST",
@@ -29,3 +51,4 @@ function cargar() {
     }
   });
 }
+

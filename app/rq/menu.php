@@ -3,28 +3,28 @@
     <a class="navbar-brand" href="#">SISPOSW</a>
   </nav>
 
-<div class="menu-botones">
-  <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
-    <i class="btn-menu material-icons"> apps </i>
-  </a>
+  <div class="menu-botones">
+    <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+      <i class="btn-menu material-icons"> apps </i>
+    </a>
 
-  <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
-    <i class="btn-menu material-icons"> shopping_cart </i>
-  </a>
+    <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+      <i class="btn-menu material-icons"> shopping_cart </i>
+    </a>
 
-  <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
-    <i class="btn-menu material-icons"> assignment_ind </i>
-  </a>
+    <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+      <i class="btn-menu material-icons"> assignment_ind </i>
+    </a>
 
-  <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
-    <i class="btn-menu material-icons"> people </i>
-  </a>
+    <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+      <i class="btn-menu material-icons"> people </i>
+    </a>
 
-  <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
-    <i class="btn-menu material-icons"> bar_chart </i>
-  </a>
+    <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+      <i class="btn-menu material-icons"> bar_chart </i>
+    </a>
 
-</div>
+  </div>
 
   <nav id="sidebar" class="sidebar-wrapper pt-5">
     <div class="sidebar-content">
@@ -58,7 +58,7 @@
           </li>
 
           <li class="sidebar-dropdown">
-            <a onclick="cargar();" href="#">
+            <a onclick="cargarCat();" href="#">
               <i class="material-icons">shopping_cart</i>
               <span>Productos</span>
             </a>
@@ -78,9 +78,16 @@
           </li> -->
 
           <li class="sidebar-dropdown">
-            <a href="#">
+            <a onclick="cargarProv();" href="#">
               <i class="material-icons"> assignment_ind </i>
               <span>Proveedores</span>
+            </a>
+          </li>
+
+          <li class="sidebar-dropdown">
+          <a onclick="cargarCli();" href="#">
+              <i class="material-icons">people</i>
+              <span>Clientes</span>
             </a>
           </li>
 

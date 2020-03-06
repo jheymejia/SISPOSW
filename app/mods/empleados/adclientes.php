@@ -41,7 +41,7 @@ require('../../rq/climod.php');
       <div style="text-align: center" class="col"><br>
         <input class="btn btn-primary" type="reset" value="Limpiar">
         <input class="btn btn-primary" type="button" value="Registrar" name="registro" @click="enviarDatos()">
-        <input class="btn btn-primary" type="button" value="Actualizar" name="update">
+        <!-- <input class="btn btn-primary" type="button" value="Actualizar" name="update"> -->
       </div>
   </form>
   <script type="text/javascript">
@@ -120,10 +120,3 @@ require('../../rq/climod.php');
     $(this).alert - success('close');
   });
 </script>
-
-
-<!--
-<script src="../src/js/bootstrap.js"></script>
-<script src="../src/js/axios.js"></script>
-<script src="../src/js/vue.js"></script>
-!-->
