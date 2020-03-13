@@ -1,0 +1,290 @@
+.material-icons {
+  vertical-align: middle;
+}
+
+#section-header .header-top-menu>ul>li>a,
+#section-header .header-top-menu>ul>li.account {
+  color: #fff;
+}
+
+#section-header .header-top-menu ul li.account .ht-dropdown {
+  background: #fff;
+}
+
+#section-header .header-top-menu ul li.account .ht-dropdown>li>a {
+  color: #7a7a7a;
+}
+
+#section-header .header-top-menu ul li.account .ht-dropdown>li>a:hover {
+  color: #00bf72;
+}
+
+#section-header .header-top-menu ul li.account .ht-dropdown>li:not(:last-child) {
+  border-bottom: 1px solid #ebebeb;
+}
+
+#section-header .header-top-menu>ul>li.support>span,
+#section-header .header-top-menu>ul>li.support {
+  color: #fff;
+}
+
+#section-header .header-top-menu>ul>li.common-currency-picker,
+#section-header .header-top-menu>ul>li.common-currency-picker>span {
+  color: #fff;
+}
+
+#section-header .header-top-menu>ul>li.common-currency-picker>a {
+  color: #fff;
+}
+
+#section-header .header-top-menu .common-currency-picker .ht-dropdown {
+  background: #fff;
+}
+
+#section-header .header-top-menu .common-currency-picker .ht-dropdown>li>a {
+  color: #7a7a7a;
+}
+
+#section-header .header-top-menu .common-currency-picker .ht-dropdown>li>a:hover {
+  color: #00bf72;
+}
+
+#section-header .header-top-menu .common-currency-picker .ht-dropdown>li:not(:last-child) {
+  border-bottom: 1px solid #008793;
+}
+
+#section-header .header-top-area {
+  background: linear-gradient(to left, #005497, #0095A7, #00D663);
+}
+
+#section-header .header-top-area {
+  padding-top: 0px;
+}
+
+#section-header .header-top-area {
+  padding-bottom: 0px;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  #section-header .header-top-area {
+    padding-top: 0px;
+  }
+
+  #section-header .header-top-area {
+    padding-bottom: 0px;
+  }
+}
+
+@media (max-width: 767px) {
+  #section-header .header-top-area {
+    padding-top: 0px;
+  }
+
+  #section-header .header-top-area {
+    padding-bottom: 0px;
+  }
+}
+
+#section-header .header-middel-area .mini-cart-area>ul>li>a {
+  color: #fff;
+  border: 2px solid #fff;
+}
+
+#section-header .header-middel-area .mini-cart-area>ul>li>a:hover {
+  color: #31353D;
+  border: 2px solid #31353D;
+}
+
+#section-header .header-middel-area .mini-cart-area>ul>li>a .cart-add {
+  color: #fff;
+  background: #d52115;
+}
+
+#section-header .header-middel-area .mini-cart-area>ul>li>a .cart-total {
+  color: #fff;
+}
+
+#section-header .header-middel-area .mini-cart-area .cart-button a.button2 {
+  background: #586985;
+  color: #a3acb9;
+}
+
+#section-header .header-middel-area .mini-cart-area .cart-button a.button2:hover {
+  background: #00bf72;
+  color: #fff;
+}
+
+#section-header .header-middel-area .search-box input {
+  background: transparent;
+  color: #7a7a7a;
+}
+
+#section-header .header-middel-area .search-box {
+  background: #fff;
+}
+
+#section-header .header-middel-area .search-box-area {
+  background: #fff;
+}
+
+#section-header .header-middel-area .search-box button {
+  background: #31353D;
+  color: #fff;
+}
+
+#section-header .header-middel-area .search-box button:hover {
+  color: #00bf72;
+  background: #31353D;
+}
+
+#section-header .header-middel-area {
+  background: linear-gradient(to left, #005497, #0095A7, #00D663);
+}
+
+#section-header .header-middel-area {
+  padding-top: 0px;
+}
+
+#section-header .header-middel-area {
+  padding-bottom: 0px;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  #section-header .header-middel-area {
+    padding-top: 0px;
+  }
+
+  #section-header .header-middel-area {
+    padding-bottom: 0px;
+  }
+}
+
+@media (max-width: 767px) {
+  #section-header .header-middel-area {
+    padding-top: 0px;
+  }
+
+  #section-header .header-middel-area {
+    padding-bottom: 0px;
+  }
+}
+
+#section-header .header-bottom-area .main-menu>li>a {
+  color: #fff;
+}
+
+#section-header .header-bottom-area .main-menu>li:hover>a {
+  color: #00bf72;
+}
+
+#section-header .header-bottom-area .main-menu>li.active>a {
+  color: #18fc93;
+}
+
+#section-header .header-bottom-area .main-menu>li .dropdown {
+  background: #fff;
+}
+
+#section-header .header-bottom-area .main-menu>li .dropdown>li>a {
+  color: #7a7a7a;
+}
+
+#section-header .header-bottom-area .main-menu>li .dropdown>li>a:hover {
+  color: #00bf72;
+}
+
+#section-header .header-bottom-area .main-menu>li .dropdown.mega-menu .mega-menu-tree>a {
+  color: #36404e;
+}
+
+#section-header .header-bottom-area .main-menu>li .dropdown.mega-menu .mega-menu-tree>a:hover {
+  color: #00bf72;
+}
+
+#section-header .header-bottom-area .main-menu>li .dropdown.mega-menu .mega-menu-tree>ul>li>ul>li>a {
+  color: #7a7a7a;
+}
+
+#section-header .header-bottom-area .main-menu>li .dropdown.mega-menu .mega-menu-tree>ul>li>ul>li>a:hover {
+  color: #00bf72;
+}
+
+#section-header .header-bottom-area .main-menu>li .mega-menu {
+  background: #fff;
+}
+
+#section-header .header-bottom-area .main-menu-area {
+  background: #31353D;
+}
+
+#section-header .header-bottom-area {
+  background: linear-gradient(to left, #005497, #0095A7, #00D663);
+}
+
+#section-header .header-bottom-area {
+  padding-top: 0px;
+}
+
+#section-header .header-bottom-area {
+  padding-bottom: 0px;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  #section-header .header-bottom-area {
+    padding-top: 0px;
+  }
+
+  #section-header .header-bottom-area {
+    padding-bottom: 0px;
+  }
+}
+
+@media (max-width: 767px) {
+  #section-header .header-bottom-area {
+    padding-top: 0px;
+  }
+
+  #section-header .header-bottom-area {
+    padding-bottom: 0px;
+  }
+}
+
+#section-header .mean-container .mean-bar,
+#section-header .mobile-menu {
+  background: #31353D;
+}
+
+#section-header .mean-container a.meanmenu-reveal {
+  color: #fff;
+}
+
+#section-header .mean-container a.meanmenu-reveal.meanclose {
+  color: #fff;
+}
+
+#section-header .mobile-menu:before {
+  color: #fff;
+}
+
+#section-header .mean-container .mean-nav {
+  background: #f8f8f8;
+}
+
+#section-header .mean-container .mean-nav ul li {
+  border-top: 1px solid #ebebeb;
+}
+
+#section-header .mean-container .mean-nav ul li a {
+  color: #333;
+  border-top: 1px solid #ccc;
+}
+
+#section-header .mean-container .mean-nav ul li ul li a {
+  color: #333;
+  border-top: 1px solid #ccc;
+}
+
+#section-header .mean-container .mean-nav ul li ul li ul li a {
+  color: #333;
+  border-top: 1px solid #ccc;
+}
