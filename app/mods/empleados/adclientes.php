@@ -101,13 +101,14 @@ require('../../rq/climod.php');
         <th scope="col">Apellidos</th>
         <th scope="col">Telefonos</th>
         <th scope="col">Direccion</th>
+        <th scope="col">Acciones</th>
       </tr>
     </thead>
     <?php
     if ($row = mysqli_fetch_array($resultset)) {
       echo '<br>';
       do {
-        echo "<tbody><tr><th scope='row'>" . $row["Id_Cliente"] . "</th><td>" . $row["Email"] . "</td><td>" . $row["Celular"] . "</td><td>" . $row["Nombres"] . "</td><td>" . $row["Apellidos"] . "</td><td>" . $row["Telefonos"] . "</td><td>" . $row["Direccion"] . "</td></tr>";
+        echo "<tbody><tr><th scope='row'>" . $row["Id_Cliente"] . "</th><td>" . $row["Email"] . "</td><td>" . $row["Celular"] . "</td><td>" . $row["Nombres"] . "</td><td>" . $row["Apellidos"] . "</td><td>" . $row["Telefonos"] . "</td><td>" . $row["Direccion"] . "</td><td><a>Editar</a><br><a>Borrar</a></td></tr>";
       } while ($row = mysqli_fetch_array($resultset));
       echo "<br>";
     } else {
