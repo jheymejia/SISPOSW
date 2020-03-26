@@ -2,18 +2,20 @@
 require_once("Funciones.php");
 
 $depart=$_POST['dprtmnto'];
+$ciud=$_POST['ciudad'];
 
 $ciudades=[];
 	$ciudades=CiudadesDepartamento($depart);
 	
-	echo"<select id='Ciudad' name='Ciudad' class='btn-block'>";
+	
 
 	foreach ($ciudades as $key => $dato) { 
-		
-		echo"<option value='$dato[codigoCiudad]'>$dato[nombre]</option>";
-	}
-
-	echo"</select>";
+		if($dato['Nombre']==$ciud){
+		echo"<option value='$dato[IdCiudad]' selected>$dato[Nombre]</option>";	
+		}else{
+			echo"<option value='$dato[IdCiudad]'>$dato[Nombre]</option>";
+		}
 	
+	}
 
 ?>
