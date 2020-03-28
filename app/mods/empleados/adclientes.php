@@ -79,7 +79,10 @@ require('../../rq/climod.php');
             url: 'mods/empleados/procesar/adclientes.php', //archivo donde se envía la información
             data: formulario
           }).then(function(respuesta) { //Respuesta del servidor
-            console.log(respuesta);
+            alert(respuesta.data.msg);
+            if (respuesta.data.exito === true) { //Redirección a la página de listado
+              cargarCli();
+            }
           }).catcht(function() {
             console.log(error);
           })
@@ -108,7 +111,16 @@ require('../../rq/climod.php');
     if ($fila = mysqli_fetch_array($resultset)) {
       echo '<br>';
       do {
-        echo "<tbody><tr><th scope='row'>" . $fila["Id_Cliente"] . "</th><td>" . $fila["Email"] . "</td><td>" . $fila["Celular"] . "</td><td>" . $fila["Nombres"] . "</td><td>" . $fila["Apellidos"] . "</td><td>" . $fila["Telefonos"] . "</td><td>" . $fila["Direccion"] . "</td><td><a>Editar</a></td></tr>";
+        echo "<tbody><tr>";
+        echo "<th scope='row'>" . $fila["Id_Cliente"] . "</th>";
+        $id = $fila["Id_Cliente"];
+        echo "<td>" . $fila["Email"] . "</td>";
+        echo "<td>" . $fila["Celular"] . "</td>";
+        echo "<td>" . $fila["Nombres"] . "</td>";
+        echo "<td>" . $fila["Apellidos"] . "</td>";
+        echo "<td>" . $fila["Telefonos"] . "</td>";
+        echo "<td>" . $fila["Direccion"] . "</td>";
+        echo "<td><a onclick='edCli(" . $id . ");'>Editar</a></td></tr>";
       } while ($fila = mysqli_fetch_array($resultset));
       echo "<br>";
     } else {

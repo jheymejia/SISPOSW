@@ -59,7 +59,10 @@ require('../../rq/provmod.php');
                         url: 'mods/empleados/procesar/adproveedores.php', //archivo donde se envía la información
                         data: formulario
                     }).then(function(respuesta) { //Respuesta del servidor
-                        console.log(respuesta);
+                        alert(respuesta.data.msg);
+                        if (respuesta.data.exito === true) { //Redirección a la página de listado
+                            cargarProv();
+                        }
                     }).catcht(function() {
                         console.log(error);
                     })
@@ -70,26 +73,33 @@ require('../../rq/provmod.php');
     </script>
 </div>
 <div class="container mt-5">
-  <table class="table table-dark table-hover">
-    <thead>
-      <tr>
-        <th scope="col">ID Proveedor</th>
-        <th scope="col">Nombre</th>
-        <th scope="col">Direccion</th>
-        <th scope="col">Email</th>
-        <th scope="col">Telefonos</th>
-        <th scope="col">Acciones</th>        
-      </tr>
-    </thead>
-    <?php
-    if ($fila = mysqli_fetch_array($resultset)) {
-      echo '<br>';
-      do {
-        echo "<tbody><tr><th scope='row'>" . $fila["Id_Proveedor"] . "</th><td>" . $fila["Nombre_Prov"] . "</td><td>" . $fila["Direccion"] . "</td><td>" . $fila["Email"] . "</td><td>" . $fila["Telefonos"] . "</td><td><a>Editar</a></td></tr>";
-      } while ($fila = mysqli_fetch_array($resultset));
-      echo "<br>";
-    } else {
-      echo "</table><div class='alert alert-warning' role='alert'> No se encontraron registros </div>";
-    }
-    ?>
+    <table class="table table-dark table-hover">
+        <thead>
+            <tr>
+                <th scope="col">NIT Proveedor</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Direccion</th>
+                <th scope="col">Email</th>
+                <th scope="col">Telefonos</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <?php
+        if ($fila = mysqli_fetch_array($resultset)) {
+            echo '<br>';
+            do {
+                echo "<tbody><tr>";
+                echo "<th scope='row'>" . $fila["Id_Proveedor"] . "</th>";
+                $id = $fila["Id_Proveedor"];
+                echo "<td>" . $fila["Nombre_Prov"] . "</td>";
+                echo "<td>" . $fila["Direccion"] . "</td>";
+                echo "<td>" . $fila["Email"] . "</td>";
+                echo "<td>" . $fila["Telefonos"] . "</td>";
+                echo "<td><a onclick='edProv(" . $id . ");'>Editar</a></td></tr>";
+            } while ($fila = mysqli_fetch_array($resultset));
+            echo "<br>";
+        } else {
+            echo "</table><div class='alert alert-warning' role='alert'> No se encontraron registros </div>";
+        }
+        ?>
 </div>

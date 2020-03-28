@@ -17,7 +17,8 @@ signInButton.addEventListener('click', () => {
 });
 
 
-//Menú AJAX
+//Menú AJAX Carga de Modulos en Modal 
+//Son los modulos de inserccion de registros 
 function cargarCat() {
   var url = "mods/empleados/adcatalogo.php"
   $.ajax({
@@ -62,8 +63,32 @@ function cargarEmp() {
     }
   });
 }
+//Menú AJAX Carga de SubModulos en Modal
+//Son los modulos de edición de registros 
 function edEmp(id) {
   var url = "mods/empleados/modempleado.php?id="+id;
+  $.ajax({
+    type: "POST",
+    url: url,
+    data: {},
+    success: function(datos) {
+      $('#cargaModulo').html(datos);
+    }
+  });
+}
+function edCli(id) {
+  var url = "mods/empleados/modcliente.php?id="+id;
+  $.ajax({
+    type: "POST",
+    url: url,
+    data: {},
+    success: function(datos) {
+      $('#cargaModulo').html(datos);
+    }
+  });
+}
+function edProv(id) {
+  var url = "mods/empleados/modproveedor.php?id="+id;
   $.ajax({
     type: "POST",
     url: url,
