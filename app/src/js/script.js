@@ -51,4 +51,25 @@ function cargarCli() {
     }
   });
 }
-
+function cargarEmp() {
+  var url = "mods/empleados/adempleados.php"
+  $.ajax({
+    type: "POST",
+    url: url,
+    data: {},
+    success: function(datos) {
+      $('#cargaModulo').html(datos);
+    }
+  });
+}
+function edEmp(id) {
+  var url = "mods/empleados/modempleado.php?id="+id;
+  $.ajax({
+    type: "POST",
+    url: url,
+    data: {},
+    success: function(datos) {
+      $('#cargaModulo').html(datos);
+    }
+  });
+}

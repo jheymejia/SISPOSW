@@ -14,15 +14,15 @@
       <i class="btn-menu material-icons"> shopping_cart </i>
     </a>
 
-    <a id="show-sidebar" class="btn btn-sm btn-dark fabs" href="#">
+    <a id="show-sidebar" onclick="cargarProv();" class="btn btn-sm btn-dark fabs" href="#">
       <i class="btn-menu material-icons"> assignment_ind </i>
     </a>
 
-    <a id="show-sidebar" class="btn btn-sm btn-dark fabs" href="#">
+    <a id="show-sidebar" onclick="cargarCli();" class="btn btn-sm btn-dark fabs" href="#">
       <i class="btn-menu material-icons"> face </i>
     </a>
 
-    <a id="show-sidebar" class="btn btn-sm btn-dark fabs" href="#">
+    <a id="show-sidebar" onclick="cargarEmp();" class="btn btn-sm btn-dark fabs" href="#">
       <i class="btn-menu material-icons"> people </i>
     </a>
 
@@ -80,8 +80,8 @@
                   <a href="#">Dashboard 3</a>
                 </li>
               </ul>
-            </div>
-          </li> -->
+            </div>-->
+          </li>
 
           <li class="sidebar-dropdown">
             <a onclick="cargarProv();" href="#">
@@ -98,14 +98,14 @@
           </li>
 
           <li class="sidebar-dropdown">
-            <a href="#">
+          <a onclick="cargarEmp();" href="#">
               <i class="material-icons">people</i>
               <span>Empleados</span>
             </a>
           </li>
 
           <li class="sidebar-dropdown">
-            <a href="#">
+          <a href="#">
               <i class="material-icons">bar_chart</i>
               <span>Informes</span>
             </a>

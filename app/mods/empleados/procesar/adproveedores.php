@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD']==='POST') {
         VALUES('$id_proveedor','$nombre','$direccion','$email','$telefonos')";
 
     if ($conexion->query($sql) === true) {
-        echo "<br>Proveedor añadido Correctamente";
+        echo "<div class='fixed-bottom'> <div class='alert alert-success alert-dismissible fade show' role='alert'> Datos del Proveedor Registrados Correctamente <button type='button' class='close' data-dismiss='alert' aria-label='Close'> <span aria-hidden='true'></span> </button> </div> </div>";
     } else {
         die("Error al insertar datos: " . $conexion->error);
     }

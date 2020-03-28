@@ -1,21 +1,16 @@
 <?php
-require('../../rq/climod.php');
+require('../../rq/empmod.php');
 /*require('head.php'); */
 ?>
 <div id="vueapp">
   <form>
-    <h2 style="text-align: center">Administración<br>De Clientes<br></h2>
+    <h2 style="text-align: center">Administración<br>De Empleado<br></h2>
     <div class="form-row">
       <div class="col">
-        <input v-model="idCliente" value aria-required="true" class="form-control" type="text" placeholder="Número de Documento" name="id_cliente" required>
+        <input v-model="idEmpleado" value aria-required="true" class="form-control" type="text" placeholder="Número de Documento" name="id_empleado" required>
       </div>
       <div class="col">
         <input v-model="email" value aria-required="true" class="form-control" type="text" placeholder="Correo Electrónico" name="email" required>
-      </div>
-    </div><br>
-    <div class="form-row">
-      <div class="col">
-        <input v-model="celular" value aria-required="true" class="form-control" type="text" placeholder="Celular" name="celular" required>
       </div>
       <div class="col">
         <input v-model="pass" value aria-required="true" class="form-control" type="password" placeholder="Contraseña" name="pass" required>
@@ -32,7 +27,7 @@ require('../../rq/climod.php');
     <div class="form-row">
       <div class="col">
         <input v-model="telefonos" value aria-required="true" class="form-control" type="text" placeholder="Telefonos" name="telefonos" required>
-      </div>
+      </div> 
       <div class="col">
         <input v-model="direccion" value aria-required="true" class="form-control" type="text" placeholder="Dirección" name="direccion" required>
       </div>
@@ -40,7 +35,7 @@ require('../../rq/climod.php');
     <div style="text-align: center" class="form-row">
       <div style="text-align: center" class="col"><br>
         <input class="btn btn-primary" type="reset" value="Limpiar">
-        <input class="btn btn-primary" type="button" value="Registrar" name="registro" @click="enviarDatos()">        
+        <input class="btn btn-primary" type="button" value="Registrar" name="registro" @click="enviarDatos();">
         <!-- <input class="btn btn-primary" type="button" value="Actualizar" name="update"> -->
       </div>
   </form>
@@ -49,9 +44,8 @@ require('../../rq/climod.php');
       el: '#vueapp', //elemento HTML afectado por el VUE
       data: { //enlazar datos
         // formulario:{
-        idCliente: '',
+        idEmpleado: '',
         email: '',
-        celular: '',
         pass: '',
         nombres: '',
         apellidos: '',
@@ -65,9 +59,8 @@ require('../../rq/climod.php');
       methods: { //metodos personalizados
         enviarDatos: function(event) {
           const formulario = new FormData();
-          formulario.set('idCliente', this.idCliente);
+          formulario.set('idEmpleado', this.idEmpleado);
           formulario.set('email', this.email);
-          formulario.set('celular', this.celular);
           formulario.set('pass', this.pass);
           formulario.set('nombres', this.nombres);
           formulario.set('apellidos', this.apellidos);
@@ -76,11 +69,15 @@ require('../../rq/climod.php');
           //peticion por AXIOS con POST
           axios({
             method: 'POST', //metodo
-            url: 'mods/empleados/procesar/adclientes.php', //archivo donde se envía la información
+            url: 'mods/empleados/procesar/adempleados.php', //archivo donde se envía la información
             data: formulario
           }).then(function(respuesta) { //Respuesta del servidor
             console.log(respuesta);
-          }).catcht(function() {
+            alert(respuesta.data.msg);
+            if (respuesta.data.exito === true) { //Redirección a la página de listado
+              cargarEmp();
+            }
+          }).catcht(function(error) {
             console.log(error);
           })
         }
@@ -96,7 +93,6 @@ require('../../rq/climod.php');
       <tr>
         <th scope="col">Número de Documento</th>
         <th scope="col">Correo Electronico</th>
-        <th scope="col">Celular</th>
         <th scope="col">Nombres</th>
         <th scope="col">Apellidos</th>
         <th scope="col">Telefonos</th>
@@ -108,7 +104,15 @@ require('../../rq/climod.php');
     if ($fila = mysqli_fetch_array($resultset)) {
       echo '<br>';
       do {
-        echo "<tbody><tr><th scope='row'>" . $fila["Id_Cliente"] . "</th><td>" . $fila["Email"] . "</td><td>" . $fila["Celular"] . "</td><td>" . $fila["Nombres"] . "</td><td>" . $fila["Apellidos"] . "</td><td>" . $fila["Telefonos"] . "</td><td>" . $fila["Direccion"] . "</td><td><a>Editar</a></td></tr>";
+        echo "<tbody><tr>";
+        echo "<th scope='row'>" . $fila["Id_Empleado"] . "</th>";
+        $id = $fila["Id_Empleado"];
+        echo "<td>" . $fila["Email"] . "</td>";
+        echo "<td>" . $fila["Nombres"] . "</td>";
+        echo "<td>" . $fila["Apellidos"] . "</td>";
+        echo "<td>" . $fila["Telefonos"] . "</td>";
+        echo "<td>" . $fila["Direccion"] . "</td>";
+        echo "<td><a onclick='edEmp(" . $id . ");'>Editar</a></td></tr>";
       } while ($fila = mysqli_fetch_array($resultset));
       echo "<br>";
     } else {

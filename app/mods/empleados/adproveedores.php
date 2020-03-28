@@ -78,14 +78,15 @@ require('../../rq/provmod.php');
         <th scope="col">Direccion</th>
         <th scope="col">Email</th>
         <th scope="col">Telefonos</th>
+        <th scope="col">Acciones</th>        
       </tr>
     </thead>
     <?php
-    if ($row = mysqli_fetch_array($resultset)) {
+    if ($fila = mysqli_fetch_array($resultset)) {
       echo '<br>';
       do {
-        echo "<tbody><tr><th scope='row'>" . $row["Id_Proveedor"] . "</th><td>" . $row["Nombre_Prov"] . "</td><td>" . $row["Direccion"] . "</td><td>" . $row["Email"] . "</td><td>" . $row["Telefonos"] . "</td></tr>";
-      } while ($row = mysqli_fetch_array($resultset));
+        echo "<tbody><tr><th scope='row'>" . $fila["Id_Proveedor"] . "</th><td>" . $fila["Nombre_Prov"] . "</td><td>" . $fila["Direccion"] . "</td><td>" . $fila["Email"] . "</td><td>" . $fila["Telefonos"] . "</td><td><a>Editar</a></td></tr>";
+      } while ($fila = mysqli_fetch_array($resultset));
       echo "<br>";
     } else {
       echo "</table><div class='alert alert-warning' role='alert'> No se encontraron registros </div>";
