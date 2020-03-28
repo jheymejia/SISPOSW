@@ -1,6 +1,7 @@
 <?php
 //Código PHP para obtener el empleado a Editar
 require('../../rq/empmod.php');
+//Sentencia y condicional SQL que recibirá el id por medio del metodo GET
 $sql = "select * from empleados WHERE Id_Empleado =" . $_GET['id'];
 $resultado = $conexion->query($sql)
     or die('Error al intentar realizar la consulta');
@@ -16,10 +17,10 @@ if ($resultado->num_rows > 0) {
     <div class="card-header">
         Editar empleado
     </div>
+    <!-- Aplicacion VUE -->
     <div class="card-body" id="vueapp">
-
         <form>
-            <!-- FILA 1 -->
+            <!-- Campos de Inserccion -->
             <div class="row">
                 <div class="col-lg-6">
                     <label>ID Empleado</label>
@@ -29,10 +30,8 @@ if ($resultado->num_rows > 0) {
                     <label>Nombres</label>
                     <input type="text" v-model="nombres" name="txtNombres" class="form-control" placeholder="" />
                 </div>
-
             </div>
             <br />
-            <!-- FILA 2 -->
             <div class="row">
                 <div class="col-lg-6">
                     <label>Apellidos</label>
@@ -44,7 +43,6 @@ if ($resultado->num_rows > 0) {
                 </div>
             </div>
             <br />
-            <!-- FILA 3 -->
             <div class="row">
                 <div class="col-lg-6">
                     <label>Dirección</label>
@@ -56,15 +54,18 @@ if ($resultado->num_rows > 0) {
                 </div>
             </div>
             <br />
-            <!-- FILA 4 -->
+            <!-- Campos de Inserccion -->
             <div class="row">
+                <!-- Botonera para Borrar el Formulario o Editar un Registro -->
                 <div class="col-lg-6">
                     <button @click="enviarDatos()" type="button" class="btn btn-primary">Editar</button>
 
                     <button @click="borrarDatos()" type="button" class="btn btn-danger">Borrar</button>
                 </div>
+                <!-- Botonera para Borrar el Formulario o Editar un Registro -->
             </div>
         </form>
+        <!-- Script del VUE.js -->
         <script type="text/javascript">
             var vm = new Vue({
                 el: '#vueapp', //Elemento html a ser afectado
@@ -127,4 +128,5 @@ if ($resultado->num_rows > 0) {
             });
         </script>
     </div>
+    <!-- Aplicacion VUE -->
 </div>

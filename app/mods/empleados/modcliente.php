@@ -1,6 +1,7 @@
 <?php
-//Código PHP para obtener el empleado a Editar
-require('../../rq/empmod.php');
+//Código PHP para obtener el Cliente a Editar
+require('../../rq/climod.php');
+//Sentencia y condicional SQL que recibirá el id por medio del metodo GET
 $sql = "select * from clientes WHERE Id_Cliente =" . $_GET['id'];
 $resultado = $conexion->query($sql)
     or die('Error al intentar realizar la consulta');
@@ -16,10 +17,10 @@ if ($resultado->num_rows > 0) {
     <div class="card-header">
         Editar Clientes
     </div>
+    <!-- Aplicacion VUE -->
     <div class="card-body" id="vueapp">
-
-        <form>
-            <!-- FILA 1 -->
+        <form>   
+            <!-- Campos de Inserccion -->           
             <div class="row">
                 <div class="col-lg-6">
                     <label>ID Cliente</label>
@@ -30,8 +31,7 @@ if ($resultado->num_rows > 0) {
                     <input type="text" name="txtCelular" v-model="celular" class="form-control" placeholder="" />
                 </div>
             </div>
-            <br />
-            <!-- FILA 2 -->
+            <br />            
             <div class="row">
                 <div class="col-lg-6">
                     <label>Nombres</label>
@@ -42,8 +42,7 @@ if ($resultado->num_rows > 0) {
                     <input type="text" name="txtApellidos" v-model="apellidos" class="form-control" placeholder="" />
                 </div>
             </div>
-            <br />
-            <!-- FILA 3 -->
+            <br />            
             <div class="row">
                 <div class="col-lg-6">
                     <label>Dirección</label>
@@ -64,16 +63,19 @@ if ($resultado->num_rows > 0) {
                     <input type="password" name="txtPass" v-model="pass" class="form-control" placeholder="" />
                 </div>
             </div>
-            <br />
-            <!-- FILA 4 -->
+            <br />       
+            <!-- Campos de Inserccion -->       
             <div class="row">
+                <!-- Botonera para Borrar el Formulario o Editar un Registro -->
                 <div class="col-lg-6">
                     <button @click="enviarDatos()" type="button" class="btn btn-primary">Editar</button>
 
                     <button @click="borrarDatos()" type="button" class="btn btn-danger">Borrar</button>
                 </div>
+                <!-- Botonera para Borrar el Formulario o Editar un Registro -->
             </div>
         </form>
+        <!-- Script del VUE.js -->
         <script type="text/javascript">
             var vm = new Vue({
                 el: '#vueapp', //Elemento html a ser afectado
@@ -140,4 +142,5 @@ if ($resultado->num_rows > 0) {
             });
         </script>
     </div>
+    <!-- Aplicacion VUE -->
 </div>

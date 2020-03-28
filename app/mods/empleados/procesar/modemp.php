@@ -8,11 +8,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $telefono = $_POST['telefono'];
     $direccion = $_POST['direccion'];
     $email = $_POST['email'];
-    //Arreglo asociativo par enviar respuestas json
-    $respuesta=[];
-    $respuesta['msg']='Registro no guardado';
-    $respuesta['exito']=false;
-
+    //Arreglo asociativo para enviar respuestas json
+    $respuesta = [];
+    $respuesta['msg'] = 'Registro no guardado';
+    $respuesta['exito'] = false;
+    //Sentencia SQL que actualizará el registro
     $sql = "UPDATE empleados SET ";
     $sql .= "Nombres = '$nombres',";
     $sql .= "Apellidos = '$apellidos',";
@@ -22,18 +22,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $sql .= " WHERE Id_Empleado = $idEmpleado"; //Tenga en cuenta el espacio de la condición WHERE
 
     $respuesta['sql'] = $sql;
-
-    if($conexion->query($sql) === TRUE) {
-        $respuesta['msg']='Registro editado';
-        $respuesta['exito']=true;
+    //Condicional que da la respuesta al archivo principal
+    if ($conexion->query($sql) === TRUE) {
+        $respuesta['msg'] = 'Registro editado';
+        $respuesta['exito'] = true;
     } else {
-        $respuesta['error']=''. $conexion->error;
-        $respuesta['msg']='Registro no editado';
+        $respuesta['error'] = '' . $conexion->error;
+        $respuesta['msg'] = 'Registro no editado';
     }
 
     $conexion->close();
     echo json_encode($respuesta);
     die();
 }
-
-?>
