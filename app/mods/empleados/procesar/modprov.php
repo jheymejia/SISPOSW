@@ -2,8 +2,8 @@
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     require('../../../../datos/conexioncore.php');
     //Variables enviadas desde el formulario
-    $idProv = $_POST['idProv'];
-    $nombre = $_POST['nombre'];
+    $idProv = $_POST['idProveedor'];
+    $nombre = $_POST['nombres'];
     $direccion = $_POST['direccion'];
     $email = $_POST['email'];
     $telefonos = $_POST['telefonos'];
@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $sql .= "Nombre_Prov = '$nombre',";
     $sql .= "Direccion = '$direccion',";
     $sql .= "Email = '$email',";
-    $sql .= "Telefonos = '$telefonos',";
+    $sql .= "Telefonos = '$telefonos'";
     $sql .= " WHERE Id_Proveedor = $idProv"; //Tenga en cuenta el espacio de la condición WHERE
 
     $respuesta['sql'] = $sql;
