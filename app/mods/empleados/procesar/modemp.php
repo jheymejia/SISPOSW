@@ -1,6 +1,6 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    require('../../../../datos/conexion.php');
+    require('../../../../datos/conexioncore.php');
     //Variables enviadas desde el formulario
     $idEmpleado = $_POST['idEmpleado'];
     $nombres = $_POST['nombres'];

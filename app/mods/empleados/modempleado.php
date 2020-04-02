@@ -10,8 +10,10 @@ if ($resultado->num_rows > 0) {
     $fila = $resultado->fetch_array(MYSQLI_ASSOC);
 } else {
     echo "El empleado que intenta editar no existe";
+    $conexion->close();
     exit;
 }
+$conexion->close();
 ?>
 <div class="card" style="margin: 8px;">
     <div class="card-header">

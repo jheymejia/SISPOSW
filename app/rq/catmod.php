@@ -1,5 +1,5 @@
 <?php
-require('../../../datos/conexion.php');
+require('../../../datos/conexioncore.php');
 $sqltraer = "SELECT * FROM categoria";
 $res1 = mysqli_query($conexion, $sqltraer) or die(mysqli_error($conexion));
 $filas1 = @mysqli_fetch_assoc($res1);

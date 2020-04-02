@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
  <html lang="es">
 
  <head>
@@ -12,23 +12,21 @@
    <div class="container" id="container">
 
      <div class="form-container sign-up-container">
-       <form action="#">
+       <form action="registrocli.php" method="POST">
          <h1 class="mb-5">Crea tu Cuenta</h1>
-         <input type="text" placeholder="Nombre" />
-         <input type="email" placeholder="Email" />
-         <input type="password" placeholder="Contraseña" />
-         <button class="mt-3">Registrarse</button>
+         <input type="email" placeholder="Email" name="email"/>
+         <input type="password" placeholder="Contraseña" name="pass"/>
+         <button class="mt-3" type="submit" name="registro">Registrarse</button>
        </form>
      </div>
 
      <div class="form-container sign-in-container">
-       <form action="#">
+       <form action="validacion.php" method="POST">  
          <h1 class="mb-5">Ingresar</h1>
-
-         <input type="email" placeholder="Email" />
-         <input type="password" placeholder="Contraseña" />
+         <input type="email" placeholder="Email" name="usuario" />
+         <input type="password" placeholder="Contraseña" name="pass"/>
          <a href="#">¿Olvidaste la contraseña?</a>
-         <button class="mt-3" role="link" onclick="window.location='intro.php'">Ingresar</button>
+         <button class="mt-3" type="submit" name="ingresar">Ingresar</button>
        </form>
      </div>
 

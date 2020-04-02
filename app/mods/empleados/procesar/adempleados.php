@@ -1,6 +1,6 @@
 <?php
 //Archivo PHP con la Conexion
-require('../../../../datos/conexion.php');
+require('../../../../datos/conexioncore.php');
 //Condicional que recibe los datos desde archivo principal
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $id_empleado = $_POST['idEmpleado'];

@@ -1,49 +1,30 @@
-<?php
-    session_start();
-    if (($_SESSION['rol']==1)||($_SESSION['rol']==2)) {
-        ?>
- <!DOCTYPE html>
-  <html lang="es">
-    <head>
-		<title>Bienvenido</title>
-    <?php	require 'rq/head.php'; ?>
-
-    </head>
-
-    <body>
-    <div class="page-wrapper chiller-theme toggled">
+<div class="page-wrapper chiller-theme toggled">
   <nav class="navbar fixed-top navbar-dark bg-dark">
     <a class="navbar-brand" href="#">SISPOSW</a>
   </nav>
 
-  <!-- Módulos en Botones flotantes -->
-  <div class="menu-botones">
+<div class="menu-botones">
+  <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+    <i class="btn-menu material-icons"> apps </i>
+  </a>
 
-    <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
-      <i class="btn-menu material-icons"> apps </i>
-    </a>
+  <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+    <i class="btn-menu material-icons"> shopping_cart </i>
+  </a>
 
-    <a id="show-sidebar" onclick="cargarCat();" class="btn btn-sm btn-dark fabs upfab" href="#">
-      <i class="btn-menu material-icons"> shopping_cart </i>
-    </a>
+  <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+    <i class="btn-menu material-icons"> assignment_ind </i>
+  </a>
 
-    <a id="show-sidebar" onclick="cargarProv();" class="btn btn-sm btn-dark fabs" href="#">
-      <i class="btn-menu material-icons"> assignment_ind </i>
-    </a>
+  <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+    <i class="btn-menu material-icons"> people </i>
+  </a>
 
-    <a id="show-sidebar" onclick="cargarCli();" class="btn btn-sm btn-dark fabs" href="#">
-      <i class="btn-menu material-icons"> face </i>
-    </a>
+  <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+    <i class="btn-menu material-icons"> bar_chart </i>
+  </a>
 
-    <a id="show-sidebar" onclick="cargarEmp();" class="btn btn-sm btn-dark fabs" href="#">
-      <i class="btn-menu material-icons"> people </i>
-    </a>
-
-    <a id="show-sidebar" class="btn btn-sm btn-dark fabs" href="#">
-      <i class="btn-menu material-icons"> bar_chart </i>
-    </a>
-
-  </div>
+</div>
 
   <nav id="sidebar" class="sidebar-wrapper pt-5">
     <div class="sidebar-content">
@@ -77,7 +58,7 @@
           </li>
 
           <li class="sidebar-dropdown">
-            <a onclick="cargarCat();" href="#">
+            <a onclick="cargar();" href="#">
               <i class="material-icons">shopping_cart</i>
               <span>Productos</span>
             </a>
@@ -93,32 +74,25 @@
                   <a href="#">Dashboard 3</a>
                 </li>
               </ul>
-            </div>-->
-          </li>
+            </div>
+          </li> -->
 
           <li class="sidebar-dropdown">
-            <a onclick="cargarProv();" href="#">
+            <a href="#">
               <i class="material-icons"> assignment_ind </i>
               <span>Proveedores</span>
             </a>
           </li>
 
           <li class="sidebar-dropdown">
-            <a onclick="cargarCli();" href="#">
-              <i class="material-icons">face</i>
-              <span>Clientes</span>
-            </a>
-          </li>
-          <?php if($_SESSION['rol']==1){ ?>
-          <li class="sidebar-dropdown">
-          <a onclick="cargarEmp();" href="#">
+            <a href="#">
               <i class="material-icons">people</i>
               <span>Empleados</span>
             </a>
           </li>
-          <?php } ?>
+
           <li class="sidebar-dropdown">
-          <a href="#">
+            <a href="#">
               <i class="material-icons">bar_chart</i>
               <span>Informes</span>
             </a>
@@ -132,7 +106,7 @@
       <a href="#">
         <i class="material-icons">settings</i>
       </a>
-      <a href="salir.php">
+      <a href="#">
         <i class="material-icons">power_settings_new</i>
       </a>
     </div>
@@ -142,7 +116,30 @@
 
   <!-- sidebar-wrapper  -->
   <main class="page-content">
-    <div id="cargaModulo"></div>
+    <div id="cargaModulo">
+
+    <form>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1">
+  </div>
+  <div class="form-group form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+
+
+
+    </div>
   </main>
 
 </div>
@@ -185,15 +182,3 @@
 
   });
 </script>
-
-
-
-	 <?php	require 'rq/scripts.php'; ?>
-    </body>
-  </html>
-<?php
-    }else if($_SESSION['rol']==3){
-      header("location:../shop/index.php");
-    }else{
-      header("location:login.php");
-    }

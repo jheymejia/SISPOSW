@@ -138,6 +138,7 @@ require('../../rq/climod.php');
     } else {
       echo "</table><div class='alert alert-warning' role='alert'> No se encontraron registros </div>";
     }
+    $conexion->close();
     ?>
   </table>
   <!-- Tabla donde estará la información -->

@@ -67,15 +67,21 @@
                   <li class="support"><span>Compra antes de las 04:00 pm y se envía el mismo día - Tel: (+57) 800 456 789</span></li>
                   <li class="account"><a href="#">Mi Cuenta<i class="fa fa-angle-down"></i></a>
                     <ul class="ht-dropdown">
-
-                      <li><a href="checkout.php">Checkout</a></li>
-
+                      
+                      <li><a href='checkout.php'>Checkout</a></li>
+                       
                       <li><a href="compras.php">Mi Carrito</a></li>
 
                       <li><a href="favoritos.php">Favoritos</a></li>
 
-                      <li><a href="../app/login.php">Ingresar</a></li>
-
+                      <li><a href="../app/login.php">Ingresado</a></li>
+                      <?php 
+                      if ($_SESSION['rol']==3) {
+                          ?>
+                      <li><a href='../app/salir.php'>salir</a></li>
+                      <?php
+                      }
+                      ?>
                     </ul>
                   </li>
                 </ul>

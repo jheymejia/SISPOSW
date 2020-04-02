@@ -10,8 +10,10 @@ if ($resultado->num_rows > 0) {
     $fila = $resultado->fetch_array(MYSQLI_ASSOC);
 } else {
     echo "El Cliente que intenta editar no existe";
+    $conexion->close();
     exit;
 }
+$conexion->close();
 ?>
 <div class="card" style="margin: 8px;">
     <div class="card-header">
@@ -19,8 +21,8 @@ if ($resultado->num_rows > 0) {
     </div>
     <!-- Aplicacion VUE -->
     <div class="card-body" id="vueapp">
-        <form>   
-            <!-- Campos de Inserccion -->           
+        <form>
+            <!-- Campos de Inserccion -->
             <div class="row">
                 <div class="col-lg-6">
                     <label>ID Cliente</label>
@@ -31,7 +33,7 @@ if ($resultado->num_rows > 0) {
                     <input type="text" name="txtCelular" v-model="celular" class="form-control" placeholder="" />
                 </div>
             </div>
-            <br />            
+            <br />
             <div class="row">
                 <div class="col-lg-6">
                     <label>Nombres</label>
@@ -42,7 +44,7 @@ if ($resultado->num_rows > 0) {
                     <input type="text" name="txtApellidos" v-model="apellidos" class="form-control" placeholder="" />
                 </div>
             </div>
-            <br />            
+            <br />
             <div class="row">
                 <div class="col-lg-6">
                     <label>Dirección</label>
@@ -63,8 +65,8 @@ if ($resultado->num_rows > 0) {
                     <input type="password" name="txtPass" v-model="pass" class="form-control" placeholder="" />
                 </div>
             </div>
-            <br />       
-            <!-- Campos de Inserccion -->       
+            <br />
+            <!-- Campos de Inserccion -->
             <div class="row">
                 <!-- Botonera para Borrar el Formulario o Editar un Registro -->
                 <div class="col-lg-6">

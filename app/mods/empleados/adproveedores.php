@@ -114,12 +114,13 @@ require('../../rq/provmod.php');
         } else {
             echo "</table><div class='alert alert-warning' role='alert'> No se encontraron registros </div>";
         }
+        $conexion->close();
         ?>
     </table>
     <!-- Tabla donde estará la información -->
 </div>
 <script>
-  $(".alert-success").delay(4000).slideUp(200, function() {
-    $(this).alert - success('close');
-  });
+    $(".alert-success").delay(4000).slideUp(200, function() {
+        $(this).alert - success('close');
+    });
 </script>
