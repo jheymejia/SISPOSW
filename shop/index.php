@@ -80,7 +80,7 @@ session_start();
               <div class="header-top-menu">
                 <ul>
                   <li class="support"><span>Compra antes de las 04:00 pm y se envía el mismo día - Tel: (+57) 800 456 789</span></li>
-                  <li class="account"><a href="#">Mi Cuenta<i class="fa fa-angle-down"></i></a>
+                  <li class="account"><a href="../app/completarregistro.php">Mi Cuenta<i class="fa fa-angle-down"></i></a>
                     <ul class="ht-dropdown">
 										<?php 
 											if(!isset($_SESSION['rol'])){
