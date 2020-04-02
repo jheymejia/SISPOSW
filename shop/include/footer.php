@@ -36,8 +36,7 @@
               </div>
               <ul class="footer-info">
                 <li><a href="#">Nosotros</a></li>
-                <li><a href="#">Contacto</a></li>
-                <li><a href="#">Favoritos</a></li>
+                <li><a href="#">Productos</a></li>
               </ul>
             </div>
           </div>
@@ -46,14 +45,10 @@
           <div class="col-md-2 col-sm-6">
             <div class="single-footer mt-30">
               <div class="footer-title">
-                <h3>Mi Cuenta</h3>
+                <h3>Accesos rapidos</h3>
               </div>
               <ul class="footer-info">
-                <li><a href="#">Mi Cuenta</a></li>
                 <li><a href="#">Contacto</a></li>
-                <li><a href="#">Carrito de Compras</a></li>
-                <li><a href="#">Checkout</a></li>
-                <li><a href="#">Portafolio</a></li>
                 <li><a href="#">Preguntas Frecuentes</a></li>
               </ul>
             </div>

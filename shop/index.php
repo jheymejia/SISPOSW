@@ -82,9 +82,14 @@ session_start();
                   <li class="support"><span>Compra antes de las 04:00 pm y se envía el mismo día - Tel: (+57) 800 456 789</span></li>
                   <li class="account"><a href="#">Mi Cuenta<i class="fa fa-angle-down"></i></a>
                     <ul class="ht-dropdown">
-                      
-                      <li><a href="../app/login.php">Ingresar</a></li>
+										<?php 
+											if(!isset($_SESSION['rol'])){
+											?>
+											<li><a href="../app/login.php">Ingresar</a></li>
+											
+											<li><a href="../app/login.php">Registrate</a></li>
 											<?php 
+											}
 											if(isset($_SESSION['rol'])){
 											?>
                       <li><a href='checkout.php'>Checkout</a></li>
@@ -133,7 +138,10 @@ session_start();
 
             </div>
             <!--Search Box End-->
-            <!--Mini Cart Start-->
+						<!--Mini Cart Start-->
+						<?php
+						if(isset($_SESSION['rol'])){
+						?>
             <div class="col-md-3 col-sm-4 col-xs-12">
               <div class="mini-cart-area">
                 <ul>
@@ -185,7 +193,8 @@ session_start();
                   </li>
                 </ul>
               </div>
-            </div>
+						</div>
+						<?php } ?>
             <!--Mini Cart End-->
           </div>
         </div>
@@ -214,23 +223,20 @@ session_start();
                 <nav>
                   <ul class="main-menu">
 
-
-
-
                     <li class="active"><a href="index.php">Inicio</a></li>
 
-
-                    <li class=""><a href="#">Productos</a>
+										<li class=""><a href="nosotros.php">Productos</a></li>
+										
+										<li class=""><a href="contacto.php">Contacto</a></li>
+										
+										<li class=""><a href="#">Nosotros</a>
                       <ul class="dropdown">
-                        <li><a href="#">Link 1</a></li>
-                        <li><a href="#">Link 2</a></li>
-                        <li><a href="#">Link 3</a></li>
+                        <li><a href="#">¿Quienes somos?</a></li>
+                        <li><a href="#">Mision</a></li>
+                        <li><a href="#">Vision</a></li>
                       </ul>
                     </li>
 
-                    <li class=""><a href="contacto.php">Contacto</a></li>
-
-                    <li class=""><a href="nosotros.php">Nosotros</a></li>
 
                   </ul>
                 </nav>
