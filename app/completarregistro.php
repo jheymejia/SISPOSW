@@ -11,4 +11,5 @@ require "../datos/conexion.php";
   
   $regis = new conexion;
   $regis->llenardatos($nombre,$apellido,$direccion,$celular,$telefono,$tipo,$identificacion);
+  $regis->crearcliente2($nombre);
   $regis->cerrarconex();

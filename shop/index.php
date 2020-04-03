@@ -225,7 +225,7 @@ session_start();
 
                     <li class="active"><a href="index.php">Inicio</a></li>
 
-										<li class=""><a href="nosotros.php">Productos</a></li>
+										<li class=""><a href="#productos">Productos</a></li>
 										
 										<li class=""><a href="contacto.php">Contacto</a></li>
 										
@@ -236,12 +236,8 @@ session_start();
                         <li><a href="#">Vision</a></li>
                       </ul>
                     </li>
-
-
                   </ul>
                 </nav>
-
-
               </div>
               <!--Main Menu Area End-->
             </div>
@@ -260,25 +256,21 @@ session_start();
                 <nav style="display: block;">
                   <ul>
 
-                    <li><a href="index.php">Inicio</a></li>
+                    <li class="active"><a href="index.php">Inicio</a></li>
 
-                    <li><a href="#">Productos</a>
-                      <!-- Home Version Dropdown Start -->
-                      <ul>
-                        <li><a href="#" class="title">Link 1</a></li>
-                        <li><a href="#" class="title">Link 2</a></li>
-                        <li><a href="#" class="title">Link 3</a></li>
+										<li class=""><a href="#productos">Productos</a></li>
+										
+										<li class=""><a href="contacto.php">Contacto</a></li>
+										
+										<li class=""><a href="#">Nosotros</a>
+                      <ul class="dropdown">
+                        <li><a href="#">¿Quienes somos?</a></li>
+                        <li><a href="#">Mision</a></li>
+                        <li><a href="#">Vision</a></li>
                       </ul>
-                      <!-- Home Version Dropdown End -->
                     </li>
-
-                    <li><a href="contacto.php">Contacto</a></li>
-
-                    <li><a href="nosotros">Nosotros</a></li>
-
                   </ul>
                 </nav>
-
               </div>
             </div>
           </div>
@@ -375,7 +367,7 @@ session_start();
 <!--Slider Area End-->
 
 <!--Corporate About Start-->
-<section class="corporate-about white-bg">
+<section class="corporate-about white-bg" id="productos">
 	<div class="container">
 		<div class="row-2">
 			<div class="all-about">
