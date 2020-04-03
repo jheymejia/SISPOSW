@@ -11,13 +11,18 @@ require('../../rq/climod.php');
       <div class="col">
         <input v-model="idCliente" value aria-required="true" class="form-control" type="text" placeholder="Número de Documento" name="id_cliente" required>
       </div>
-      <div class="col">
-        <input v-model="email" value aria-required="true" class="form-control" type="text" placeholder="Correo Electrónico" name="email" required>
+      <div class="col-sm-2 col-form-label"><label for="label1">Tipo de Documento</label></div>
+      <div class="col-4">
+        <select v-model="tipo_iden" id="label1" class="form-control" name="tipo_iden" required>          
+          <?php while ($filas2 = mysqli_fetch_array($res2)) : ?>
+            <option value="<?php echo $filas2['identificacion'] ?>"><?php echo $filas2['identificacion'] ?></option>
+          <?php endwhile ?>
+        </select>
       </div>
     </div><br>
     <div class="form-row">
       <div class="col">
-        <input v-model="celular" value aria-required="true" class="form-control" type="text" placeholder="Celular" name="celular" required>
+        <input v-model="email" value aria-required="true" class="form-control" type="text" placeholder="Correo Electrónico" name="email" required>
       </div>
       <div class="col">
         <input v-model="pass" value aria-required="true" class="form-control" type="password" placeholder="Contraseña" name="pass" required>
@@ -35,6 +40,11 @@ require('../../rq/climod.php');
       <div class="col">
         <input v-model="telefonos" value aria-required="true" class="form-control" type="text" placeholder="Telefonos" name="telefonos" required>
       </div>
+      <div class="col">
+        <input v-model="celular" value aria-required="true" class="form-control" type="text" placeholder="Celular" name="celular" required>
+      </div>
+    </div><br>
+    <div class="form-row">
       <div class="col">
         <input v-model="direccion" value aria-required="true" class="form-control" type="text" placeholder="Dirección" name="direccion" required>
       </div>
@@ -56,6 +66,7 @@ require('../../rq/climod.php');
       data: { //enlazar datos
         // formulario:{
         idCliente: '',
+        tipo_iden: '',
         email: '',
         celular: '',
         pass: '',
@@ -70,8 +81,12 @@ require('../../rq/climod.php');
       },
       methods: { //metodos personalizados
         enviarDatos: function(event) {
+          if (this.tipo_iden="TI") {
+            this.tipo_iden=2;
+          }else{this.tipo_iden=1;}
           const formulario = new FormData();
           formulario.set('idCliente', this.idCliente);
+          formulario.set('tipo_iden', this.tipo_iden);
           formulario.set('email', this.email);
           formulario.set('celular', this.celular);
           formulario.set('pass', this.pass);
@@ -122,14 +137,14 @@ require('../../rq/climod.php');
       // Ciclo que permite rellenar las filas de la tabla
       do {
         echo "<tbody><tr>";
-        echo "<th scope='row'>" . $fila["Id_Cliente"] . "</th>";
+        echo "<th scope='row'>" . $fila["numero_identificacion"] . "</th>";
         // Variable que toma el id del Registro
-        $id = $fila["Id_Cliente"];
-        echo "<td>" . $fila["Email"] . "</td>";
+        $id = $fila["numero_identificacion"];
+        echo "<td>" . $fila["email"] . "</td>";
         echo "<td>" . $fila["Celular"] . "</td>";
-        echo "<td>" . $fila["Nombres"] . "</td>";
-        echo "<td>" . $fila["Apellidos"] . "</td>";
-        echo "<td>" . $fila["Telefonos"] . "</td>";
+        echo "<td>" . $fila["Nombre"] . "</td>";
+        echo "<td>" . $fila["Apellido"] . "</td>";
+        echo "<td>" . $fila["Telefono"] . "</td>";
         echo "<td>" . $fila["Direccion"] . "</td>";
         //Función para editar el Registro
         echo "<td><a onclick='edCli(" . $id . ");'>Editar</a></td></tr>";

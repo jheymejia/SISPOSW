@@ -2,7 +2,7 @@
 //Código PHP para obtener el Cliente a Editar
 require('../../rq/climod.php');
 //Sentencia y condicional SQL que recibirá el id por medio del metodo GET
-$sql = "select * from clientes WHERE Id_Cliente =" . $_GET['id'];
+$sql = "SELECT Id_Cliente, id_identificacion, Id_usuario, Nombre, Apellido, Direccion, Celular, Telefono,  numero_identificacion, pass, email FROM personas p, clientes c, identificacion i, usuarios u where c.Persona = p.id_persona and p.Identificacion = i.id_identificacion and c.Usuario = u.Id_usuario and numero_identificacion =" . $_GET['id'];
 $resultado = $conexion->query($sql)
     or die('Error al intentar realizar la consulta');
 $fila = null;
@@ -82,14 +82,14 @@ $conexion->close();
             var vm = new Vue({
                 el: '#vueapp', //Elemento html a ser afectado
                 data: { //Data sirve para enlazar datos
-                    idCliente: <?php echo "'" . $fila['Id_Cliente'] . "'" ?>,
-                    nombres: <?php echo "'" . $fila['Nombres'] . "'" ?>,
-                    apellidos: <?php echo "'" . $fila['Apellidos'] . "'" ?>,
-                    telefonos: <?php echo "'" . $fila['Telefonos'] . "'" ?>,
+                    idCliente: <?php echo "'" . $fila['numero_identificacion'] . "'" ?>,
+                    nombres: <?php echo "'" . $fila['Nombre'] . "'" ?>,
+                    apellidos: <?php echo "'" . $fila['Apellido'] . "'" ?>,
+                    telefonos: <?php echo "'" . $fila['Telefono'] . "'" ?>,
                     celular: <?php echo "'" . $fila['Celular'] . "'" ?>,
-                    email: <?php echo "'" . $fila['Email'] . "'" ?>,
+                    email: <?php echo "'" . $fila['email'] . "'" ?>,
                     direccion: <?php echo "'" . $fila['Direccion'] . "'" ?>,
-                    pass: <?php echo "'" . $fila['Pass'] . "'" ?>,
+                    pass: <?php echo "'" . $fila['pass'] . "'" ?>,
                     msg: '',
                     mostrarMsg: false
                 },
