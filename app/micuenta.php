@@ -1,5 +1,9 @@
 <?php
+require "../datos/conexion.php";
 session_start();
+if (($_SESSION['rol'] == 3)) {
+  $obj =new conexion;
+  $obj->redirdatos();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -21,3 +25,7 @@ session_start();
   </form>
 </body>
 </html>
+<?php
+}else{
+  header("location:../shop/index.php");
+}
