@@ -1,6 +1,7 @@
 <?php
 require "../datos/conexion.php";
 session_start();
+echo "Bienvenido ".$_SESSION['usuario'];
 if (($_SESSION['rol'] == 3)) {
   $obj =new conexion;
   $obj->redirdatos();
