@@ -2,14 +2,14 @@
 //Código PHP para obtener el empleado a Editar
 require('../../rq/empmod.php');
 //Sentencia y condicional SQL que recibirá el id por medio del metodo GET
-$sql = "select * from empleados WHERE Id_Empleado =" . $_GET['id'];
+$sql = "SELECT Id_Empleado, id_identificacion, Id_usuario, Nombre, Apellido, Direccion, Celular, Telefono,  numero_identificacion, pass, email FROM personas p, empleados e, identificacion i, usuarios u where e.Persona = p.id_persona and p.Identificacion = i.id_identificacion and e.Usuario = u.Id_usuario and numero_identificacion =" . $_GET['id'];
 $resultado = $conexion->query($sql)
     or die('Error al intentar realizar la consulta');
 $fila = null;
 if ($resultado->num_rows > 0) {
     $fila = $resultado->fetch_array(MYSQLI_ASSOC);
 } else {
-    echo "El empleado que intenta editar no existe";
+    echo "El Empleado que intenta editar no existe";
     $conexion->close();
     exit;
 }
@@ -25,34 +25,38 @@ $conexion->close();
             <!-- Campos de Inserccion -->
             <div class="row">
                 <div class="col-lg-6">
-                    <label>ID Empleado</label>
-                    <input type="number" v-model="idEmpleado" class="form-control" name="txtId" placeholder="">
-                </div>
-                <div class="col-lg-6">
-                    <label>Nombres</label>
-                    <input type="text" v-model="nombres" name="txtNombres" class="form-control" placeholder="" />
-                </div>
-            </div>
-            <br />
-            <div class="row">
-                <div class="col-lg-6">
-                    <label>Apellidos</label>
-                    <input type="text" name="txtApellidos" v-model="apellidos" class="form-control" placeholder="" />
-                </div>
-                <div class="col-lg-6">
-                    <label>Teléfono</label>
-                    <input type="number" name="txtTelefono" v-model="telefono" class="form-control" placeholder="" />
-                </div>
-            </div>
-            <br />
-            <div class="row">
-                <div class="col-lg-6">
-                    <label>Dirección</label>
-                    <input type="text" name="txtDireccion" v-model="direccion" class="form-control" placeholder="" />
+                    <label>Número de Documento</label>
+                    <input type="text" v-model="idEmpleado" class="form-control" name="txtId" placeholder="">
                 </div>
                 <div class="col-lg-6">
                     <label>Email</label>
                     <input type="email" name="txtEmail" v-model="email" class="form-control" placeholder="" />
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-lg-6">
+                    <label>Nombres</label>
+                    <input type="text" v-model="nombres" name="txtNombres" class="form-control" placeholder="" />
+                </div>
+                <div class="col-lg-6">
+                    <label>Apellidos</label>
+                    <input type="text" name="txtApellidos" v-model="apellidos" class="form-control" placeholder="" />
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-lg-6">
+                    <label>Teléfono</label>
+                    <input type="text" name="txtTelefono" v-model="telefono" class="form-control" placeholder="" />
+                </div>
+                <div class="col-lg-6">
+                    <label>Celular</label>
+                    <input type="text" name="txtCelular" v-model="celular" class="form-control" placeholder="" />
+                </div>
+                <div class="col-lg-6">
+                    <label>Dirección</label>
+                    <input type="text" name="txtDireccion" v-model="direccion" class="form-control" placeholder="" />
                 </div>
             </div>
             <br />
@@ -72,12 +76,13 @@ $conexion->close();
             var vm = new Vue({
                 el: '#vueapp', //Elemento html a ser afectado
                 data: { //Data sirve para enlazar datos
-                    idEmpleado: <?php echo "'" . $fila['Id_Empleado'] . "'" ?>,
-                    nombres: <?php echo "'" . $fila['Nombres'] . "'" ?>,
-                    apellidos: <?php echo "'" . $fila['Apellidos'] . "'" ?>,
-                    telefono: <?php echo "'" . $fila['Telefonos'] . "'" ?>,
+                    idEmpleado: <?php echo "'" . $fila['numero_identificacion'] . "'" ?>,
+                    nombres: <?php echo "'" . $fila['Nombre'] . "'" ?>,
+                    apellidos: <?php echo "'" . $fila['Apellido'] . "'" ?>,
+                    celular: <?php echo "'" . $fila['Celular'] . "'" ?>,
+                    telefono: <?php echo "'" . $fila['Telefono'] . "'" ?>,
                     direccion: <?php echo "'" . $fila['Direccion'] . "'" ?>,
-                    email: <?php echo "'" . $fila['Email'] . "'" ?>,
+                    email: <?php echo "'" . $fila['email'] . "'" ?>,
                     msg: '',
                     mostrarMsg: false
                 },

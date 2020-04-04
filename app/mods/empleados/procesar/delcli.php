@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $respuesta['msg'] = 'Registro borrado';
         $respuesta['exito'] = true;
     } else {
-        $respuesta['msg'] = 'Error al intentar borrar el empleado';
+        $respuesta['msg'] = 'Error al intentar borrar el cliente';
     }
 } else {
     $respuesta['msg'] = 'Petición erronea';

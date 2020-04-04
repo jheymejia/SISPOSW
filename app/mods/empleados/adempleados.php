@@ -14,6 +14,11 @@ require('../../rq/empmod.php');
       <div class="col">
         <input v-model="email" value aria-required="true" class="form-control" type="text" placeholder="Correo Electrónico" name="email" required>
       </div>
+    </div><br>
+    <div class="form-row">
+      <div class="col">
+        <input v-model="celular" value aria-required="true" class="form-control" type="text" placeholder="Celular" name="celular" required>
+      </div>
       <div class="col">
         <input v-model="pass" value aria-required="true" class="form-control" type="password" placeholder="Contraseña" name="pass" required>
       </div>
@@ -55,6 +60,7 @@ require('../../rq/empmod.php');
         pass: '',
         nombres: '',
         apellidos: '',
+        celular: '',
         telefonos: '',
         direccion: ''
         // }
@@ -70,6 +76,7 @@ require('../../rq/empmod.php');
           formulario.set('pass', this.pass);
           formulario.set('nombres', this.nombres);
           formulario.set('apellidos', this.apellidos);
+          formulario.set('celular', this.celular);
           formulario.set('telefonos', this.telefonos);
           formulario.set('direccion', this.direccion);
           //peticion por AXIOS con POST
@@ -101,9 +108,10 @@ require('../../rq/empmod.php');
       <tr>
         <!-- Columnas de la Tabla -->
         <th scope="col">Número de Documento</th>
-        <th scope="col">Correo Electronico</th>
         <th scope="col">Nombres</th>
         <th scope="col">Apellidos</th>
+        <th scope="col">Correo Electronico</th>
+        <th scope="col">Celular</th>
         <th scope="col">Telefonos</th>
         <th scope="col">Direccion</th>
         <th scope="col">Acciones</th>
@@ -115,13 +123,14 @@ require('../../rq/empmod.php');
       // Ciclo que permite rellenar las filas de la tabla
       do {
         echo "<tbody><tr>";
-        echo "<th scope='row'>" . $fila["Id_Empleado"] . "</th>";
+        echo "<th scope='row'>" . $fila["numero_identificacion"] . "</th>";
         // Variable que toma el id del Registro
-        $id = $fila["Id_Empleado"];
-        echo "<td>" . $fila["Email"] . "</td>";
-        echo "<td>" . $fila["Nombres"] . "</td>";
-        echo "<td>" . $fila["Apellidos"] . "</td>";
-        echo "<td>" . $fila["Telefonos"] . "</td>";
+        $id = $fila["numero_identificacion"];
+        echo "<td>" . $fila["Nombre"] . "</td>";
+        echo "<td>" . $fila["Apellido"] . "</td>";
+        echo "<td>" . $fila["email"] . "</td>";
+        echo "<td>" . $fila["Celular"] . "</td>";
+        echo "<td>" . $fila["Telefono"] . "</td>";
         echo "<td>" . $fila["Direccion"] . "</td>";
         //Función para editar el Registro
         echo "<td><a onclick='edEmp(" . $id . ");'>Editar</a></td></tr>";

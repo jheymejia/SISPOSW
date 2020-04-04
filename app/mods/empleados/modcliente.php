@@ -26,7 +26,7 @@ $conexion->close();
             <div class="row">
                 <div class="col-lg-6">
                     <label>ID Cliente</label>
-                    <input type="number" v-model="idCliente" class="form-control" name="txtId" placeholder="">
+                    <input type="text" v-model="idCliente" class="form-control" name="txtId" placeholder="">
                 </div>
                 <div class="col-lg-6">
                     <label>Celular</label>
