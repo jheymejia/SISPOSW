@@ -21,7 +21,7 @@ if (($_SESSION['rol'] == 3)) {
                 <div class="product-info">
                   <h2><?php echo "Bienvenido " . $_SESSION['usuario']; ?></h2>
                   <div class="add-to-cart quantity">
-                    <form class="add-quantity" action="#">
+                    <form class="add-quantity" action="completarregistro.php" method="POST">
                       <input type="text" placeholder="nombre" name="nom">
                       <input type="text" placeholder="apellido" name="ape"><br><br>
                       <input type="text" placeholder="direccion" name="dir">
