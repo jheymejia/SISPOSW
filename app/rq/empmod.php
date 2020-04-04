@@ -1,4 +1,5 @@
 <?php
+require('../../../datos/conexion.php');
 require('../../../datos/conexioncore.php');
 $query= "SELECT Id_Empleado, id_identificacion, Id_usuario, Nombre, Apellido, Direccion, Celular, Telefono,  numero_identificacion, pass, email FROM personas p, empleados e, identificacion i, usuarios u where e.Persona = p.id_persona and p.Identificacion = i.id_identificacion and e.Usuario = u.Id_usuario";
 $resultset = $conexion->query($query) or die('Error al intentar realizar la consulta');
