@@ -59,12 +59,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         //Condicional que da la respuesta al archivo principal
         if (($conexion->query($sqlcli) === TRUE) && ($conexion->query($sqlcli1) === TRUE) && ($conexion->query($sqlcli2) === TRUE)) {
-            $respuesta['msg'] = 'Registrado correctamente';
+            $respuesta['msg'] = 'Registro modificado correctamente';
             $respuesta['exito'] = true;
         }
     } else {
         $respuesta['error'] = '' . $conexion->error;
-        $respuesta['msg'] = 'Error en el registro';
+        $respuesta['msg'] = 'Error en la modificación del registro';
     }
 
     $conexion->close();

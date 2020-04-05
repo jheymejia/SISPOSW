@@ -22,11 +22,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $respuesta['sql'] = $sql;
     //Condicional que da la respuesta al archivo principal
     if ($conexion->query($sql) === TRUE) {
-        $respuesta['msg'] = 'Registro editado';
+        $respuesta['msg'] = 'Registro modificado correctamente';
         $respuesta['exito'] = true;
     } else {
         $respuesta['error'] = '' . $conexion->error;
-        $respuesta['msg'] = 'Registro no editado';
+        $respuesta['msg'] = 'Error en la modificación del registro';
     }
 
     $conexion->close();

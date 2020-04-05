@@ -3,9 +3,9 @@
 require('../../../../datos/conexioncore.php');
 //Condicional que recibe los datos desde archivo principal
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $sql = "SELECT id_identificacion, usuario from empleado e, personas p, identificacion i, usuarios u where e.Persona = p.id_persona and p.Identificacion = i.id_identificacion and e.Usuario = u.Id_usuario and i.numero_identificacion = " . $_POST['idEmpleado'];
+    $sql = "SELECT id_identificacion, usuario from empleados e, personas p, identificacion i, usuarios u where e.Persona = p.id_persona and p.Identificacion = i.id_identificacion and e.Usuario = u.Id_usuario and i.numero_identificacion = " . $_POST['idEmpleado'];
     $resultado = $conexion->query($sql)
-        or die('Error al intentar realizar la consulta');
+        or die('Error al intentar realizar la consulta1');
     $fila = null;
     if ($resultado->num_rows > 0) {
         $fila = $resultado->fetch_array(MYSQLI_ASSOC);
@@ -14,14 +14,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $conexion->close();
         exit;
     }
-    $sql1 = "SELECT Id_usuario, usuario from empleado e, personas p, identificacion i, usuarios u where e.Persona = p.id_persona and p.Identificacion = i.id_identificacion and e.Usuario = u.Id_usuario and i.numero_identificacion = " . $_POST['idEmpleado'];
+    $sql1 = "SELECT Id_usuario, usuario from empleados e, personas p, identificacion i, usuarios u where e.Persona = p.id_persona and p.Identificacion = i.id_identificacion and e.Usuario = u.Id_usuario and i.numero_identificacion = " . $_POST['idEmpleado'];
     $resultado1 = $conexion->query($sql1)
-        or die('Error al intentar realizar la consulta');
+        or die('Error al intentar realizar la consulta2');
     $fila1 = null;
     if ($resultado1->num_rows > 0) {
         $fila1 = $resultado1->fetch_array(MYSQLI_ASSOC);
     } else {
-        echo "El Cliente que intenta editar no existe";
+        echo "El Empleado que intenta editar no existe";
         $conexion->close();
         exit;
     }
@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $pass = $_POST['pass'];
         $nombres = $_POST['nombres'];
         $apellidos = $_POST['apellidos'];
-        $telefonos = $_POST['telefonos'];
+        $telefonos = $_POST['telefono'];
         $direccion = $_POST['direccion'];
         //Respuesta por Defecto del servidor
         $respuesta = [];
@@ -59,12 +59,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         //Condicional que da la respuesta al archivo principal
         if (($conexion->query($sqlcli) === TRUE) && ($conexion->query($sqlcli1) === TRUE) && ($conexion->query($sqlcli2) === TRUE)) {
-            $respuesta['msg'] = 'Registrado correctamente';
+            $respuesta['msg'] = 'Registro modificado correctamente';
             $respuesta['exito'] = true;
         }
     } else {
         $respuesta['error'] = '' . $conexion->error;
-        $respuesta['msg'] = 'Error en el registro';
+        $respuesta['msg'] = 'Error en la modificación del registro';
     }
 
     $conexion->close();

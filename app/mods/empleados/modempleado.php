@@ -34,6 +34,17 @@ $conexion->close();
                 </div>
             </div>
             <br />
+            <div class="form-row">
+                <div class="col-lg-6">
+                    <label>Celular</label>
+                    <input type="text" name="txtCelular" v-model="celular" class="form-control" placeholder="" />
+                </div>
+                <div class="col-lg-6">
+                    <label>Contraseña</label>
+                    <input type="password" name="txtPasswd" v-model="pass" class="form-control" placeholder="" />
+                </div>
+
+            </div><br>
             <div class="row">
                 <div class="col-lg-6">
                     <label>Nombres</label>
@@ -49,10 +60,6 @@ $conexion->close();
                 <div class="col-lg-6">
                     <label>Teléfono</label>
                     <input type="text" name="txtTelefono" v-model="telefono" class="form-control" placeholder="" />
-                </div>
-                <div class="col-lg-6">
-                    <label>Celular</label>
-                    <input type="text" name="txtCelular" v-model="celular" class="form-control" placeholder="" />
                 </div>
                 <div class="col-lg-6">
                     <label>Dirección</label>
@@ -83,6 +90,7 @@ $conexion->close();
                     telefono: <?php echo "'" . $fila['Telefono'] . "'" ?>,
                     direccion: <?php echo "'" . $fila['Direccion'] . "'" ?>,
                     email: <?php echo "'" . $fila['email'] . "'" ?>,
+                    pass: <?php echo "'" . $fila['pass'] . "'" ?>,
                     msg: '',
                     mostrarMsg: false
                 },
@@ -96,6 +104,8 @@ $conexion->close();
                         formulario.set('idEmpleado', this.idEmpleado);
                         formulario.set('nombres', this.nombres);
                         formulario.set('apellidos', this.apellidos);
+                        formulario.set('pass', this.pass);
+                        formulario.set('celular', this.celular)
                         formulario.set('telefono', this.telefono);
                         formulario.set('direccion', this.direccion);
                         formulario.set('email', this.email);
