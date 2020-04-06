@@ -3,14 +3,10 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-04-2020 a las 09:58:32
+-- Tiempo de generación: 06-04-2020 a las 19:37:34
 -- Versión del servidor: 10.4.8-MariaDB
 -- Versión de PHP: 7.3.10
-DROP DATABASE IF EXISTS sisposw89;
 
-CREATE DATABASE sisposw89;
-
-USE sisposw89;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
@@ -181,10 +177,10 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`Id_Producto`, `Nombre`, `Descripcion`, `ValorUnitario`, `id_categoria`) VALUES
-('1', 'Portatil i3', 'Core i3, 4GB Ram, Wi-Fi, 500GB HDD', 1000000, 'NoteBooks'),
-('2', 'Portatil i5', 'Core i5, 8GB Ram, Wi-Fi, 240GB SSD', 1550000, 'NoteBooks'),
-('3', 'JBL T450BT', 'Audifonos Inalámbricos, Manos Libres', 150000, 'Audio'),
-('4', 'Sony Mdr-xb550ap', 'Audífonos Sony Extra Bass Manos Libres, Cableados', 120000, 'Audio');
+(6, 'Memoria ram', 'memoria ram de 512 mb', 10000, 2),
+(7, 'monitor', 'monitor de 14\"', 14000, 9),
+(8, 'mouse', 'mouse usb', 15000, 4),
+(9, 'audifonos', 'audifonos marca asus', 20000, 10);
 
 -- --------------------------------------------------------
 
@@ -290,6 +286,7 @@ INSERT INTO `usuarios` (`Id_usuario`, `email`, `pass`, `rol`) VALUES
 (1, 'juan@mail.com', '12345', 1),
 (23, 'cliente@mail.com', '12345', 3),
 (24, 'empleado@mail.com', '123456', 2),
+(30, 'pepito@mail.com', '12345', 3);
 
 -- --------------------------------------------------------
 
