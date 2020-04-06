@@ -49,7 +49,7 @@
               </div>
               <ul class="footer-info">
                 <li><a href="#">Contacto</a></li>
-                <li><a href="#">Preguntas Frecuentes</a></li>
+                <li><a href="preguntas-frecuentes.php">Preguntas Frecuentes</a></li>
               </ul>
             </div>
           </div>
@@ -82,6 +82,50 @@
       </div>
     </div>
     <!--Footer Top Area End-->
+    <!--Footer Middel Area Start-->
+    <div class="footer-middel-area">
+      <div class="container">
+        <!--News Latter Area Start-->
+        <div class="news-latter-area">
+          <div class="row">
+            <!--News Latter Content Start-->
+            <div class="col-md-6 text-center">
+              <div class="news-lettar-content">
+                <div class="icon">
+                  <img src="img/icon/5.png" alt="">
+                </div>
+                <p><label>Suscríbete a nuestro Newsletter</label><br>Recibe vía email noticias, ofertas y promociones.</p>
+              </div>
+            </div>
+            <!--News Latter Content Start-->
+            <!--News Latter Subscribe Box Start-->
+            <div class="col-md-6">
+              <!-- Newsletter Form -->
+              <div class="news-latter-subscribe-box text-right">
+                <form action="#" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="popup-subscribe-form validate" target="_blank" novalidate>
+                  <div id="mc_embed_signup_scroll">
+                    <label class="d-none hidden">Suscríbete a nuestro mailing list</label>
+                    <input class="style2" type="email" name="email" placeholder="Ingresa tu correo" required="">
+                    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_6bbb9b6f5827bd842d9640c82_05d85f18ef" tabindex="-1" value=""></div>
+                    <button type="submit" name="subscribe" id="mc-embedded-subscribe"><i class="ion-ios-paperplane"></i></button>
+                  </div>
+                </form>
+              </div>
+              <!-- Newsletter Form -->
+            </div>
+            <!--News Latter Subscribe Box End-->
+          </div>
+        </div>
+        <!--News Latter Area End-->
+        <!--Wdget Area Start-->
+        <div class="wdget-area ptb-40">
+
+        </div>
+        <!--Wdget Area End-->
+      </div>
+    </div>
+    <!--Footer Middel Area End-->
     <!--Footer Bottom Area Start-->
     <div class="footer-bottom-area">
       <div class="container">

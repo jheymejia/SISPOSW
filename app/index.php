@@ -191,7 +191,7 @@ if (($_SESSION['rol'] == 1) || ($_SESSION['rol'] == 2)) {
 
         <div class="sidebar-footer">
           <a href="../shop/index.php">
-            <i class="material-icons">shopping_cart</i>
+            <i class="material-icons">store</i>
           </a>
           <a href="salir.php">
             <i class="material-icons">power_settings_new</i>

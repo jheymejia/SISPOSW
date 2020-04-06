@@ -68,7 +68,7 @@
                   <span class="old-price">$75.900</span>
                   <span class="new-price">$45.900</span>
                 </div>
-                <a href="#" class="see-all">Ver Características</a>
+                <a href="producto.php" class="see-all">Ver Características</a>
                 <div class="add-to-cart quantity">
                   <form class="add-quantity" action="#">
                     <div class="quantity modal-quantity">

@@ -11,6 +11,50 @@ session_start();
 	<title>SysPOSw - Tienda Electrónica</title>
 	<meta name="description" content="SysPOSw - Proyecto presentado por el TPS-89 2020">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function() {
+
+			// AGREGANDO CLASE ACTIVE AL PRIMER ENLACE ====================
+			$('.category_list .category_item[category="all"]').addClass('ct_item-active');
+
+			// FILTRANDO PRODUCTOS  ============================================
+
+			$('.category_item').click(function() {
+				var catProduct = $(this).attr('category');
+				console.log(catProduct);
+
+				// AGREGANDO CLASE ACTIVE AL ENLACE SELECCIONADO
+				$('.category_item').removeClass('ct_item-active');
+				$(this).addClass('ct_item-active');
+
+				// OCULTANDO PRODUCTOS =========================
+				$('.product-item').css('transform', 'scale(0)');
+
+				function hideProduct() {
+					$('.product-item').hide();
+				}
+				setTimeout(hideProduct, 400);
+
+				// MOSTRANDO PRODUCTOS =========================
+				function showProduct() {
+					$('.product-item[category="' + catProduct + '"]').show();
+					$('.product-item[category="' + catProduct + '"]').css('transform', 'scale(1)');
+				}
+				setTimeout(showProduct, 400);
+			});
+
+			// MOSTRANDO TODOS LOS PRODUCTOS =======================
+
+			$('.category_item[category="all"]').click(function() {
+				function showAll() {
+					$('.product-item').show();
+					$('.product-item').css('transform', 'scale(1)');
+				}
+				setTimeout(showAll, 400);
+			});
+		});
+	</script>
 </head>
 
 <body>
@@ -183,7 +227,7 @@ session_start();
 
 															<li><a href="favoritos.php">Favoritos</a></li>
 														<?php } else {
-															echo "<li><a href='../app/index.php'>Volver</a></li> ";
+															echo "<li><a href='../app/index.php'>Panel</a></li> ";
 														}
 														?>
 														<li><a href='../app/salir.php'>salir</a></li>
@@ -317,13 +361,8 @@ session_start();
 
 												<li class=""><a href="contacto.php">Contacto</a></li>
 
-												<li class=""><a href="#">Nosotros</a>
-													<ul class="dropdown">
-														<li><a href="#">¿Quienes somos?</a></li>
-														<li><a href="#">Mision</a></li>
-														<li><a href="#">Vision</a></li>
-													</ul>
-												</li>
+												<li class=""><a href="nosotros.php">Nosotros</a></li>
+
 											</ul>
 										</nav>
 									</div>
@@ -342,7 +381,7 @@ session_start();
 									<div class="mobile-menu">
 
 										<nav style="display: block;">
-											<ul>
+											<ul class="main-menu">
 
 												<li class="active"><a href="index.php">Inicio</a></li>
 
@@ -350,13 +389,8 @@ session_start();
 
 												<li class=""><a href="contacto.php">Contacto</a></li>
 
-												<li class=""><a href="#">Nosotros</a>
-													<ul class="dropdown">
-														<li><a href="#">¿Quienes somos?</a></li>
-														<li><a href="#">Mision</a></li>
-														<li><a href="#">Vision</a></li>
-													</ul>
-												</li>
+												<li class=""><a href="nosotros.php">Nosotros</a></li>
+
 											</ul>
 										</nav>
 									</div>
@@ -455,7 +489,7 @@ session_start();
 			<!--Slider Area End-->
 
 			<!--Corporate About Start-->
-			<section class="corporate-about white-bg" id="productos">
+			<section class="corporate-about white-bg">
 				<div class="container">
 					<div class="row-2">
 						<div class="all-about">
@@ -506,7 +540,7 @@ session_start();
 			<!--Corporate About End-->
 
 			<!--Heading Banner Area Start-->
-			<div class="heading-banner-area pt-30" id="paginacion">
+			<div class="heading-banner-area pt-30" id="productos">
 				<div class="container">
 					<div class="row">
 						<div class="col-md-12">
@@ -534,7 +568,7 @@ session_start();
 							<div class="shop-tab-menu">
 								<div class="row">
 									<!--List & Grid View Menu Start-->
-									<div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 text-center">
+									<div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 ">
 										<div class="shop-tab">
 											<ul>
 												<li class="active"><a data-toggle="tab" href="#grid-view"><i class="ion-android-apps"></i></a></li>
@@ -547,529 +581,56 @@ session_start();
 							</div>
 							<!--Shop Tab Menu End-->
 							<!--Shop Product Area Start-->
-							<div class="shop-product-area">
+							<div class="shop-product-area" >
 								<div class="tab-content">
 									<!--Grid View Start-->
 									<div id="grid-view" class="tab-pane fade in active">
 										<div class="row">
 											<div class="product-container">
 												<!--Single Product Start-->
-												<div class="col-md-3 col-sm-3 item-col2">
-													<div class="single-product">
-														<div class="product-img">
-															<a href="single-product.html">
-																<img class="first-img" src="img/product/11.jpg" alt="">
-																<img class="hover-img" src="img/product/12.jpg" alt="">
-															</a>
-															<ul class="product-action">
-																<li><a href="#" data-toggle="tooltip" title="Favorito"><i class="ion-android-favorite-outline"></i></a></li>
+												<?php
+												$query = $conexion->query("SELECT * FROM Productos");
+												if ($query->num_rows > 0) {
+													while ($row = $query->fetch_assoc()) {
+														$Id = $row["id_categoria"];
+														$query2 = $conexion->query("SELECT * FROM categoria WHERE Id_Categoria = '" . $Id . "'");
+														if ($query2->num_rows > 0) {
+															while ($cat = $query2->fetch_assoc()) {
+																$nomcat = $cat["Nombre_Cat"]; ?>
 
-																<li><a href="#" data-toggle="modal" title="Ampliar" data-target="#myModal"><i class="ion-android-expand"></i></a></li>
-															</ul>
-														</div>
-														<div class="product-content">
-															<h2><a href="single-product.html">Aliquam furniture</a></h2>
-															<div class="rating">
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star-o"></i>
-															</div>
-															<div class="product-price">
-																<span class="new-price">$145.000</span>
-																<a class="button add-btn" href="#" data-toggle="tooltip" title="Añadir al Carrito"><i class="material-icons">shopping_cart</i></a>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--Single Product End-->
-												<!--Single Product Start-->
-												<div class="col-md-3 col-sm-3 item-col2">
-													<div class="single-product">
-														<div class="product-img">
-															<a href="single-product.html">
-																<img class="first-img" src="img/product/31.jpg" alt="">
-																<img class="hover-img" src="img/product/32.jpg" alt="">
-															</a>
-															<ul class="product-action">
-																<li><a href="#" data-toggle="tooltip" title="Favorito"><i class="ion-android-favorite-outline"></i></a></li>
+																<section class="products-list">
+																	<div class="col-md-3 col-sm-3 item-col2 product-item" category=<?php echo "$nomcat" ?>>
+																		<div class="single-product">
+																			<div class="product-img">
+																				<a href="single-product.html">
+																					<img class="first-img" src="img/product/11.jpg" alt="">
+																					<img class="hover-img" src="img/product/12.jpg" alt="">
+																				</a>
+																				<ul class="product-action">
+																					<li><a href="#" data-toggle="tooltip" title="Favorito"><i class="ion-android-favorite-outline"></i></a></li>
 
-																<li><a href="#" data-toggle="modal" title="Ampliar" data-target="#myModal"><i class="ion-android-expand"></i></a></li>
-															</ul>
-														</div>
-														<div class="product-content">
-															<h2><a href="single-product.html">Aliquam lobortis Camera</a></h2>
-															<div class="rating">
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star-o"></i>
-															</div>
-															<div class="product-price">
-																<span class="new-price">$74.000</span>
-																<a class="button add-btn" href="#" data-toggle="tooltip" title="Añadir al Carrito"><i class="material-icons">shopping_cart</i></a>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--Single Product End-->
-												<!--Single Product Start-->
-												<div class="col-md-3 col-sm-3 item-col2">
-													<div class="single-product">
-														<div class="product-img">
-															<a href="single-product.html">
-																<img class="first-img" src="img/product/29.jpg" alt="">
-																<img class="hover-img" src="img/product/30.jpg" alt="">
-															</a>
-															<ul class="product-action">
-																<li><a href="#" data-toggle="tooltip" title="Favorito"><i class="ion-android-favorite-outline"></i></a></li>
-
-																<li><a href="#" data-toggle="modal" title="Ampliar" data-target="#myModal"><i class="ion-android-expand"></i></a></li>
-															</ul>
-														</div>
-														<div class="product-content">
-															<h2><a href="single-product.html">Aliquam Watches</a></h2>
-															<div class="rating">
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star-o"></i>
-															</div>
-															<div class="product-price">
-																<span class="new-price">$140.000</span>
-																<a class="button add-btn" href="#" data-toggle="tooltip" title="Añadir al Carrito"><i class="material-icons">shopping_cart</i></a>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--Single Product End-->
-												<!--Single Product Start-->
-												<div class="col-md-3 col-sm-3 item-col2">
-													<div class="single-product">
-														<div class="product-img">
-															<a href="single-product.html">
-																<img class="first-img" src="img/product/5.jpg" alt="">
-																<img class="hover-img" src="img/product/6.jpg" alt="">
-															</a>
-															<span class="sicker">-12%</span>
-															<ul class="product-action">
-																<li><a href="#" data-toggle="tooltip" title="Favorito"><i class="ion-android-favorite-outline"></i></a></li>
-
-																<li><a href="#" data-toggle="modal" title="Ampliar" data-target="#myModal"><i class="ion-android-expand"></i></a></li>
-															</ul>
-														</div>
-														<div class="product-content">
-															<h2><a href="single-product.html">Auctor furniture</a></h2>
-															<div class="rating">
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star-o"></i>
-															</div>
-															<div class="product-price">
-																<span class="new-price">$75.000</span>
-																<a class="button add-btn" href="#" data-toggle="tooltip" title="Añadir al Carrito"><i class="material-icons">shopping_cart</i></a>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--Single Product End-->
-											</div>
-											<div class="product-container">
-												<!--Single Product Start-->
-												<div class="col-md-3 col-sm-3 item-col2">
-													<div class="single-product">
-														<div class="product-img">
-															<a href="single-product.html">
-																<img class="first-img" src="img/product/33.jpg" alt="">
-																<img class="hover-img" src="img/product/34.jpg" alt="">
-															</a>
-															<ul class="product-action">
-																<li><a href="#" data-toggle="tooltip" title="Favorito"><i class="ion-android-favorite-outline"></i></a></li>
-
-																<li><a href="#" data-toggle="modal" title="Ampliar" data-target="#myModal"><i class="ion-android-expand"></i></a></li>
-															</ul>
-														</div>
-														<div class="product-content">
-															<h2><a href="single-product.html">Cillum ipsum</a></h2>
-															<div class="rating">
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star-o"></i>
-															</div>
-															<div class="product-price">
-																<span class="new-price">$75.000</span>
-																<a class="button add-btn" href="#" data-toggle="tooltip" title="Añadir al Carrito"><i class="material-icons">shopping_cart</i></a>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--Single Product End-->
-												<!--Single Product Start-->
-												<div class="col-md-3 col-sm-3 item-col2">
-													<div class="single-product">
-														<div class="product-img">
-															<a href="single-product.html">
-																<img class="first-img" src="img/product/8.jpg" alt="">
-																<img class="hover-img" src="img/product/7.jpg" alt="">
-															</a>
-															<ul class="product-action">
-																<li><a href="#" data-toggle="tooltip" title="Favorito"><i class="ion-android-favorite-outline"></i></a></li>
-
-																<li><a href="#" data-toggle="modal" title="Ampliar" data-target="#myModal"><i class="ion-android-expand"></i></a></li>
-															</ul>
-														</div>
-														<div class="product-content">
-															<h2><a href="single-product.html">tecno furniture</a></h2>
-															<div class="rating">
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star-o"></i>
-															</div>
-															<div class="product-price">
-																<span class="new-price">$115.000</span>
-																<a class="button add-btn" href="#" data-toggle="tooltip" title="Añadir al Carrito"><i class="material-icons">shopping_cart</i></a>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--Single Product End-->
-												<!--Single Product Start-->
-												<div class="col-md-3 col-sm-3 item-col2">
-													<div class="single-product">
-														<div class="product-img">
-															<a href="single-product.html">
-																<img class="first-img" src="img/product/9.jpg" alt="">
-																<img class="hover-img" src="img/product/10.jpg" alt="">
-															</a>
-															<ul class="product-action">
-																<li><a href="#" data-toggle="tooltip" title="Favorito"><i class="ion-android-favorite-outline"></i></a></li>
-
-																<li><a href="#" data-toggle="modal" title="Ampliar" data-target="#myModal"><i class="ion-android-expand"></i></a></li>
-															</ul>
-														</div>
-														<div class="product-content">
-															<h2><a href="single-product.html">tecno posuere</a></h2>
-															<div class="rating">
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star-o"></i>
-															</div>
-															<div class="product-price">
-																<span class="new-price">$115.000</span>
-																<a class="button add-btn" href="#" data-toggle="tooltip" title="Añadir al Carrito"><i class="material-icons">shopping_cart</i></a>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--Single Product End-->
-												<!--Single Product Start-->
-												<div class="col-md-3 col-sm-3 item-col2">
-													<div class="single-product">
-														<div class="product-img">
-															<a href="single-product.html">
-																<img class="first-img" src="img/product/19.jpg" alt="">
-																<img class="hover-img" src="img/product/20.jpg" alt="">
-															</a>
-															<span class="sicker">-47%</span>
-															<ul class="product-action">
-																<li><a href="#" data-toggle="tooltip" title="Favorito"><i class="ion-android-favorite-outline"></i></a></li>
-
-																<li><a href="#" data-toggle="modal" title="Ampliar" data-target="#myModal"><i class="ion-android-expand"></i></a></li>
-															</ul>
-														</div>
-														<div class="product-content">
-															<h2><a href="single-product.html">tecno Watches</a></h2>
-															<div class="rating">
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star-o"></i>
-															</div>
-															<div class="product-price">
-																<span class="new-price">$123.000</span>
-																<a class="button add-btn" href="#" data-toggle="tooltip" title="Añadir al Carrito"><i class="material-icons">shopping_cart</i></a>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--Single Product End-->
-											</div>
-											<div class="product-container">
-												<!--Single Product Start-->
-												<div class="col-md-3 col-sm-3 item-col2">
-													<div class="single-product">
-														<div class="product-img">
-															<a href="single-product.html">
-																<img class="first-img" src="img/product/1.jpg" alt="">
-																<img class="hover-img" src="img/product/4.jpg" alt="">
-															</a>
-															<span class="sicker">-10%</span>
-															<ul class="product-action">
-																<li><a href="#" data-toggle="tooltip" title="Favorito"><i class="ion-android-favorite-outline"></i></a></li>
-
-																<li><a href="#" data-toggle="modal" title="Ampliar" data-target="#myModal"><i class="ion-android-expand"></i></a></li>
-															</ul>
-														</div>
-														<div class="product-content">
-															<h2><a href="single-product.html">combo magni</a></h2>
-															<div class="rating">
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star-o"></i>
-															</div>
-															<div class="product-price">
-																<span class="old-price">$89.000</span>
-																<span class="new-price">$80.000</span>
-																<a class="button add-btn" href="#" data-toggle="tooltip" title="Añadir al Carrito"><i class="material-icons">shopping_cart</i></a>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--Single Product End-->
-												<!--Single Product Start-->
-												<div class="col-md-3 col-sm-3 item-col2">
-													<div class="single-product">
-														<div class="product-img">
-															<a href="single-product.html">
-																<img class="first-img" src="img/product/17.jpg" alt="">
-																<img class="hover-img" src="img/product/18.jpg" alt="">
-															</a>
-															<span class="sicker">-7%</span>
-															<ul class="product-action">
-																<li><a href="#" data-toggle="tooltip" title="Favorito"><i class="ion-android-favorite-outline"></i></a></li>
-
-																<li><a href="#" data-toggle="modal" title="Ampliar" data-target="#myModal"><i class="ion-android-expand"></i></a></li>
-															</ul>
-														</div>
-														<div class="product-content">
-															<h2><a href="single-product.html">Letraset lorem</a></h2>
-															<div class="rating">
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star-o"></i>
-															</div>
-															<div class="product-price">
-																<span class="lod-price">$70.000</span>
-																<span class="new-price">$65.000</span>
-																<a class="button add-btn" href="#" data-toggle="tooltip" title="Añadir al Carrito"><i class="material-icons">shopping_cart</i></a>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--Single Product End-->
-												<!--Single Product Start-->
-												<div class="col-md-3 col-sm-3 item-col2">
-													<div class="single-product">
-														<div class="product-img">
-															<a href="single-product.html">
-																<img class="first-img" src="img/product/27.jpg" alt="">
-																<img class="hover-img" src="img/product/28.jpg" alt="">
-															</a>
-															<span class="sicker">-7%</span>
-															<ul class="product-action">
-																<li><a href="#" data-toggle="tooltip" title="Favorito"><i class="ion-android-favorite-outline"></i></a></li>
-
-																<li><a href="#" data-toggle="modal" title="Ampliar" data-target="#myModal"><i class="ion-android-expand"></i></a></li>
-															</ul>
-														</div>
-														<div class="product-content">
-															<h2><a href="single-product.html">pc neque furniture</a></h2>
-															<div class="rating">
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star-o"></i>
-															</div>
-															<div class="product-price">
-																<span class="old-price">$70.000</span>
-																<span class="new-price">$65.000</span>
-																<a class="button add-btn" href="#" data-toggle="tooltip" title="Añadir al Carrito"><i class="material-icons">shopping_cart</i></a>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--Single Product End-->
-												<!--Single Product Start-->
-												<div class="col-md-3 col-sm-3 item-col2">
-													<div class="single-product">
-														<div class="product-img">
-															<a href="single-product.html">
-																<img class="first-img" src="img/product/21.jpg" alt="">
-																<img class="hover-img" src="img/product/22.jpg" alt="">
-															</a>
-															<span class="sicker">-14%</span>
-															<ul class="product-action">
-																<li><a href="#" data-toggle="tooltip" title="Favorito"><i class="ion-android-favorite-outline"></i></a></li>
-
-																<li><a href="#" data-toggle="modal" title="Ampliar" data-target="#myModal"><i class="ion-android-expand"></i></a></li>
-															</ul>
-														</div>
-														<div class="product-content">
-															<h2><a href="single-product.html">pc neque furniture</a></h2>
-															<div class="rating">
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star-o"></i>
-															</div>
-															<div class="product-price">
-																<span class="old-price">$70.000</span>
-																<span class="new-price">$60.000</span>
-																<a class="button add-btn" href="#" data-toggle="tooltip" title="Añadir al Carrito"><i class="material-icons">shopping_cart</i></a>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--Single Product End-->
-											</div>
-											<div class="product-container">
-												<!--Single Product Start-->
-												<div class="col-md-3 col-sm-3 item-col2">
-													<div class="single-product">
-														<div class="product-img">
-															<a href="single-product.html">
-																<img class="first-img" src="img/product/1.jpg" alt="">
-																<img class="hover-img" src="img/product/4.jpg" alt="">
-															</a>
-															<span class="sicker">-14%</span>
-															<ul class="product-action">
-																<li><a href="#" data-toggle="tooltip" title="Favorito"><i class="ion-android-favorite-outline"></i></a></li>
-
-																<li><a href="#" data-toggle="modal" title="Ampliar" data-target="#myModal"><i class="ion-android-expand"></i></a></li>
-															</ul>
-														</div>
-														<div class="product-content">
-															<h2><a href="single-product.html">pc neque metus</a></h2>
-															<div class="rating">
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star-o"></i>
-															</div>
-															<div class="product-price">
-																<span class="old-price">$70.000</span>
-																<span class="new-price">$60.000</span>
-																<a class="button add-btn" href="#" data-toggle="tooltip" title="Añadir al Carrito"><i class="material-icons">shopping_cart</i></a>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--Single Product End-->
-												<!--Single Product Start-->
-												<div class="col-md-3 col-sm-3 item-col2">
-													<div class="single-product">
-														<div class="product-img">
-															<a href="single-product.html">
-																<img class="first-img" src="img/product/35.jpg" alt="">
-																<img class="hover-img" src="img/product/36.jpg" alt="">
-															</a>
-															<span class="sicker">-7%</span>
-															<ul class="product-action">
-																<li><a href="#" data-toggle="tooltip" title="Favorito"><i class="ion-android-favorite-outline"></i></a></li>
-
-																<li><a href="#" data-toggle="modal" title="Ampliar" data-target="#myModal"><i class="ion-android-expand"></i></a></li>
-															</ul>
-														</div>
-														<div class="product-content">
-															<h2><a href="single-product.html">Dignissim Camera</a></h2>
-															<div class="rating">
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star-o"></i>
-															</div>
-															<div class="product-price">
-																<span class="old-price">$74.000</span>
-																<span class="new-price">$69.000</span>
-																<a class="button add-btn" href="#" data-toggle="tooltip" title="Añadir al Carrito"><i class="material-icons">shopping_cart</i></a>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--Single Product End-->
-												<!--Single Product Start-->
-												<div class="col-md-3 col-sm-3 item-col2">
-													<div class="single-product">
-														<div class="product-img">
-															<a href="single-product.html">
-																<img class="first-img" src="img/product/40.jpg" alt="">
-																<img class="hover-img" src="img/product/39.jpg" alt="">
-															</a>
-															<ul class="product-action">
-																<li><a href="#" data-toggle="tooltip" title="Favorito"><i class="ion-android-favorite-outline"></i></a></li>
-
-																<li><a href="#" data-toggle="modal" title="Ampliar" data-target="#myModal"><i class="ion-android-expand"></i></a></li>
-															</ul>
-														</div>
-														<div class="product-content">
-															<h2><a href="single-product.html">Letraset lorem</a></h2>
-															<div class="rating">
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star-o"></i>
-															</div>
-															<div class="product-price">
-																<span class="new-price">$69.000</span>
-																<a class="button add-btn" href="#" data-toggle="tooltip" title="Añadir al Carrito"><i class="material-icons">shopping_cart</i></a>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--Single Product End-->
-												<!--Single Product Start-->
-												<div class="col-md-3 col-sm-3 item-col2">
-													<div class="single-product">
-														<div class="product-img">
-															<a href="single-product.html">
-																<img class="first-img" src="img/product/20.jpg" alt="">
-																<img class="hover-img" src="img/product/19.jpg" alt="">
-															</a>
-															<span class="sicker">-7%</span>
-															<ul class="product-action">
-																<li><a href="#" data-toggle="tooltip" title="Favorito"><i class="ion-android-favorite-outline"></i></a></li>
-
-																<li><a href="#" data-toggle="modal" title="Ampliar" data-target="#myModal"><i class="ion-android-expand"></i></a></li>
-															</ul>
-														</div>
-														<div class="product-content">
-															<h2><a href="single-product.html">Letraset lorem</a></h2>
-															<div class="rating">
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star-o"></i>
-															</div>
-															<div class="product-price">
-																<span class="new-price">$80.000</span>
-																<a class="button add-btn" href="#" data-toggle="tooltip" title="Añadir al Carrito"><i class="material-icons">shopping_cart</i></a>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--Single Product End-->
+																					<li><a href="#" data-toggle="modal" title="Ampliar" data-target="#myModal"><i class="ion-android-expand"></i></a></li>
+																				</ul>
+																			</div>
+																			<div class="product-content">
+																				<h2><a href="single-product.html"><?php echo $row['Nombre'] ?></a></h2>
+																				<div class="rating">
+																					<?php echo $nomcat ?>
+																				</div>
+																				<div class="product-price">
+																					<span class="new-price">$ <?php echo $row['ValorUnitario'] ?></span>
+																					<a class="button add-btn" href="#" data-toggle="tooltip" title="Añadir al Carrito"><i class="material-icons">shopping_cart</i></a>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</section>
+												<?php
+															}
+														}
+													}
+												}
+												?>
 											</div>
 										</div>
 									</div>
@@ -1079,481 +640,62 @@ session_start();
 										<div class="row">
 											<div class="all-prodict-item-list pt-10">
 												<!--Single Product List Start-->
-												<div class="col-md-12">
-													<div class="single-item">
-														<div class="product-img img-full">
-															<div class="col-md-4 col-sm-4">
-																<a href="single-product.html">
-																	<img class="first-img" src="img/product/3.jpg" alt="">
-																	<img class="hover-img" src="img/product/4.jpg" alt="">
-																</a>
-															</div>
-															<div class="col-md-8 col-sm-8">
-																<div class="product-content-2">
-																	<h2><a href="single-product.html">Letraset lorem</a></h2>
-																	<div class="rating">
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star-o"></i>
+												<?php
+												$query = $conexion->query("SELECT * FROM Productos");
+												if ($query->num_rows > 0) {
+													while ($row = $query->fetch_assoc()) {
+														$Id = $row["id_categoria"];
+														$query2 = $conexion->query("SELECT * FROM categoria WHERE Id_Categoria = '" . $Id . "'");
+														if ($query2->num_rows > 0) {
+															while ($cat = $query2->fetch_assoc()) {
+																$nomcat = $cat["Nombre_Cat"]; ?>
+
+																<section class="products-list">
+																	<div class="col-md-12 product-item" category=<?php echo "$nomcat" ?>>
+																		<div class="single-item">
+																			<div class="product-img img-full">
+																				<div class="col-md-4 col-sm-4">
+																					<a href="single-product.html">
+																						<img class="first-img" src="img/product/3.jpg" alt="">
+																						<img class="hover-img" src="img/product/4.jpg" alt="">
+																					</a>
+																				</div>
+																				<div class="col-md-8 col-sm-8">
+																					<div class="product-content-2">
+																						<h2><a href="single-product.html"><?php echo $row['Nombre'] ?></a></h2>
+																						<div class="rating">
+																							<i class="fa fa-star"></i>
+																							<i class="fa fa-star"></i>
+																							<i class="fa fa-star"></i>
+																							<i class="fa fa-star"></i>
+																							<i class="fa fa-star-o"></i>
+																						</div>
+																						<div class="product-price mb-20">
+																							<span class="new-price">$ <?php echo $row['ValorUnitario'] ?></span>
+																						</div>
+																						<div class="product-discription">
+																							<p><?php echo $row['Descripcion'] ?>.</p>
+																						</div>
+																						<div class="pro-action-2">
+																							<ul class="product-cart-area-list">
+																								<li><a class="action-btn big" href="#" data-toggle="tooltip" title="Añadir al Carrito"><i class="material-icons">add_shopping_cart</i></a></li>
+																								<li><a class="action-btn small" href="#" data-toggle="tooltip" title="Favorito"><i class="ion-android-favorite-outline"></i></a></li>
+																								<li><a class="action-btn small" href="#" data-toggle="modal" title="Ampliar" data-target="#myModal"><i class="ion-android-expand"></i></a></li>
+																							</ul>
+																						</div>
+																					</div>
+																				</div>
+																			</div>
+																		</div>
 																	</div>
-																	<div class="product-price mb-20">
-																		<span class="new-price">$69.000</span>
-																	</div>
-																	<div class="product-discription">
-																		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce posuere metus vitae arcu imperdiet, id aliquet ante scelerisque. Sed sit amet sem vitae urna fringilla tempus.</p>
-																	</div>
-																	<div class="pro-action-2">
-																		<ul class="product-cart-area-list">
-																			<li><a class="action-btn big" href="#" data-toggle="tooltip" title="Añadir al Carrito"><i class="material-icons">add_shopping_cart</i></a></li>
-																			<li><a class="action-btn small" href="#" data-toggle="tooltip" title="Favorito"><i class="ion-android-favorite-outline"></i></a></li>
-																			<li><a class="action-btn small" href="#" data-toggle="modal" title="Ampliar" data-target="#myModal"><i class="ion-android-expand"></i></a></li>
-																		</ul>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--Single Product List End-->
-												<!--Single Product List Start-->
-												<div class="col-md-12">
-													<div class="single-item">
-														<div class="product-img img-full">
-															<div class="col-md-4 col-sm-4">
-																<a href="single-product.html">
-																	<img class="first-img" src="img/product/3.jpg" alt="">
-																	<img class="hover-img" src="img/product/4.jpg" alt="">
-																</a>
-															</div>
-															<div class="col-md-8 col-sm-8">
-																<div class="product-content-2">
-																	<h2><a href="single-product.html">Aliquam lobortis Camera</a></h2>
-																	<div class="rating">
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star-o"></i>
-																	</div>
-																	<div class="product-price mb-20">
-																		<span class="new-price">$120.000</span>
-																	</div>
-																	<div class="product-discription">
-																		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce posuere metus vitae arcu imperdiet, id aliquet ante scelerisque. Sed sit amet sem vitae urna fringilla tempus.</p>
-																	</div>
-																	<div class="pro-action-2">
-																		<ul class="product-cart-area-list">
-																			<li><a class="action-btn big" href="#" data-toggle="tooltip" title="Añadir al Carrito"><i class="material-icons">add_shopping_cart</i></a></li>
-																			<li><a class="action-btn small" href="#" data-toggle="tooltip" title="Favorito"><i class="ion-android-favorite-outline"></i></a></li>
-																			<li><a class="action-btn small" href="#" data-toggle="modal" title="Ampliar" data-target="#myModal"><i class="ion-android-expand"></i></a></li>
-																		</ul>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--Single Product List End-->
-												<!--Single Product List Start-->
-												<div class="col-md-12">
-													<div class="single-item">
-														<div class="product-img img-full">
-															<div class="col-md-4 col-sm-4">
-																<a href="single-product.html">
-																	<img class="first-img" src="img/product/5.jpg" alt="">
-																	<img class="hover-img" src="img/product/4.jpg" alt="">
-																</a>
-															</div>
-															<div class="col-md-8 col-sm-8">
-																<div class="product-content-2">
-																	<h2><a href="single-product.html">Aliquam Watches</a></h2>
-																	<div class="rating">
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star-o"></i>
-																	</div>
-																	<div class="product-price mb-20">
-																		<span class="new-price">$33.000</span>
-																	</div>
-																	<div class="product-discription">
-																		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce posuere metus vitae arcu imperdiet, id aliquet ante scelerisque. Sed sit amet sem vitae urna fringilla tempus.</p>
-																	</div>
-																	<div class="pro-action-2">
-																		<ul class="product-cart-area-list">
-																			<li><a class="action-btn big" href="#" data-toggle="tooltip" title="Añadir al Carrito"><i class="material-icons">add_shopping_cart</i></a></li>
-																			<li><a class="action-btn small" href="#" data-toggle="tooltip" title="Favorito"><i class="ion-android-favorite-outline"></i></a></li>
-																			<li><a class="action-btn small" href="#" data-toggle="modal" title="Ampliar" data-target="#myModal"><i class="ion-android-expand"></i></a></li>
-																		</ul>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--Single Product List End-->
-												<!--Single Product List Start-->
-												<div class="col-md-12">
-													<div class="single-item">
-														<div class="product-img img-full">
-															<div class="col-md-4 col-sm-4">
-																<a href="single-product.html">
-																	<img class="first-img" src="img/product/6.jpg" alt="">
-																	<img class="hover-img" src="img/product/4.jpg" alt="">
-																</a>
-																<span class="sicker">-7%</span>
-															</div>
-															<div class="col-md-8 col-sm-8">
-																<div class="product-content-2">
-																	<h2><a href="single-product.html">Auctor furniture</a></h2>
-																	<div class="rating">
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star-o"></i>
-																	</div>
-																	<div class="product-price mb-20">
-																		<span class="old-price">$79.000</span>
-																		<span class="new-price">$69.000</span>
-																	</div>
-																	<div class="product-discription">
-																		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce posuere metus vitae arcu imperdiet, id aliquet ante scelerisque. Sed sit amet sem vitae urna fringilla tempus.</p>
-																	</div>
-																	<div class="pro-action-2">
-																		<ul class="product-cart-area-list">
-																			<li><a class="action-btn big" href="#" data-toggle="tooltip" title="Añadir al Carrito"><i class="material-icons">add_shopping_cart</i></a></li>
-																			<li><a class="action-btn small" href="#" data-toggle="tooltip" title="Favorito"><i class="ion-android-favorite-outline"></i></a></li>
-																			<li><a class="action-btn small" href="#" data-toggle="modal" title="Ampliar" data-target="#myModal"><i class="ion-android-expand"></i></a></li>
-																		</ul>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--Single Product List End-->
-												<!--Single Product List Start-->
-												<div class="col-md-12">
-													<div class="single-item">
-														<div class="product-img img-full">
-															<div class="col-md-4 col-sm-4">
-																<a href="single-product.html">
-																	<img class="first-img" src="img/product/6.jpg" alt="">
-																	<img class="hover-img" src="img/product/4.jpg" alt="">
-																</a>
-															</div>
-															<div class="col-md-8 col-sm-8">
-																<div class="product-content-2">
-																	<h2><a href="single-product.html">Cillum ipsum</a></h2>
-																	<div class="rating">
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star-o"></i>
-																	</div>
-																	<div class="product-price mb-20">
-																		<span class="new-price">$75.000</span>
-																	</div>
-																	<div class="product-discription">
-																		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce posuere metus vitae arcu imperdiet, id aliquet ante scelerisque. Sed sit amet sem vitae urna fringilla tempus.</p>
-																	</div>
-																	<div class="pro-action-2">
-																		<ul class="product-cart-area-list">
-																			<li><a class="action-btn big" href="#" data-toggle="tooltip" title="Añadir al Carrito"><i class="material-icons">add_shopping_cart</i></a></li>
-																			<li><a class="action-btn small" href="#" data-toggle="tooltip" title="Favorito"><i class="ion-android-favorite-outline"></i></a></li>
-																			<li><a class="action-btn small" href="#" data-toggle="modal" title="Ampliar" data-target="#myModal"><i class="ion-android-expand"></i></a></li>
-																		</ul>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--Single Product List End-->
-												<!--Single Product List Start-->
-												<div class="col-md-12">
-													<div class="single-item">
-														<div class="product-img img-full">
-															<div class="col-md-4 col-sm-4">
-																<a href="single-product.html">
-																	<img class="first-img" src="img/product/8.jpg" alt="">
-																	<img class="hover-img" src="img/product/4.jpg" alt="">
-																</a>
-															</div>
-															<div class="col-md-8 col-sm-8">
-																<div class="product-content-2">
-																	<h2><a href="single-product.html">tecno furniture</a></h2>
-																	<div class="rating">
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star-o"></i>
-																	</div>
-																	<div class="product-price mb-20">
-																		<span class="new-price">$115.000</span>
-																	</div>
-																	<div class="product-discription">
-																		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce posuere metus vitae arcu imperdiet, id aliquet ante scelerisque. Sed sit amet sem vitae urna fringilla tempus.</p>
-																	</div>
-																	<div class="pro-action-2">
-																		<ul class="product-cart-area-list">
-																			<li><a class="action-btn big" href="#" data-toggle="tooltip" title="Añadir al Carrito"><i class="material-icons">add_shopping_cart</i></a></li>
-																			<li><a class="action-btn small" href="#" data-toggle="tooltip" title="Favorito"><i class="ion-android-favorite-outline"></i></a></li>
-																			<li><a class="action-btn small" href="#" data-toggle="modal" title="Ampliar" data-target="#myModal"><i class="ion-android-expand"></i></a></li>
-																		</ul>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--Single Product List End-->
-												<!--Single Product List Start-->
-												<div class="col-md-12">
-													<div class="single-item">
-														<div class="product-img img-full">
-															<div class="col-md-4 col-sm-4">
-																<a href="single-product.html">
-																	<img class="first-img" src="img/product/9.jpg" alt="">
-																	<img class="hover-img" src="img/product/4.jpg" alt="">
-																</a>
-															</div>
-															<div class="col-md-8 col-sm-8">
-																<div class="product-content-2">
-																	<h2><a href="single-product.html">tecno posuere</a></h2>
-																	<div class="rating">
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star-o"></i>
-																	</div>
-																	<div class="product-price mb-20">
-																		<span class="new-price">$115.000</span>
-																	</div>
-																	<div class="product-discription">
-																		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce posuere metus vitae arcu imperdiet, id aliquet ante scelerisque. Sed sit amet sem vitae urna fringilla tempus.</p>
-																	</div>
-																	<div class="pro-action-2">
-																		<ul class="product-cart-area-list">
-																			<li><a class="action-btn big" href="#" data-toggle="tooltip" title="Añadir al Carrito"><i class="material-icons">add_shopping_cart</i></a></li>
-																			<li><a class="action-btn small" href="#" data-toggle="tooltip" title="Favorito"><i class="ion-android-favorite-outline"></i></a></li>
-																			<li><a class="action-btn small" href="#" data-toggle="modal" title="Ampliar" data-target="#myModal"><i class="ion-android-expand"></i></a></li>
-																		</ul>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--Single Product List End-->
-												<!--Single Product List Start-->
-												<div class="col-md-12">
-													<div class="single-item">
-														<div class="product-img img-full">
-															<div class="col-md-4 col-sm-4">
-																<a href="single-product.html">
-																	<img class="first-img" src="img/product/3.jpg" alt="">
-																	<img class="hover-img" src="img/product/4.jpg" alt="">
-																</a>
-															</div>
-															<div class="col-md-8 col-sm-8">
-																<div class="product-content-2">
-																	<h2><a href="single-product.html">tecno Watches</a></h2>
-																	<div class="rating">
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star-o"></i>
-																	</div>
-																	<div class="product-price mb-20">
-																		<span class="new-price">$123.000</span>
-																	</div>
-																	<div class="product-discription">
-																		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce posuere metus vitae arcu imperdiet, id aliquet ante scelerisque. Sed sit amet sem vitae urna fringilla tempus.</p>
-																	</div>
-																	<div class="pro-action-2">
-																		<ul class="product-cart-area-list">
-																			<li><a class="action-btn big" href="#" data-toggle="tooltip" title="Añadir al Carrito"><i class="material-icons">add_shopping_cart</i></a></li>
-																			<li><a class="action-btn small" href="#" data-toggle="tooltip" title="Favorito"><i class="ion-android-favorite-outline"></i></a></li>
-																			<li><a class="action-btn small" href="#" data-toggle="modal" title="Ampliar" data-target="#myModal"><i class="ion-android-expand"></i></a></li>
-																		</ul>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--Single Product List End-->
-												<!--Single Product List Start-->
-												<div class="col-md-12">
-													<div class="single-item">
-														<div class="product-img img-full">
-															<div class="col-md-4 col-sm-4">
-																<a href="single-product.html">
-																	<img class="first-img" src="img/product/1.jpg" alt="">
-																	<img class="hover-img" src="img/product/4.jpg" alt="">
-																</a>
-															</div>
-															<div class="col-md-8 col-sm-8">
-																<div class="product-content-2">
-																	<h2><a href="single-product.html">combo magni</a></h2>
-																	<div class="rating">
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star-o"></i>
-																	</div>
-																	<div class="product-price mb-20">
-																		<span class="new-price">$80.000</span>
-																	</div>
-																	<div class="product-discription">
-																		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce posuere metus vitae arcu imperdiet, id aliquet ante scelerisque. Sed sit amet sem vitae urna fringilla tempus.</p>
-																	</div>
-																	<div class="pro-action-2">
-																		<ul class="product-cart-area-list">
-																			<li><a class="action-btn big" href="#" data-toggle="tooltip" title="Añadir al Carrito"><i class="material-icons">add_shopping_cart</i></a></li>
-																			<li><a class="action-btn small" href="#" data-toggle="tooltip" title="Favorito"><i class="ion-android-favorite-outline"></i></a></li>
-																			<li><a class="action-btn small" href="#" data-toggle="modal" title="Ampliar" data-target="#myModal"><i class="ion-android-expand"></i></a></li>
-																		</ul>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--Single Product List End-->
-												<!--Single Product List Start-->
-												<div class="col-md-12">
-													<div class="single-item">
-														<div class="product-img img-full">
-															<div class="col-md-4 col-sm-4">
-																<a href="single-product.html">
-																	<img class="first-img" src="img/product/2.jpg" alt="">
-																	<img class="hover-img" src="img/product/4.jpg" alt="">
-																</a>
-																<span class="sicker">-7%</span>
-															</div>
-															<div class="col-md-8 col-sm-8">
-																<div class="product-content-2">
-																	<h2><a href="single-product.html">pc neque</a></h2>
-																	<div class="rating">
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star-o"></i>
-																	</div>
-																	<div class="product-price mb-20">
-																		<span class="old-price">$70.000</span>
-																		<span class="new-price">$65.000</span>
-																	</div>
-																	<div class="product-discription">
-																		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce posuere metus vitae arcu imperdiet, id aliquet ante scelerisque. Sed sit amet sem vitae urna fringilla tempus.</p>
-																	</div>
-																	<div class="pro-action-2">
-																		<ul class="product-cart-area-list">
-																			<li><a class="action-btn big" href="#" data-toggle="tooltip" title="Añadir al Carrito"><i class="material-icons">add_shopping_cart</i></a></li>
-																			<li><a class="action-btn small" href="#" data-toggle="tooltip" title="Favorito"><i class="ion-android-favorite-outline"></i></a></li>
-																			<li><a class="action-btn small" href="#" data-toggle="modal" title="Ampliar" data-target="#myModal"><i class="ion-android-expand"></i></a></li>
-																		</ul>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--Single Product List End-->
-												<!--Single Product List Start-->
-												<div class="col-md-12">
-													<div class="single-item">
-														<div class="product-img img-full">
-															<div class="col-md-4 col-sm-4">
-																<a href="single-product.html">
-																	<img class="first-img" src="img/product/3.jpg" alt="">
-																	<img class="hover-img" src="img/product/4.jpg" alt="">
-																</a>
-																<span class="sicker">-7%</span>
-															</div>
-															<div class="col-md-8 col-sm-8">
-																<div class="product-content-2">
-																	<h2><a href="single-product.html">pc neque furniture</a></h2>
-																	<div class="rating">
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star-o"></i>
-																	</div>
-																	<div class="product-price mb-20">
-																		<span class="old-price">$70.000</span>
-																		<span class="new-price">$65.000</span>
-																	</div>
-																	<div class="product-discription">
-																		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce posuere metus vitae arcu imperdiet, id aliquet ante scelerisque. Sed sit amet sem vitae urna fringilla tempus.</p>
-																	</div>
-																	<div class="pro-action-2">
-																		<ul class="product-cart-area-list">
-																			<li><a class="action-btn big" href="#" data-toggle="tooltip" title="Añadir al Carrito"><i class="material-icons">add_shopping_cart</i></a></li>
-																			<li><a class="action-btn small" href="#" data-toggle="tooltip" title="Favorito"><i class="ion-android-favorite-outline"></i></a></li>
-																			<li><a class="action-btn small" href="#" data-toggle="modal" title="Ampliar" data-target="#myModal"><i class="ion-android-expand"></i></a></li>
-																		</ul>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--Single Product List End-->
-												<!--Single Product List Start-->
-												<div class="col-md-12">
-													<div class="single-item">
-														<div class="product-img img-full">
-															<div class="col-md-4 col-sm-4">
-																<a href="single-product.html">
-																	<img class="first-img" src="img/product/4.jpg" alt="">
-																	<img class="hover-img" src="img/product/4.jpg" alt="">
-																</a>
-																<span class="sicker">-7%</span>
-															</div>
-															<div class="col-md-8 col-sm-8">
-																<div class="product-content-2">
-																	<h2><a href="single-product.html">pc neque furniture</a></h2>
-																	<div class="rating">
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star-o"></i>
-																	</div>
-																	<div class="product-price mb-20">
-																		<span class="old-price">$70.000</span>
-																		<span class="new-price">$60.000</span>
-																	</div>
-																	<div class="product-discription">
-																		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce posuere metus vitae arcu imperdiet, id aliquet ante scelerisque. Sed sit amet sem vitae urna fringilla tempus.</p>
-																	</div>
-																	<div class="pro-action-2">
-																		<ul class="product-cart-area-list">
-																			<li><a class="action-btn big" href="#" data-toggle="tooltip" title="Añadir al Carrito"><i class="material-icons">add_shopping_cart</i></a></li>
-																			<li><a class="action-btn small" href="#" data-toggle="tooltip" title="Favorito"><i class="ion-android-favorite-outline"></i></a></li>
-																			<li><a class="action-btn small" href="#" data-toggle="modal" title="Ampliar" data-target="#myModal"><i class="ion-android-expand"></i></a></li>
-																		</ul>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!--Single Product List End-->
+																</section>
+																<!--Single Product List End-->
+												<?php
+															}
+														}
+													}
+												}
+												?>
 											</div>
 										</div>
 									</div>
@@ -1569,18 +711,21 @@ session_start();
 							<div class="widget widget-shop-categories">
 								<h3 class="widget-shop-title">Categorías</h3>
 								<div class="widget-content">
-									<ul class="product-categories">
-										<?php
-										$sql = "SELECT * FROM categoria";
-										$result = $conexion->query($sql);
-										if ($result->num_rows > 0) {
-											while ($fila = $result->fetch_array(MYSQLI_ASSOC)) {
-												$categoria = $fila['Nombre_Cat'];
-												echo "<li><a href='#'>$categoria</a></li>";
+									<div class="category_list">
+										<ul class="product-categories">
+											<li><a href="#productos" class="category_item" category="all">Todo</a></li>
+											<?php
+											$sql = "SELECT * FROM categoria";
+											$result = $conexion->query($sql);
+											if ($result->num_rows > 0) {
+												while ($fila = $result->fetch_array(MYSQLI_ASSOC)) {
+													$categoria = $fila['Nombre_Cat'];
+													echo "<li><a href='#productos' class='category_item' category ='$categoria'>$categoria</a></li>";
+												}
 											}
-										}
-										?>
-									</ul>
+											?>
+										</ul>
+									</div>
 								</div>
 							</div>
 							<!--Widget Shop Categories End-->
