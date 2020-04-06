@@ -3,7 +3,8 @@ session_start();
 //Código PHP para obtener el Proveedor a Editar
 require('../../rq/provmod.php');
 //Sentencia y condicional SQL que recibirá el id por medio del metodo GET
-$sql = "select * from proveedores WHERE Id_Proveedor =" . $_GET['id'];
+$sql = "Select P.Id_Proveedor, P.Nombre_Prov, C.IdCiudad, C.Nombre, C.Departamento, P.Direccion, P.Telefonos, P.Email
+from proveedores P Inner Join ciudad C On P.IdCiudad=C.IdCiudad WHERE Id_Proveedor =" . $_GET['id'];
 $resultado = $conexion->query($sql)
     or die('Error al intentar realizar la consulta');
 $fila = null;
@@ -52,19 +53,79 @@ $conexion->close();
                     <input type="text" name="txtDireccion" v-model="direccion" class="form-control" placeholder="" />
                 </div>
             </div>
-            <br />
-            <!-- Campos de Inserccion -->
-            <div class="row">
-                <!-- Botonera para Borrar el Formulario o Editar un Registro -->
-                <div class="col-lg-6">
-                    <button @click="enviarDatos()" type="button" class="btn btn-primary">Editar</button>
-                    <?php if($_SESSION['rol']==1){ ?>  
-                    <button @click="borrarDatos()" type="button" class="btn btn-danger">Borrar</button>
-                    <?php } ?>
+            <br>
+            <div class="row">                
+                    <?php
+                    echo "<div class='col-6'>";
+                    echo "<label style='color:black;'>Departamento Anterior</label>";
+                    echo "<input style='color:black;' disabled type='text' value='" . $fila['Departamento'] . "'></div>";
+                    echo "<div class='col-6'>";
+                    echo "<label style='color:black;' >Ciudad Anterior</label>";
+                    echo "<input style='color:black;' disabled type='text' value='" . $fila['Nombre'] . "'></div>"; ?>
                 </div>
-                <!-- Botonera para Borrar el Formulario o Editar un Registro -->
-            </div>
+                <br>
+                <div class="row">
+                    <div class="col-6">
+                        <label style='color:black;' >Departamento</label>
+                        <select v-model="departamento" name="departamento" id="departamento" class="form-control">
+                            <?php
+                            require_once("../../rq/funcionesprov.php");
+                            $datos = Departamentos();
+                            foreach ($datos as $key => $dato) {
+                                echo ("<option value='$dato[Departamento]' >$dato[Departamento]</option>");
+                            }
+                            echo "</select>";
+                            ?>
+                    </div>
+                    <div class="col-6">
+                        <label style='color:black;' >Ciudad</label>
+                        <select v-model="ciudad" id='ciudad' name='ciudad' class='form-control'>ciudad</select>
+                    </div>
+                </div>
+                <br />
+                <!-- Campos de Inserccion -->
+                <div class="row">
+                    <!-- Botonera para Borrar el Formulario o Editar un Registro -->
+                    <div class="col-lg-6">
+                        <button @click="enviarDatos()" type="button" class="btn btn-primary">Editar</button>
+                        <?php if ($_SESSION['rol'] == 1) { ?>
+                            <button @click="borrarDatos()" type="button" class="btn btn-danger">Borrar</button>
+                        <?php } ?>
+                    </div>
+                    <!-- Botonera para Borrar el Formulario o Editar un Registro -->
+                </div>
         </form>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#departamento').val(1);
+                recargarLista();
+
+                $('#departamento').change(function() {
+                    recargarLista();
+                });
+            })
+
+
+            function recargarLista(ciu = "PIOJÓ") {
+                //alert(document.getElementById("departamento").value)
+                $.ajax({
+
+                    type: "POST",
+                    url: "mods/empleados/datosprov.php",
+                    //data: "dprtmnto=" + $("#departamento").val(),
+                    data: { //Para enlazar datos
+                        dprtmnto: $("#departamento").val(),
+                        ciudad: "CALI",
+
+                    },
+
+                    success: function(r) {
+                        $('#ciudad').html(r);
+
+                    }
+                });
+            }
+        </script>
         <!-- Script del VUE.js -->
         <script type="text/javascript">
             var vm = new Vue({
@@ -75,6 +136,8 @@ $conexion->close();
                     direccion: <?php echo "'" . $fila['Direccion'] . "'" ?>,
                     email: <?php echo "'" . $fila['Email'] . "'" ?>,
                     telefonos: <?php echo "'" . $fila['Telefonos'] . "'" ?>,
+                    departamento: <?php echo "'" . $fila['Departamento'] . "'" ?>,
+                    ciudad: '',
                     msg: '',
                     mostrarMsg: false
                 },
@@ -90,6 +153,7 @@ $conexion->close();
                         formulario.set('direccion', this.direccion);
                         formulario.set('email', this.email);
                         formulario.set('telefonos', this.telefonos);
+                        formulario.set('ciudad', this.ciudad);
                         //Petición POST usando Axios
                         axios({
                             method: 'POST', //Método de envio

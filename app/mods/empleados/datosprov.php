@@ -1,5 +1,5 @@
 <?php 
-require_once("Funciones.php");
+require_once("../../rq/funcionesprov.php");
 
 $depart=$_POST['dprtmnto'];
 $ciud=$_POST['ciudad'];
@@ -17,5 +17,3 @@ $ciudades=[];
 		}
 	
 	}
-
-?>
