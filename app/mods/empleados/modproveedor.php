@@ -54,46 +54,46 @@ $conexion->close();
                 </div>
             </div>
             <br>
-            <div class="row">                
-                    <?php
-                    echo "<div class='col-6'>";
-                    echo "<label style='color:black;'>Departamento Anterior</label>";
-                    echo "<input style='color:black;' disabled type='text' value='" . $fila['Departamento'] . "'></div>";
-                    echo "<div class='col-6'>";
-                    echo "<label style='color:black;' >Ciudad Anterior</label>";
-                    echo "<input style='color:black;' disabled type='text' value='" . $fila['Nombre'] . "'></div>"; ?>
+            <div class="row">
+                <div class="col-6">
+                    <label style='color:black;'>Departamento</label>
+                    <select v-model="departamento" name="departamento" id="departamento" class="form-control">
+                        <?php
+                        require_once("../../rq/funcionesprov.php");
+                        $datos = Departamentos();
+                        foreach ($datos as $key => $dato) {
+                            echo ("<option value='$dato[Departamento]' >$dato[Departamento]</option>");
+                        }
+                        echo "</select>";
+                        ?>
                 </div>
-                <br>
-                <div class="row">
-                    <div class="col-6">
-                        <label style='color:black;' >Departamento</label>
-                        <select v-model="departamento" name="departamento" id="departamento" class="form-control">
-                            <?php
-                            require_once("../../rq/funcionesprov.php");
-                            $datos = Departamentos();
-                            foreach ($datos as $key => $dato) {
-                                echo ("<option value='$dato[Departamento]' >$dato[Departamento]</option>");
-                            }
-                            echo "</select>";
-                            ?>
-                    </div>
-                    <div class="col-6">
-                        <label style='color:black;' >Ciudad</label>
-                        <select v-model="ciudad" id='ciudad' name='ciudad' class='form-control'>ciudad</select>
-                    </div>
+                <div class="col-6">
+                    <label style='color:black;'>Ciudad</label>
+                    <select v-model="ciudad" id='ciudad' name='ciudad' class='form-control'>ciudad</select>
                 </div>
-                <br />
-                <!-- Campos de Inserccion -->
-                <div class="row">
-                    <!-- Botonera para Borrar el Formulario o Editar un Registro -->
-                    <div class="col-lg-6">
-                        <button @click="enviarDatos()" type="button" class="btn btn-primary">Editar</button>
-                        <?php if ($_SESSION['rol'] == 1) { ?>
-                            <button @click="borrarDatos()" type="button" class="btn btn-danger">Borrar</button>
-                        <?php } ?>
-                    </div>
-                    <!-- Botonera para Borrar el Formulario o Editar un Registro -->
+            </div>
+            <div class="row">
+                <?php
+                echo "<div class='col-6'>";
+                echo "<label style='color:black;'>Departamento Anterior</label>";
+                echo "<input style='color:black;' disabled type='text' value='" . $fila['Departamento'] . "'></div>";
+                echo "<div class='col-6'>";
+                echo "<label style='color:black;' >Ciudad Anterior</label>";
+                echo "<input style='color:black;' disabled type='text' value='" . $fila['Nombre'] . "'></div>"; ?>
+            </div>
+            <br />
+            <!-- Campos de Inserccion -->
+            <div class="row">
+                <!-- Botonera para Borrar el Formulario o Editar un Registro -->
+                <div class="col-lg-6">
+                    <button @click="enviarDatos()" type="button" class="btn btn-primary">Editar</button>
+                    <?php if ($_SESSION['rol'] == 1) { ?>
+                        <button @click="borrarDatos()" type="button" class="btn btn-danger">Desactivar</button>
+                        <button @click="activarDatos()" type="button" class="btn btn-success">Activar</button>
+                    <?php } ?>
                 </div>
+                <!-- Botonera para Borrar el Formulario o Editar un Registro -->
+            </div>
         </form>
         <script type="text/javascript">
             $(document).ready(function() {
@@ -185,7 +185,25 @@ $conexion->close();
                         }).catch(function(error) { //Por si ocurre algun error
                             console.log(error)
                         });
+                    },
+                    activarDatos: function(event) {
+
+                        //Petición GET usando Axios
+                        axios({
+                            method: 'GET', //Método de envio
+                            url: 'mods/empleados/procesar/actprov.php?id=' + this.idProveedor //Archivo donde se enviara el id del empleado a borrar
+                        }).then(function(respuesta) { //Respuesta del servidor
+                            console.log(respuesta);
+                            alert(respuesta.data.msg);
+                            if (respuesta.data.exito === true) { //Redirección a la página de listado
+                                cargarProv();
+                            }
+
+                        }).catch(function(error) { //Por si ocurre algun error
+                            console.log(error)
+                        });
                     }
+
                 }
             });
         </script>
