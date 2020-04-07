@@ -55,7 +55,6 @@ require('../../rq/catmod.php');
             descripcion: '',
             precio: '',
             idCategoria: '',
-
             // }
         },
         mounted() { //Se lanza cada vez que se recarga la pagina
@@ -63,6 +62,40 @@ require('../../rq/catmod.php');
         },
         methods: { //metodos personalizados
             enviarDatos: function(event) {
+                switch (this.idCategoria) {
+                    case "Discos":
+                        this.idCategoria = 1;
+                        break;
+                    case "Memorias":
+                        this.idCategoria = 2;
+                        break;
+                    case "Perifericos":
+                        this.idCategoria = 3;
+                        break;
+                    case "Accesorios":
+                        this.idCategoria = 4;
+                        break;
+                    case "Routers":
+                        this.idCategoria = 5;
+                        break;
+                    case "NoteBooks":
+                        this.idCategoria = 6;
+                        break;
+                    case "Escritorios":
+                        this.idCategoria = 7;
+                        break;
+                    case "AIO":
+                        this.idCategoria = 8;
+                        break;
+                    case "Monitores":
+                        this.idCategoria = 9;
+                        break;
+                    case "Audio":
+                        this.idCategoria = 10;
+                        break;
+                    default:
+                        break;
+                }
                 const formulario = new FormData();
                 formulario.set('idProducto', this.idProducto);
                 formulario.set('nombre', this.nombre);
