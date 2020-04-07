@@ -76,6 +76,17 @@ function edEmp(id) {
     }
   });
 }
+function edCat(id) {
+  var url = "mods/empleados/modcatalogo.php?id="+id;
+  $.ajax({
+    type: "POST",
+    url: url,
+    data: {},
+    success: function(datos) {
+      $('#cargaModulo').html(datos);
+    }
+  });
+}
 function edCli(id) {
   var url = "mods/empleados/modcliente.php?id="+id;
   $.ajax({

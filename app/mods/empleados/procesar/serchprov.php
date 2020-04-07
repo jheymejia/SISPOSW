@@ -69,12 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         case 'email':
             $resultado = ProveedorXcorreo($vrBusca);
             break;
-        case 'ciudad':
-            $resultado = ProveedorXciudad($vrBusca);
-            break;
-        case 'departamento':
-            $resultado = ProveedorXdepartamento($vrBusca);
-            break;
+
 
 
         default:
@@ -115,6 +110,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 ?>
-<a href="ModificarProveedor.php"></a>
-
 </html>

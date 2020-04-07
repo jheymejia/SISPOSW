@@ -53,7 +53,8 @@ require('../../rq/provmod.php');
             <!-- Botonera para Limpiar el Formulario o hacer un Registro -->
             <div style="text-align: center" class="col"><br>
                 <input class="btn btn-primary" type="reset" value="Limpiar">
-                <input class="btn btn-primary btn-succes" type="button" value="Enviar" name="proveedores" @click="enviarDatos()"><br>
+                <input class="btn btn-primary btn-succes" type="button" value="Enviar" name="proveedores" @click="enviarDatos()">
+                <a class="btn btn-primary" data-toggle="collapse" href="#TablaProv" role="button" aria-expanded="false" aria-controls="TablaProv">Mostrar Registros</a>
             </div>
             <!-- Botonera para Limpiar el Formulario o hacer un Registro -->
         </div>
@@ -107,7 +108,7 @@ require('../../rq/provmod.php');
 </div>
 <br>
 <!-- Aplicacion VUE -->
-<div class="show multi-collapse container mt-5" id="multiCollapseExample2">
+<div class="collapse multi-collapse container mt-5" id="TablaProv">
     <!-- Tabla donde estará la información -->
     <table class="table table-dark table-hover">
         <thead>
@@ -200,11 +201,9 @@ require('../../rq/provmod.php');
             </div>
             <div class="col-3">
                 <select name="buscarX" id="buscarX" v-model="buscarX" class="form-control">
-                    <option value="id">Buscar por ID</option>
+                    <option value="id">Buscar por NIT</option>
                     <option value="nombre">Buscar por Nombre</option>
                     <option value="email">Buscar por Correo</option>
-                    <option value="ciudad">Buscar por Ciudad</option>
-                    <option value="departamento">Buscar por Departamento</option>
                 </select>
             </div>
         </div>
@@ -212,7 +211,7 @@ require('../../rq/provmod.php');
             <!-- Botonera para Limpiar el Formulario o hacer un Registro -->
             <div style="text-align: center" class="col"><br>
                 <button @click="CargarDatosBusqueda()" name="buscar" id="buscar" class="btn btn-primary">Buscar</button>                
-                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="Resultado multiCollapseExample2">Desplegar Busqueda</button>
+                <a class="btn btn-primary" data-toggle="collapse" href="#Resultado" role="button" aria-expanded="false" aria-controls="Resultado">Mostrar Resultados</a>
             </div>
             <!-- Botonera para Limpiar el Formulario o hacer un Registro -->
         </div>
