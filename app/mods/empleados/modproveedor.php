@@ -56,6 +56,16 @@ $conexion->close();
             <br>
             <div class="row">
                 <div class="col-6">
+                    <label style="color:black">Anterior</label>
+                    <input style="color:black" disabled type="text" v-model="dbef" name="txtBefore" class="form-control" placeholder="" />
+                </div>
+                <div class="col-6">
+                    <label style="color:black">Anterior</label>
+                    <input style="color:black" disabled type="text" v-model="cbef" name="txtBefore" class="form-control" placeholder="" />
+                </div>
+            </div><br>
+            <div class="row">
+                <div class="col-6">
                     <label style='color:black;'>Departamento</label>
                     <select v-model="departamento" name="departamento" id="departamento" class="form-control">
                         <?php
@@ -72,24 +82,17 @@ $conexion->close();
                     <select v-model="ciudad" id='ciudad' name='ciudad' class='form-control'>ciudad</select>
                 </div>
             </div>
-            <div class="row">
-                <?php
-                echo "<div class='col-6'>";
-                echo "<label style='color:black;'>Departamento Anterior</label>";
-                echo "<input style='color:black;' disabled type='text' value='" . $fila['Departamento'] . "'></div>";
-                echo "<div class='col-6'>";
-                echo "<label style='color:black;' >Ciudad Anterior</label>";
-                echo "<input style='color:black;' disabled type='text' value='" . $fila['Nombre'] . "'></div>"; ?>
-            </div>
             <br />
             <!-- Campos de Inserccion -->
             <div class="row">
                 <!-- Botonera para Borrar el Formulario o Editar un Registro -->
                 <div class="col-lg-6">
                     <button @click="enviarDatos()" type="button" class="btn btn-primary">Editar</button>
+                    <button class="btn btn-danger" onclick="cargarProv();">Cancelar</button>
+                </div>
+                <div class="col text-right">
                     <?php if ($_SESSION['rol'] == 1) { ?>
-                        <button @click="borrarDatos()" type="button" class="btn btn-danger">Desactivar</button>
-                        <button @click="activarDatos()" type="button" class="btn btn-success">Activar</button>
+                        <button @click="borrarDatos()" type="button" class="btn btn-danger">Borrar</button>
                     <?php } ?>
                 </div>
                 <!-- Botonera para Borrar el Formulario o Editar un Registro -->
@@ -136,8 +139,10 @@ $conexion->close();
                     direccion: <?php echo "'" . $fila['Direccion'] . "'" ?>,
                     email: <?php echo "'" . $fila['Email'] . "'" ?>,
                     telefonos: <?php echo "'" . $fila['Telefonos'] . "'" ?>,
-                    departamento: <?php echo "'" . $fila['Departamento'] . "'" ?>,
+                    departamento: '',
                     ciudad: '',
+                    dbef: <?php echo "'" . $fila['Departamento'] . "'" ?>,
+                    cbef: <?php echo "'" . $fila['Nombre'] . "'" ?>,
                     msg: '',
                     mostrarMsg: false
                 },
@@ -185,25 +190,7 @@ $conexion->close();
                         }).catch(function(error) { //Por si ocurre algun error
                             console.log(error)
                         });
-                    },
-                    activarDatos: function(event) {
-
-                        //Petición GET usando Axios
-                        axios({
-                            method: 'GET', //Método de envio
-                            url: 'mods/empleados/procesar/actprov.php?id=' + this.idProveedor //Archivo donde se enviara el id del empleado a borrar
-                        }).then(function(respuesta) { //Respuesta del servidor
-                            console.log(respuesta);
-                            alert(respuesta.data.msg);
-                            if (respuesta.data.exito === true) { //Redirección a la página de listado
-                                cargarProv();
-                            }
-
-                        }).catch(function(error) { //Por si ocurre algun error
-                            console.log(error)
-                        });
                     }
-
                 }
             });
         </script>

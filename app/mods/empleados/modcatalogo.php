@@ -1,4 +1,5 @@
 <?php
+session_start();
 //Código PHP para obtener el empleado a Editar
 require('../../rq/catmod.php');
 //Sentencia y condicional SQL que recibirá el id por medio del metodo GET
@@ -66,8 +67,12 @@ $conexion->close();
                 <!-- Botonera para Borrar el Formulario o Editar un Registro -->
                 <div class="col-lg-6">
                     <button @click="enviarDatos()" type="button" class="btn btn-primary">Editar</button>
-
-                    <button @click="borrarDatos()" type="button" class="btn btn-danger">Borrar</button>
+                    <button class="btn btn-danger" onclick="cargarCat();">Cancelar</button>                    
+                </div>
+                <div class="col text-right">
+                    <?php if ($_SESSION['rol'] == 1) { ?>
+                        <button @click="borrarDatos()" type="button" class="btn btn-danger">Borrar</button>
+                    <?php } ?>
                 </div>
                 <!-- Botonera para Borrar el Formulario o Editar un Registro -->
             </div>

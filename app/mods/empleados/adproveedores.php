@@ -3,9 +3,42 @@ require('../../rq/provmod.php');
 // Archivo Requerido para mostrar los Proveedores la tabla de abajo 
 ?>
 <!-- Aplicacion VUE -->
+<h1 class="text-center">Administracion Proveedores</h1>
+<script type="text/javascript">
+    $(Document).ready(function() {
+        $("#buscar").on("click", (e) => {
+            e.preventDefault();
+            CargarDatosprov();
+        })
+    })
+
+    function CargarDatosprov() {
+        let buscaX = "";
+        let vrBusca = "";
+        buscaX = document.getElementById("buscarX").value;
+        vrBusca = document.getElementById("vrBuscar").value;
+        $.ajax({
+            type: "POST",
+            url: "mods/empleados/procesar/serchprov.php",
+            data: {
+                buscarX: buscaX,
+                vrBuscar: vrBusca
+            },
+            success: function(r) {
+                $('#Resultado').html(r);
+            }
+        });
+    }
+</script>
 <div id="vueapp">
-    <form class="regf" action="adproveedores.php" method="POST">
-        <h2 style="text-align: center">Administración<br>De Proveedores<br><br> </h2>
+<div class="modal fade" id="reg" tabindex="-1" role="dialog" aria-labelledby="reg" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Registrar Proveedor</h4>        
+      </div>
+      <div class="modal-body mx-3">
+      <form id="reg" class="regf" action="adproveedores.php" method="POST">
         <!-- Campos de Inserccion -->
         <div class="form-row">
             <div class="col">
@@ -27,11 +60,9 @@ require('../../rq/provmod.php');
             </div>
         </div>
         <br>
-        <div class="form-row">
-            <div class="col-2">
-                <label style="color:black; display: block; text-align:right; width: 100%; height: calc(2.25rem + 2px); padding: 0.375rem 0.75rem; font-size: 1rem;" for="departamento">Departamento</label>
-            </div>
+        <div class="form-row">            
             <div class="col-4">
+                <label>Departamento</label>
                 <select v-model="departamento" name="departamento" id="departamento" class="form-control">
                     <?php
                     require_once("../../rq/funcionesprov.php");
@@ -40,11 +71,9 @@ require('../../rq/provmod.php');
                         echo ("<option value='$dato[Departamento]' >$dato[Departamento]</option>");
                     }
                     echo "</select>";
-                    ?></div>
-            <div class="col-1">
-                <label style="color:black; display: block; text-align:right; width: 100%; height: calc(2.25rem + 2px); padding: 0.375rem 0.75rem; font-size: 1rem;" for="ciudad">Ciudad</label>
-            </div>
+                    ?></div>            
             <div class="col-5">
+                <label>Ciudad</label>
                 <select v-model="ciudad" id='ciudad' name='ciudad' class='form-control'>ciudad</select>
             </div>
         </div>
@@ -53,12 +82,20 @@ require('../../rq/provmod.php');
             <!-- Botonera para Limpiar el Formulario o hacer un Registro -->
             <div style="text-align: center" class="col"><br>
                 <input class="btn btn-primary" type="reset" value="Limpiar">
-                <input class="btn btn-primary btn-succes" type="button" value="Enviar" name="proveedores" @click="enviarDatos()">
-                <a class="btn btn-primary" data-toggle="collapse" href="#TablaProv" role="button" aria-expanded="false" aria-controls="TablaProv">Mostrar Registros</a>
+                <input class="btn btn-primary btn-succes" type="button" value="Enviar" name="proveedores" @click="enviarDatos()">                
             </div>
             <!-- Botonera para Limpiar el Formulario o hacer un Registro -->
         </div>
     </form>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button class="btn btn-danger " data-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+</div>
+</div>
+    
+
     <!-- Script del VUE.js -->
     <script type="text/javascript">
         var vm = new Vue({
@@ -74,8 +111,7 @@ require('../../rq/provmod.php');
                 ciudad: '',
                 // }
             },
-            mounted() { //Se lanza cada vez que se recarga la pagina
-                // alert('funciona');
+            mounted() { CargarDatosprov();
             },
             methods: { //metodos personalizados
                 enviarDatos: function(event) {
@@ -108,49 +144,6 @@ require('../../rq/provmod.php');
 </div>
 <br>
 <!-- Aplicacion VUE -->
-<div class="collapse multi-collapse container mt-5" id="TablaProv">
-    <!-- Tabla donde estará la información -->
-    <table class="table table-dark table-hover">
-        <thead>
-            <tr>
-                <!-- Columnas de la Tabla -->
-                <th scope="col">NIT Proveedor</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Direccion</th>
-                <th scope="col">Email</th>
-                <th scope="col">Telefonos</th>
-                <th scope="col">Departamento</th>
-                <th scope="col">Ciudad</th>
-                <th scope="col">Acciones</th>
-            </tr>
-        </thead>
-        <?php
-        if ($fila = mysqli_fetch_array($resultset)) {
-            echo '<br>';
-            // Ciclo que permite rellenar las filas de la tabla
-            do {
-                echo "<tbody><tr>";
-                echo "<th scope='row'>" . $fila["Id_Proveedor"] . "</th>";
-                // Variable que toma el id del Registro
-                $id = $fila["Id_Proveedor"];
-                echo "<td>" . $fila["Nombre_Prov"] . "</td>";
-                echo "<td>" . $fila["Direccion"] . "</td>";
-                echo "<td>" . $fila["Email"] . "</td>";
-                echo "<td>" . $fila["Telefonos"] . "</td>";
-                echo "<td>" . $fila["Departamento"] . "</td>";
-                echo "<td>" . $fila["Nombre"] . "</td>";
-                //Función para editar el Registro
-                echo "<td><a onclick='edProv(" . $id . ");'>Editar</a></td></tr>";
-            } while ($fila = mysqli_fetch_array($resultset));
-            echo "<br>";
-        } else {
-            echo "</table><div class='alert alert-warning' role='alert'> No se encontraron registros </div>";
-        }
-        $conexion->close();
-        ?>
-    </table>
-    <!-- Tabla donde estará la información -->
-</div>
 <script>
     $(".alert-success").delay(4000).slideUp(200, function() {
         $(this).alert - success('close');
@@ -187,60 +180,24 @@ require('../../rq/provmod.php');
         });
     }
 </script>
-<br><br><br>
 <div id="busquedadatos">
     <form method="" action="" style="text-align: center" class="form"><br>
-        <div style="text-align: center" class="form-row">
-            <div class="col-3">
+        <div style="text-align: center" class="form-row">            
+            <div class="col">
+                <input placeholder="Buscar ..." oninput="CargarDatosprov()" type="text" name="vrBuscar" id="vrBuscar" v-model="vrBuscar">
             </div>
-            <div class="col-1">
-                <label style="color:black; display: block; text-align:right; width: 100%; height: calc(2.25rem + 2px); padding: 0.375rem 0.75rem; font-size: 1rem;" for="vrBuscar">Datos</label>
-            </div>
-            <div class="col-2">
-                <input type="text" name="vrBuscar" id="vrBuscar" v-model="vrBuscar">
-            </div>
-            <div class="col-3">
+            <div class="col">
                 <select name="buscarX" id="buscarX" v-model="buscarX" class="form-control">
                     <option value="id">Buscar por NIT</option>
                     <option value="nombre">Buscar por Nombre</option>
                     <option value="email">Buscar por Correo</option>
                 </select>
             </div>
-        </div>
-        <div style="text-align: center" class="form-row">
-            <!-- Botonera para Limpiar el Formulario o hacer un Registro -->
-            <div style="text-align: center" class="col"><br>
-                <button @click="CargarDatosBusqueda()" name="buscar" id="buscar" class="btn btn-primary">Buscar</button>                                
+            <div class="col">
+                <button data-keyboard="true" data-backdrop="static" data-toggle="modal" data-target="#reg" type="button" class="btn btn-primary">Insertar</button>
             </div>
-            <!-- Botonera para Limpiar el Formulario o hacer un Registro -->
-        </div>
+        </div>        
     </form><br>
     <div id="Resultado">
     </div>
 </div>
-<script type="text/javascript">
-    $(Document).ready(function() {
-        $("#buscar").on("click", (e) => {
-            e.preventDefault();
-            CargarDatosBusqueda();
-        })
-    })
-
-    function CargarDatosBusqueda() {
-        let buscaX = "";
-        let vrBusca = "";
-        buscaX = document.getElementById("buscarX").value;
-        vrBusca = document.getElementById("vrBuscar").value;
-        $.ajax({
-            type: "POST",
-            url: "mods/empleados/procesar/serchprov.php",
-            data: {
-                buscarX: buscaX,
-                vrBuscar: vrBusca
-            },
-            success: function(r) {
-                $('#Resultado').html(r);
-            }
-        });
-    }
-</script>
