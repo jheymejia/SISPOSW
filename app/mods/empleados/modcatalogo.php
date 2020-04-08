@@ -133,7 +133,7 @@ $conexion->close();
                         }
                         const formulario = new FormData();
                         formulario.set('idProducto', this.idProducto);
-                        formulario.set('nombres', this.nombres);
+                        formulario.set('nombre', this.nombre);
                         formulario.set('descripcion', this.descripcion);
                         formulario.set('precio', this.precio);
                         formulario.set('categoria', this.categoria);
