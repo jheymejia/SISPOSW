@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 07, 2020 at 06:06 AM
+-- Generation Time: Apr 08, 2020 at 08:46 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -1219,17 +1219,16 @@ INSERT INTO `ciudad` (`IdCiudad`, `Nombre`, `Departamento`) VALUES
 CREATE TABLE `clientes` (
   `Id_Cliente` int(11) NOT NULL,
   `Persona` int(11) NOT NULL,
-  `Usuario` int(11) DEFAULT NULL,
-  `Estado_Cliente` int(2) NOT NULL
+  `Usuario` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `clientes`
 --
 
-INSERT INTO `clientes` (`Id_Cliente`, `Persona`, `Usuario`, `Estado_Cliente`) VALUES
-(11, 10, 23, 1),
-(17, 14, 30, 1);
+INSERT INTO `clientes` (`Id_Cliente`, `Persona`, `Usuario`) VALUES
+(11, 10, 23),
+(17, 14, 30);
 
 -- --------------------------------------------------------
 
@@ -1240,16 +1239,15 @@ INSERT INTO `clientes` (`Id_Cliente`, `Persona`, `Usuario`, `Estado_Cliente`) VA
 CREATE TABLE `empleados` (
   `Id_Empleado` int(11) NOT NULL,
   `Persona` int(11) NOT NULL,
-  `Usuario` int(11) DEFAULT NULL,
-  `Estado_Empleado` int(2) NOT NULL
+  `Usuario` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `empleados`
 --
 
-INSERT INTO `empleados` (`Id_Empleado`, `Persona`, `Usuario`, `Estado_Empleado`) VALUES
-(3, 11, 24, 1);
+INSERT INTO `empleados` (`Id_Empleado`, `Persona`, `Usuario`) VALUES
+(3, 11, 24);
 
 -- --------------------------------------------------------
 
@@ -1339,7 +1337,7 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`Id_Producto`, `Nombre`, `Descripcion`, `ValorUnitario`, `id_categoria`) VALUES
-(6, 'Memoria ram', 'memoria ram de 512 mb', 10000, 2),
+(6, 'Memoria ram', 'memoria ram de 512 mb', 10000, 7),
 (7, 'monitor', 'monitor de 14\"', 14000, 9),
 (8, 'mouse', 'mouse usb', 15000, 4),
 (9, 'audifonos', 'audifonos marca asus', 20000, 10);
@@ -1512,8 +1510,7 @@ ALTER TABLE `ciudad`
 ALTER TABLE `clientes`
   ADD PRIMARY KEY (`Id_Cliente`),
   ADD KEY `Persona` (`Persona`),
-  ADD KEY `Usuario` (`Usuario`),
-  ADD KEY `Estado_Cliente` (`Estado_Cliente`);
+  ADD KEY `Usuario` (`Usuario`);
 
 --
 -- Indexes for table `empleados`
@@ -1521,8 +1518,7 @@ ALTER TABLE `clientes`
 ALTER TABLE `empleados`
   ADD PRIMARY KEY (`Id_Empleado`),
   ADD KEY `Persona` (`Persona`),
-  ADD KEY `Usuario` (`Usuario`),
-  ADD KEY `Estado_Empleado` (`Estado_Empleado`) USING BTREE;
+  ADD KEY `Usuario` (`Usuario`);
 
 --
 -- Indexes for table `estado`
@@ -1688,16 +1684,14 @@ ALTER TABLE `administradores`
 --
 ALTER TABLE `clientes`
   ADD CONSTRAINT `clientes_ibfk_1` FOREIGN KEY (`Persona`) REFERENCES `personas` (`id_persona`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `clientes_ibfk_2` FOREIGN KEY (`Usuario`) REFERENCES `usuarios` (`Id_usuario`),
-  ADD CONSTRAINT `clientes_ibfk_3` FOREIGN KEY (`Estado_Cliente`) REFERENCES `estado` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `clientes_ibfk_2` FOREIGN KEY (`Usuario`) REFERENCES `usuarios` (`Id_usuario`);
 
 --
 -- Constraints for table `empleados`
 --
 ALTER TABLE `empleados`
   ADD CONSTRAINT `empleados_ibfk_1` FOREIGN KEY (`Persona`) REFERENCES `personas` (`id_persona`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `empleados_ibfk_2` FOREIGN KEY (`Usuario`) REFERENCES `usuarios` (`Id_usuario`),
-  ADD CONSTRAINT `empleados_ibfk_3` FOREIGN KEY (`Estado_Empleado`) REFERENCES `estado` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `empleados_ibfk_2` FOREIGN KEY (`Usuario`) REFERENCES `usuarios` (`Id_usuario`);
 
 --
 -- Constraints for table `identificacion`
