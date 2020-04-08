@@ -203,7 +203,7 @@ session_start();
 															}
 															echo "$nombre <strong>$apellido</strong> ";
 														}
-													}else{
+													} else {
 														echo "Registrate y se parte de la mejor <strong>EXPERIENCIA</strong> de compras";
 													}
 													?>
@@ -619,7 +619,7 @@ session_start();
 																				</div>
 																				<div class="product-price">
 																					<span class="new-price">$ <?php echo $row['ValorUnitario'] ?></span>
-																					<a class="button add-btn" href="#" data-toggle="tooltip" title="Añadir al Carrito"><i class="material-icons">shopping_cart</i></a>
+																					<a class="button add-btn" href="#" data-toggle="tooltip"><i class="material-icons">shopping_cart</i></a>
 																				</div>
 																			</div>
 																		</div>
@@ -713,14 +713,14 @@ session_start();
 								<div class="widget-content">
 									<div class="category_list">
 										<ul class="product-categories">
-											<li><a href="#productos" class="category_item" category="all">Todo</a></li>
+											<li><a class="category_item" category="all">Todo</a></li>
 											<?php
 											$sql = "SELECT * FROM categoria";
 											$result = $conexion->query($sql);
 											if ($result->num_rows > 0) {
 												while ($fila = $result->fetch_array(MYSQLI_ASSOC)) {
 													$categoria = $fila['Nombre_Cat'];
-													echo "<li><a href='#productos' class='category_item' category ='$categoria'>$categoria</a></li>";
+													echo "<li><a class='category_item' category ='$categoria'>$categoria</a></li>";
 												}
 											}
 											?>
