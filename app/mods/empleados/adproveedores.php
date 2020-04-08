@@ -187,7 +187,7 @@ require('../../rq/provmod.php');
         });
     }
 </script>
-<br>
+<br><br><br>
 <div id="busquedadatos">
     <form method="" action="" style="text-align: center" class="form"><br>
         <div style="text-align: center" class="form-row">
@@ -210,13 +210,12 @@ require('../../rq/provmod.php');
         <div style="text-align: center" class="form-row">
             <!-- Botonera para Limpiar el Formulario o hacer un Registro -->
             <div style="text-align: center" class="col"><br>
-                <button @click="CargarDatosBusqueda()" name="buscar" id="buscar" class="btn btn-primary">Buscar</button>                
-                <a class="btn btn-primary" data-toggle="collapse" href="#Resultado" role="button" aria-expanded="false" aria-controls="Resultado">Mostrar Resultados</a>
+                <button @click="CargarDatosBusqueda()" name="buscar" id="buscar" class="btn btn-primary">Buscar</button>                                
             </div>
             <!-- Botonera para Limpiar el Formulario o hacer un Registro -->
         </div>
     </form><br>
-    <div class="collapse multi-collapse" id="Resultado">
+    <div id="Resultado">
     </div>
 </div>
 <script type="text/javascript">
