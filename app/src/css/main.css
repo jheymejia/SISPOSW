@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Open Sans', sans-serif!important;
   background: #fff;
   background: linear-gradient(to right top, #073040, #131826, #474f61);
   background-repeat: no-repeat;
@@ -11,8 +11,8 @@ body {
 #cargaModulo {
   width: -webkit-fill-available;
   background: white;
-  max-height: 88vh;
-  margin: 3rem 1rem 0 0;
+  max-height: 96vh;
+  margin: 0 1rem 0 0;
   border-radius: .6rem;
   overflow-y: auto;
 }
@@ -31,5 +31,5 @@ nav ul li.active {
 }
 
 .menu-botones #show-sidebar:active {
-  border: 2px solid #22d48c;  
+  border: 2px solid #22d48c;
 }

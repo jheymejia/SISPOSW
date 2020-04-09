@@ -1,4 +1,4 @@
-<?php 
+<?php
 require "../datos/conexion.php";
 
 $usuario = $_POST['email'];

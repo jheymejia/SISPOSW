@@ -33,9 +33,16 @@ class conexion
     $this->user = $email;
     $this->pass = $pass;
 
-    $sql = "INSERT INTO usuarios (email, pass, rol) values ('" . $this->user . "','" . $this->pass . "','3')";
-    $result = $this->conexion->query($sql);
-    header("location:login.php");
+    $sql0 = "SELECT * FROM usuarios WHERE email = '" . $this->user . "'";
+    $result0 = $this->conexion->query($sql0);
+
+    if ($result0->num_rows > 0){
+      echo'<script type="text/javascript">window.location.href="login.php"; alert("Error: El usuario ya se encuentra registrado.");</script>';
+    } else {
+        $sql = "INSERT INTO usuarios (email, pass, rol) values ('" . $this->user . "','" . $this->pass . "','3')";
+        $result = $this->conexion->query($sql);
+        echo'<script type="text/javascript">window.location.href="login.php"; alert("Registro correcto, inicia sesión para continuar.");</script>';
+    }
   }
 
   public function crearcliente1($user){
@@ -73,7 +80,7 @@ class conexion
   }
 
   public function llenardatos($name, $lastname, $adress, $celphone, $phone, $type, $ident){
-    
+
     $this->name = $name;
     $this->lastname = $lastname;
     $this->adress = $adress;
@@ -103,13 +110,13 @@ class conexion
     $this->pass = $password;
     $sql = "SELECT * FROM usuarios WHERE email='" . $this->user . "' and pass='" . $this->pass . "'";
     $consulta = $this->conexion->query($sql);
-    
+
     if ($fila = mysqli_fetch_array($consulta)) {
         session_start();
 
         $_SESSION['rol'] = $fila['rol'];
         $_SESSION['usuario'] = $fila['email'];
-  
+
         switch ($_SESSION['rol']) {
           case 1:
             header("location:index.php");

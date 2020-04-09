@@ -1,5 +1,5 @@
 <div class="page-wrapper chiller-theme toggled">
-  <nav class="navbar fixed-top navbar-dark bg-dark">
+  <nav class="navbar fixed-top bg-dark-menu">
     <a class="navbar-brand" href="#">SISPOSW</a>
   </nav>
 
@@ -32,7 +32,7 @@
 
   </div>
 
-  <nav id="sidebar" class="sidebar-wrapper pt-5">
+  <nav id="sidebar" class="sidebar-wrapper">
     <div class="sidebar-content">
       <div class="sidebar-brand">
         <a href="#">Bienvenido</a>

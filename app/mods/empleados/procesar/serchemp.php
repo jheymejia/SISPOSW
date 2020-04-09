@@ -54,8 +54,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     echo "
 <div class='container mt-5'>
-   <table class='table table-dark table-hover'>
-    <thead>
+   <table class='table table-hover'>
+    <thead class='thead-light'>
       <tr>
       <th scope='col'>Número de Documento</th>
       <th scope='col'>Nombres</th>
