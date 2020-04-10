@@ -54,26 +54,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     echo "
 <div class='container mt-5'>
-   <table class='table table-hover'>
+<div class='table-wrapper-scroll-y table-scrollbar'>
+   <table class='table table-hover table-sm'>
     <thead class='thead-light'>
       <tr>
-      <th scope='col'>Número de Documento</th>
-      <th scope='col'>Nombres</th>
-      <th scope='col'>Apellidos</th>
-      <th scope='col'>Correo Electronico</th>
-      <th scope='col'>Celular</th>
-      <th scope='col'>Telefonos</th>
-      <th scope='col'>Direccion</th>
-      <th scope='col'>Acciones</th>
+      <th class='th-sm'>Número de Documento</th>
+      <th class='th-sm'>Nombres</th>
+      <th class='th-sm'>Apellidos</th>
+      <th class='th-sm'>Correo Electronico</th>
+      <th class='th-sm'>Celular</th>
+      <th class='th-sm'>Telefonos</th>
+      <th class='th-sm'>Direccion</th>
+      <th class='th-sm'>Acciones</th>
       </tr>
     </thead>
     <tbody>
+    </div>
 <div>";
     foreach ($resultado as $key => $dato) {
         echo " <tr>
             <td>$dato[numero_identificacion]</td>
             <td>$dato[Nombre]</td>
-            <td>$dato[Apellido]</td>            
+            <td>$dato[Apellido]</td>
             <td>$dato[email]</td>
             <td>$dato[Celular]</td>
             <td>$dato[Telefono]</td>

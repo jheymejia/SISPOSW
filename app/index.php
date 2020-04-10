@@ -3,61 +3,61 @@ require "../datos/conexioncore.php";
 session_start();
 if (($_SESSION['rol'] == 1) || ($_SESSION['rol'] == 2)) {
 ?>
-  <!DOCTYPE html>
-  <html lang="es">
+<!DOCTYPE html>
+<html lang="es">
 
-  <head>
-    <title>Panel Administrativo - SysPOSw TPS89</title>
-    <?php require 'rq/head.php'; ?>
-  </head>
+<head>
+  <title>Panel Administrativo - SysPOSw TPS89</title>
+  <?php require 'rq/head.php'; ?>  
+</head>
 
-  <body>
-    <div class="page-wrapper chiller-theme toggled">
+<body>
+  <div class="page-wrapper chiller-theme toggled">
 
-      <!-- Módulos en Botones flotantes -->
-      <div class="menu-botones">
+    <!-- Módulos en Botones flotantes -->
+    <div class="menu-botones">
 
-        <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
-          <i class="btn-menu material-icons"> apps </i>
-        </a>
+      <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+        <i class="btn-menu material-icons"> apps </i>
+      </a>
 
-        <a id="show-sidebar" onclick="cargarCat();" class="btn btn-sm btn-dark fabs upfab" href="#">
-          <i class="btn-menu material-icons"> shopping_cart </i>
-        </a>
+      <a id="show-sidebar" onclick="cargarCat();" class="btn btn-sm btn-dark fabs upfab" href="#">
+        <i class="btn-menu material-icons"> shopping_cart </i>
+      </a>
 
-        <a id="show-sidebar" onclick="cargarProv();" class="btn btn-sm btn-dark fabs" href="#">
-          <i class="btn-menu material-icons"> assignment_ind </i>
-        </a>
+      <a id="show-sidebar" onclick="cargarProv();" class="btn btn-sm btn-dark fabs" href="#">
+        <i class="btn-menu material-icons"> assignment_ind </i>
+      </a>
 
-        <a id="show-sidebar" onclick="cargarCli();" class="btn btn-sm btn-dark fabs" href="#">
-          <i class="btn-menu material-icons"> face </i>
-        </a>
-        <?php if ($_SESSION['rol'] == 1) { ?>
-          <a id="show-sidebar" onclick="cargarEmp();" class="btn btn-sm btn-dark fabs" href="#">
-            <i class="btn-menu material-icons"> people </i>
-          </a>
-        <?php } ?>
-        <a id="show-sidebar" class="btn btn-sm btn-dark fabs" href="#">
-          <i class="btn-menu material-icons"> bar_chart </i>
-        </a>
+      <a id="show-sidebar" onclick="cargarCli();" class="btn btn-sm btn-dark fabs" href="#">
+        <i class="btn-menu material-icons"> face </i>
+      </a>
+      <?php if ($_SESSION['rol'] == 1) { ?>
+      <a id="show-sidebar" onclick="cargarEmp();" class="btn btn-sm btn-dark fabs" href="#">
+        <i class="btn-menu material-icons"> people </i>
+      </a>
+      <?php } ?>
+      <a id="show-sidebar" class="btn btn-sm btn-dark fabs" href="#">
+        <i class="btn-menu material-icons"> bar_chart </i>
+      </a>
 
-      </div>
+    </div>
 
-      <nav id="sidebar" class="sidebar-wrapper">
-        <div class="sidebar-content">
-          <div class="sidebar-brand">
-            <a href="#">Bienvenido</a>
-            <div id="close-sidebar">
-              <i class="material-icons"> arrow_back </i>
-            </div>
+    <nav id="sidebar" class="sidebar-wrapper">
+      <div class="sidebar-content">
+        <div class="sidebar-brand">
+          <a href="#">Bienvenido</a>
+          <div id="close-sidebar">
+            <i class="material-icons"> arrow_back </i>
           </div>
-          <div class="sidebar-header">
-            <div class="user-pic">
-              <img class="img-responsive img-rounded" src="./src/img/person.png" alt="Imagen de Perfil">
-            </div>
-            <div class="user-info">
-              <span class="user-name">
-                <?php
+        </div>
+        <div class="sidebar-header">
+          <div class="user-pic">
+            <img class="img-responsive" src="./src/img/person.png" alt="Imagen de Perfil">
+          </div>
+          <div class="user-info">
+            <span class="user-name">
+              <?php
                 if ($_SESSION['rol'] == 1) {
                   $correo = $_SESSION['usuario'];
                   $sql1 = "SELECT * FROM usuarios WHERE email = '" . $correo . "'";
@@ -111,34 +111,34 @@ if (($_SESSION['rol'] == 1) || ($_SESSION['rol'] == 2)) {
                   echo "$nombre <strong>$apellido</strong> ";
                 }
                 ?>
-              </span>
-              <span class="user-role">
-                <?php
+            </span>
+            <span class="user-role">
+              <?php
                 if ($_SESSION['rol'] == 1) {
                   echo 'Administrador';
                 } else {
                   echo 'Empleado';
                 } ?></span>
-              <span class="user-status">
-                <i class="material-icons"> radio_button_unchecked </i>
-                <span>Online</span>
-              </span>
-            </div>
+            <span class="user-status">
+              <i class="material-icons"> radio_button_unchecked </i>
+              <span>Online</span>
+            </span>
           </div>
+        </div>
 
 
-          <div class="sidebar-menu">
-            <ul>
-              <li class="header-menu">
-                <span>Módulos</span>
-              </li>
+        <div class="sidebar-menu">
+          <ul>
+            <li class="header-menu">
+              <span>Módulos</span>
+            </li>
 
-              <li class="sidebar-dropdown">
-                <a onclick="cargarCat();" href="#">
-                  <i class="material-icons">shopping_cart</i>
-                  <span>Productos</span>
-                </a>
-                <!-- <div class="sidebar-submenu">
+            <li class="sidebar-dropdown">
+              <a onclick="cargarCat();" href="#">
+                <i class="material-icons">shopping_cart</i>
+                <span>Productos</span>
+              </a>
+              <!-- <div class="sidebar-submenu">
               <ul>
                 <li>
                   <a href="#">Dashboard 1</a>
@@ -151,104 +151,96 @@ if (($_SESSION['rol'] == 1) || ($_SESSION['rol'] == 2)) {
                 </li>
               </ul>
             </div>-->
-              </li>
+            </li>
 
-              <li class="sidebar-dropdown">
-                <a onclick="cargarProv();" href="#">
-                  <i class="material-icons"> assignment_ind </i>
-                  <span>Proveedores</span>
-                </a>
-              </li>
+            <li class="sidebar-dropdown">
+              <a onclick="cargarProv();" href="#">
+                <i class="material-icons"> assignment_ind </i>
+                <span>Proveedores</span>
+              </a>
+            </li>
 
-              <li class="sidebar-dropdown">
-                <a onclick="cargarCli();" href="#">
-                  <i class="material-icons">face</i>
-                  <span>Clientes</span>
-                </a>
-              </li>
-              <?php if ($_SESSION['rol'] == 1) { ?>
-                <li class="sidebar-dropdown">
-                  <a onclick="cargarEmp();" href="#">
-                    <i class="material-icons">people</i>
-                    <span>Empleados</span>
-                  </a>
-                </li>
-              <?php } ?>
-              <li class="sidebar-dropdown">
-                <a href="#">
-                  <i class="material-icons">bar_chart</i>
-                  <span>Informes</span>
-                </a>
-              </li>
+            <li class="sidebar-dropdown">
+              <a onclick="cargarCli();" href="#">
+                <i class="material-icons">face</i>
+                <span>Clientes</span>
+              </a>
+            </li>
+            <?php if ($_SESSION['rol'] == 1) { ?>
+            <li class="sidebar-dropdown">
+              <a onclick="cargarEmp();" href="#">
+                <i class="material-icons">people</i>
+                <span>Empleados</span>
+              </a>
+            </li>
+            <?php } ?>
+            <li class="sidebar-dropdown">
+              <a href="#">
+                <i class="material-icons">bar_chart</i>
+                <span>Informes</span>
+              </a>
+            </li>
 
-            </ul>
-          </div>
+          </ul>
         </div>
+      </div>
 
-        <div class="sidebar-footer">
-          <a href="../shop/index.php">
-            <i class="material-icons">store</i>
-          </a>
-          <a href="salir.php">
-            <i class="material-icons">power_settings_new</i>
-          </a>
-        </div>
-      </nav>
+      <div class="sidebar-footer">
+        <a href="../shop/index.php">
+          <i class="material-icons">store</i>
+        </a>
+        <a href="salir.php">
+          <i class="material-icons">power_settings_new</i>
+        </a>
+      </div>
+    </nav>
 
+    <!-- sidebar-wrapper  -->
+    <main class="page-content">
+      <div id="cargaModulo"></div>
+    </main>
 
+  </div>
 
-      <!-- sidebar-wrapper  -->
-      <main class="page-content">
-        <div id="cargaModulo"></div>
-      </main>
+  <?php require 'rq/scripts.php'; ?>
+  <script>
+    jQuery(function($) {
 
-    </div>
-
-
-    <script>
-      jQuery(function($) {
-
-        $(".sidebar-dropdown > a").click(function() {
-          $(".sidebar-submenu").slideUp(200);
-          if (
-            $(this)
+      $(".sidebar-dropdown > a").click(function() {
+        $(".sidebar-submenu").slideUp(200);
+        if (
+          $(this)
+          .parent()
+          .hasClass("active")
+        ) {
+          $(".sidebar-dropdown").removeClass("active");
+          $(this)
             .parent()
-            .hasClass("active")
-          ) {
-            $(".sidebar-dropdown").removeClass("active");
-            $(this)
-              .parent()
-              .removeClass("active");
-          } else {
-            $(".sidebar-dropdown").removeClass("active");
-            $(this)
-              .next(".sidebar-submenu")
-              .slideDown(200);
-            $(this)
-              .parent()
-              .addClass("active");
-          }
-        });
-
-        $("#close-sidebar").click(function() {
-          $(".page-wrapper").removeClass("toggled");
-        });
-        $("#show-sidebar").click(function() {
-          $(".page-wrapper").addClass("toggled");
-        });
-
-
-
-
+            .removeClass("active");
+        } else {
+          $(".sidebar-dropdown").removeClass("active");
+          $(this)
+            .next(".sidebar-submenu")
+            .slideDown(200);
+          $(this)
+            .parent()
+            .addClass("active");
+        }
       });
-    </script>
 
+      $("#close-sidebar").click(function() {
+        $(".page-wrapper").removeClass("toggled");
+      });
+      $("#show-sidebar").click(function() {
+        $(".page-wrapper").addClass("toggled");
+      });
 
+    });
+  </script>
 
-    <?php require 'rq/scripts.php'; ?>
-  </body>
+</body>
 
-  </html>
+</html>
 <?php
 } else if ($_SESSION['rol'] == 3) {
   header("location:../shop/index.php");

@@ -54,24 +54,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     echo "
 <div class='container mt-5'>
-   <table class='table table-hover'>
+<div class='table-wrapper-scroll-y table-scrollbar'>
+   <table class='table table-hover table-sm'>
     <thead class='thead-light'>
       <tr>
-      <th scope='col'>Código</th>
-      <th scope='col'>Nombre</th>
-      <th scope='col'>Descripción</th>
-      <th scope='col'>Valor</th>
-      <th scope='col'>Categoría</th>
-      <th scope='col'>Acciones</th>
+      <th class='th-sm'>Código</th>
+      <th class='th-sm'>Nombre</th>
+      <th class='th-sm'>Descripción</th>
+      <th class='th-sm'>Valor</th>
+      <th class='th-sm'>Categoría</th>
+      <th class='th-sm'>Acciones</th>
       </tr>
     </thead>
     <tbody>
+    </div>
 <div>";
     foreach ($resultado as $key => $dato) {
         echo " <tr>
             <td>$dato[Id_Producto]</td>
             <td>$dato[Nombre]</td>
-            <td>$dato[Descripcion]</td>            
+            <td>$dato[Descripcion]</td>
             <td>$dato[ValorUnitario]</td>
             <td>$dato[Nombre_Cat]</td>
             <td><a onclick='edCat(" . $dato['Id_Producto'] . ");'>Editar</a></td>

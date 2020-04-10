@@ -1,8 +1,3 @@
-//Mostrar sidenav en menú
-$(document).ready(function() {
-  $('.sidenav').sidenav();
-});
-
 //Animación Login
 const signUpButton = document.getElementById('signUp');
 const signInButton = document.getElementById('signIn');
@@ -17,8 +12,8 @@ signInButton.addEventListener('click', () => {
 });
 
 
-//Menú AJAX Carga de Modulos en Modal 
-//Son los modulos de inserccion de registros 
+//Menú AJAX Carga de Modulos en Modal
+//Son los modulos de inserccion de registros
 function cargarCat() {
   var url = "mods/empleados/adcatalogo.php"
   $.ajax({
@@ -64,7 +59,7 @@ function cargarEmp() {
   });
 }
 //Menú AJAX Carga de SubModulos en Modal
-//Son los modulos de edición de registros 
+//Son los modulos de edición de registros
 function edEmp(id) {
   var url = "mods/empleados/modempleado.php?id="+id;
   $.ajax({
