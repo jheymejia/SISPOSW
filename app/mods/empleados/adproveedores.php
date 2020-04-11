@@ -15,13 +15,12 @@ require('../../rq/provmod.php');
 
         <div class="col-md-4">
           <i class="material-icons">search</i>
-          <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Buscar ..." oninput="CargarDatosprov()" aria-label="Campo para Buscar" name="vrBuscar" id="vrBuscar" v-model="vrBuscar">
+          <input oninput="CargarDatosprov()" class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Buscar ..." oninput="CargarDatosprov()" aria-label="Campo para Buscar" name="vrBuscar" id="vrBuscar" v-model="vrBuscar">
         </div>
 
         <div class="col-md-4">
           <div class="select">
-            <select name="buscarX" id="buscarX" v-model="buscarX" class="select-text">
-              <option value="" disabled selected>Filtrar</option>
+            <select name="buscarX" id="buscarX" v-model="buscarX" class="select-text">              
               <option value="id">Por NIT</option>
               <option value="nombre">Por Nombre</option>
               <option value="email">Por Correo</option>
