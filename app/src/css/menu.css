@@ -78,6 +78,7 @@ body {
 .btn-menu {
   font-size: 1.6rem !important;
   color: #fff;
+  padding: 0.6rem 0.6rem 0;
 }
 
 .page-wrapper.toggled .menu-botones {

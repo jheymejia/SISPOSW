@@ -7,5 +7,7 @@
 <link type="text/css" rel="stylesheet" href="src/css/bootstrap.min.css">
 <link type="text/css" rel="stylesheet" href="src/css/mdb.min.css">
 <link type="text/css" rel="stylesheet" href="src/css/normalize.min.css">
+<link type="text/css" rel="stylesheet" href="src/css/tablas/jquery.dataTables.min.css">
+<link type="text/css" rel="stylesheet" href="src/css/tablas/buttons.dataTables.min.css">
 
 <script type="text/javascript" src="src/js/jquery.min.js"></script>

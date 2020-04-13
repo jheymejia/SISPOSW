@@ -21,6 +21,7 @@ body {
 nav ul li.active {
   border-left: 3px solid #22d48c;
   font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .menu-botones #show-sidebar:hover {
@@ -37,25 +38,21 @@ nav ul li.active {
 
 .table-scrollbar {
   position: relative;
-  height: 200px;
+  height: 420px;
   overflow: auto;
+}
+
+.table-scrollbar .thead-light th {
+  position: sticky !important;
+  top: 0;
+}
+
+table {
+  white-space: nowrap;
 }
 
 .table-wrapper-scroll-y {
   display: block;
-}
-
-table.dataTable thead .sorting:after,
-table.dataTable thead .sorting:before,
-table.dataTable thead .sorting_asc:after,
-table.dataTable thead .sorting_asc:before,
-table.dataTable thead .sorting_asc_disabled:after,
-table.dataTable thead .sorting_asc_disabled:before,
-table.dataTable thead .sorting_desc:after,
-table.dataTable thead .sorting_desc:before,
-table.dataTable thead .sorting_desc_disabled:after,
-table.dataTable thead .sorting_desc_disabled:before {
-  bottom: .5em;
 }
 
 /* select starting stylings ------------------------------*/
@@ -68,11 +65,12 @@ table.dataTable thead .sorting_desc_disabled:before {
   font-family: inherit;
   background-color: transparent;
   width: -webkit-fill-available;
-  padding: 10px 10px 10px 0;
-  font-size: 18px;
+  font-size: .875rem;
   border-radius: 0;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  padding: .9rem 0 .4rem 0;
+  margin: 0 0 .5rem 0;
 }
 
 /* Remove focus */
@@ -148,4 +146,68 @@ table.dataTable thead .sorting_desc_disabled:before {
   left: 0;
   pointer-events: none;
   opacity: 0.5;
+}
+
+.font1 {
+  font-size: 1rem !important;
+}
+
+/* Ocultar input de búsqueda en dataTable JS */
+.dataTables_filter {
+  display: none;
+}
+
+.btn-export {
+  margin: .375rem !important;
+  color: inherit !important;
+  text-transform: uppercase !important;
+  word-wrap: break-word !important;
+  white-space: normal !important;
+  cursor: pointer !important;
+  border: 0 !important;
+  border-radius: .125rem !important;
+  box-shadow: 0 !important;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out !important;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !important;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out !important;
+  padding: .5rem 1.6rem !important;
+  font-size: .8rem !important;
+  background-color: #dadada !important;
+  background-image: none !important;
+}
+
+.btn-export:hover {
+  background-color: #bababa !important;
+}
+
+.paginate_button.current {
+  margin: .375rem !important;
+  color: inherit !important;
+  text-transform: uppercase !important;
+  word-wrap: break-word !important;
+  white-space: normal !important;
+  cursor: pointer !important;
+  border: 0 !important;
+  border-radius: .125rem !important;
+  box-shadow: 0 !important;
+  padding: .5rem 1.6rem !important;
+  font-size: .8rem !important;
+  background-color: #dadada !important;
+  background-image: none !important;
+}
+
+.paginate_button:hover {
+  color: inherit !important;
+  word-wrap: break-word !important;
+  white-space: normal !important;
+  cursor: pointer !important;
+  border: 0 !important;
+  border-radius: .125rem !important;
+  box-shadow: 0 !important;
+  background: #bababa !important;
+  background-image: none !important;
+}
+
+tr td:nth-child(1) {
+  text-align: center;
 }
