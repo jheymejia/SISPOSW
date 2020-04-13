@@ -197,7 +197,27 @@ if (($_SESSION['rol'] == 1) || ($_SESSION['rol'] == 2)) {
 
     <!-- sidebar-wrapper  -->
     <main class="page-content">
-      <div id="cargaModulo"></div>
+      <div id="cargaModulo">
+
+        <?php $hora = new DateTime("now", new DateTimeZone('America/Bogota')); ?>
+        <header class="mb-5">
+          <nav class="navbar bg-menu bg-dark-menu text-white rounded-pill">
+            <a class="navbar-brand"><strong>Administración SysPOSw</strong></a>
+            <div class="float-right text-light">
+              <ul class="nav justify-content-end">
+                <li class="nav-item">
+                  <?php echo $hora->format('d/m/Y h:i a');?>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </header>
+        <div class="w-100 text-center">
+          <img style="max-height:70vh;" src="src/img/logo-bg.png" alt="Logo">
+        </div>
+
+
+      </div>
     </main>
 
   </div>

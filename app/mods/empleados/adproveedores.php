@@ -4,8 +4,6 @@ require('../../rq/provmod.php');
 ?>
 
 <?php $hora = new DateTime("now", new DateTimeZone('America/Bogota')); ?>
-
-
 <header class="mb-5">
   <nav class="navbar bg-menu bg-dark-menu text-white rounded-pill">
     <a class="navbar-brand"><strong>Administración Proveedores</strong></a>
