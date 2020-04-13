@@ -9,12 +9,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $respuesta['msg'] = 'Registro no desactivado';
     $respuesta['exito'] = false;
     //Sentencia SQL que hace la inserccion del Registro
-    $sql = "DELETE Proveedores where Id_Proveedor = $idProv";
+    $sql = "DELETE from proveedores where Id_Proveedor = $idProv";
     $resultado = $conexion->query($sql)
         or die('Error al intentar realizar la consulta');
     //Condicional que da la respuesta al archivo principal
     if ($resultado) {
-        $respuesta['msg'] = 'Registro desactivado';
+        $respuesta['msg'] = 'Registro Borrado';
         $respuesta['exito'] = true;
     } else {
         $respuesta['msg'] = 'Error al intentar desactivar el Proveedor';
