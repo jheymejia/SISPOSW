@@ -3,42 +3,51 @@ require('../../rq/provmod.php');
 // Archivo Requerido para mostrar los Proveedores la tabla de abajo
 ?>
 
-<h1 class="text-center mb-5">Administración Proveedores</h1>
+<?php $hora = new DateTime("now", new DateTimeZone('America/Bogota')); ?>
 
-<div id="busquedadatos">
+
+<header class="mb-5">
+  <nav class="navbar bg-menu bg-dark-menu text-white rounded-pill">
+    <a class="navbar-brand"><strong>Administración Proveedores</strong></a>
+    <div class="float-right text-light">
+      <ul class="nav justify-content-end">
+        <li class="nav-item">
+          <?php echo $hora->format('d/m/Y h:i a');?>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<div id="busquedadatos" class="font1">
 
   <!-- Search form -->
-  <form method="" action="" class="form-inline d-flex justify-content-center md-form form-sm mt-0">
+  <form method="" action="" class="form-inline d-flex md-form form-sm mt-0">
 
-    <div class="container">
-      <div class="row">
+    <div class="col-md-3">
+      <i class="material-icons align-text-bottom">search</i>
+      <input oninput="CargarDatosprov()" class="form-control form-control-sm font1" type="text" placeholder="Buscar ..." aria-label="Campo para Buscar" name="vrBuscar" id="vrBuscar" v-model="vrBuscar">
+    </div>
 
-        <div class="col-md-4">
-          <i class="material-icons">search</i>
-          <input oninput="CargarDatosprov()" class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Buscar ..." oninput="CargarDatosprov()" aria-label="Campo para Buscar" name="vrBuscar" id="vrBuscar" v-model="vrBuscar">
-        </div>
-
-        <div class="col-md-4">
-          <div class="select">
-            <select name="buscarX" id="buscarX" v-model="buscarX" class="select-text">              
-              <option value="id">Por NIT</option>
-              <option value="nombre">Por Nombre</option>
-              <option value="email">Por Correo</option>
-            </select>
-            <span class="select-highlight"></span>
-            <span class="select-bar"></span>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <button data-keyboard="true" data-backdrop="static" data-toggle="modal" data-target="#reg" type="button" class="btn btn-primary">Insertar</button>
-        </div>
-
+    <div class="col-md-3">
+      <div class="select">
+        <select name="buscarX" id="buscarX" v-model="buscarX" class="select-text font1">
+          <option value="id">Por NIT</option>
+          <option value="nombre">Por Nombre</option>
+          <option value="email">Por Correo</option>
+        </select>
+        <span class="select-highlight"></span>
+        <span class="select-bar"></span>
       </div>
     </div>
+
+    <div class="col-md-4">
+      <button data-keyboard="true" data-backdrop="static" data-toggle="modal" data-target="#reg" type="button" class="btn btn-sm success-color text-white font1"><i class="material-icons p-0 align-text-bottom">person_add</i> Nuevo</button>
+    </div>
+
 </div>
-</form><br>
-<div id="Resultado">
+</form>
+<div id="Resultado" class="mt-2">
 </div>
 </div>
 
@@ -121,7 +130,7 @@ require('../../rq/provmod.php');
               <!-- Botonera para Limpiar el Formulario o hacer un Registro -->
               <div style="text-align: center" class="col"><br>
                 <input class="btn btn-primary" type="reset" value="Limpiar">
-                <input class="btn btn-primary btn-succes" type="button" value="Enviar" name="proveedores" @click="enviarDatos()">
+                <input class="btn btn-primary btn-success" type="button" value="Enviar" name="proveedores" @click="enviarDatos()">
               </div>
               <!-- Botonera para Limpiar el Formulario o hacer un Registro -->
             </div>
@@ -182,7 +191,7 @@ require('../../rq/provmod.php');
     });
   </script>
 </div>
-<br>
+
 <!-- Aplicacion VUE -->
 <script>
   $(".alert-success").delay(4000).slideUp(200, function() {

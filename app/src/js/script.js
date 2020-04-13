@@ -4,11 +4,11 @@ const signInButton = document.getElementById('signIn');
 const container = document.getElementById('container');
 
 signUpButton.addEventListener('click', () => {
-  container.classList.add("right-panel-active");
+    container.classList.add('right-panel-active');
 });
 
 signInButton.addEventListener('click', () => {
-  container.classList.remove("right-panel-active");
+    container.classList.remove('right-panel-active');
 });
 
 
@@ -25,6 +25,7 @@ function cargarCat() {
     }
   });
 }
+
 function cargarProv() {
   var url = "mods/empleados/adproveedores.php"
   $.ajax({
@@ -36,6 +37,7 @@ function cargarProv() {
     }
   });
 }
+
 function cargarCli() {
   var url = "mods/empleados/adclientes.php"
   $.ajax({
@@ -47,6 +49,7 @@ function cargarCli() {
     }
   });
 }
+
 function cargarEmp() {
   var url = "mods/empleados/adempleados.php"
   $.ajax({
@@ -61,7 +64,7 @@ function cargarEmp() {
 //Menú AJAX Carga de SubModulos en Modal
 //Son los modulos de edición de registros
 function edEmp(id) {
-  var url = "mods/empleados/modempleado.php?id="+id;
+  var url = "mods/empleados/modempleado.php?id=" + id;
   $.ajax({
     type: "POST",
     url: url,
@@ -71,8 +74,9 @@ function edEmp(id) {
     }
   });
 }
+
 function edCat(id) {
-  var url = "mods/empleados/modcatalogo.php?id="+id;
+  var url = "mods/empleados/modcatalogo.php?id=" + id;
   $.ajax({
     type: "POST",
     url: url,
@@ -82,8 +86,9 @@ function edCat(id) {
     }
   });
 }
+
 function edCli(id) {
-  var url = "mods/empleados/modcliente.php?id="+id;
+  var url = "mods/empleados/modcliente.php?id=" + id;
   $.ajax({
     type: "POST",
     url: url,
@@ -93,8 +98,9 @@ function edCli(id) {
     }
   });
 }
+
 function edProv(id) {
-  var url = "mods/empleados/modproveedor.php?id="+id;
+  var url = "mods/empleados/modproveedor.php?id=" + id;
   $.ajax({
     type: "POST",
     url: url,

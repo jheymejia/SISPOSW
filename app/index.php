@@ -8,7 +8,7 @@ if (($_SESSION['rol'] == 1) || ($_SESSION['rol'] == 2)) {
 
 <head>
   <title>Panel Administrativo - SysPOSw TPS89</title>
-  <?php require 'rq/head.php'; ?>  
+  <?php require 'rq/head.php'; ?>
 </head>
 
 <body>
@@ -17,27 +17,27 @@ if (($_SESSION['rol'] == 1) || ($_SESSION['rol'] == 2)) {
     <!-- Módulos en Botones flotantes -->
     <div class="menu-botones">
 
-      <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+      <a id="show-sidebar" class="btn-dark" href="#">
         <i class="btn-menu material-icons"> apps </i>
       </a>
 
-      <a id="show-sidebar" onclick="cargarCat();" class="btn btn-sm btn-dark fabs upfab" href="#">
+      <a id="show-sidebar" onclick="cargarCat();" class="btn-dark fabs upfab" href="#">
         <i class="btn-menu material-icons"> shopping_cart </i>
       </a>
 
-      <a id="show-sidebar" onclick="cargarProv();" class="btn btn-sm btn-dark fabs" href="#">
+      <a id="show-sidebar" onclick="cargarProv();" class="btn-dark fabs" href="#">
         <i class="btn-menu material-icons"> assignment_ind </i>
       </a>
 
-      <a id="show-sidebar" onclick="cargarCli();" class="btn btn-sm btn-dark fabs" href="#">
+      <a id="show-sidebar" onclick="cargarCli();" class="btn-dark fabs" href="#">
         <i class="btn-menu material-icons"> face </i>
       </a>
       <?php if ($_SESSION['rol'] == 1) { ?>
-      <a id="show-sidebar" onclick="cargarEmp();" class="btn btn-sm btn-dark fabs" href="#">
+      <a id="show-sidebar" onclick="cargarEmp();" class="btn-dark fabs" href="#">
         <i class="btn-menu material-icons"> people </i>
       </a>
       <?php } ?>
-      <a id="show-sidebar" class="btn btn-sm btn-dark fabs" href="#">
+      <a id="show-sidebar" class="btn-dark fabs" href="#">
         <i class="btn-menu material-icons"> bar_chart </i>
       </a>
 

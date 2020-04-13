@@ -1,6 +1,3 @@
-<html>
-
-
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     //print_r($_POST);
@@ -80,26 +77,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
     echo "
-<div class='container mt-5'>
 <div class='table-wrapper-scroll-y table-scrollbar'>
-   <table class='table table-hover table-sm'>
+   <table class='table table-hover table-sm display' id='Tablas'>
     <thead class='thead-light'>
       <tr>
-      <th class='th-sm'>NIT Proveedor</th>
+      <th class='th-sm'>Editar</th>
+      <th class='th-sm'>NIT</th>
       <th class='th-sm'>Nombre</th>
       <th class='th-sm'>Departamento</th>
       <th class='th-sm'>Ciudad</th>
-      <th class='th-sm'>Direccion</th>
-      <th class='th-sm'>Telefonos</th>
+      <th class='th-sm'>Dirección</th>
+      <th class='th-sm'>Teléfono</th>
       <th class='th-sm'>Email</th>
-      <th class='th-sm'>Acciones</th>
       </tr>
     </thead>
-    <tbody>
-    </div>
-<div>";
+    <tbody>";
     foreach ($resultado as $key => $dato) {
-        echo " <tr>
+      echo "<tr>
+            <td><a onclick='edProv(" . $dato['Id_Proveedor'] . ");'><i class='material-icons'> edit </i></a></td>
             <td>$dato[Id_Proveedor]</td>
             <td>$dato[Nombre_Prov]</td>
             <td>$dato[Departamento]</td>
@@ -107,9 +102,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <td>$dato[Direccion]</td>
             <td>$dato[Telefonos]</td>
             <td>$dato[Email]</td>
-            <td><a onclick='edProv(" . $dato['Id_Proveedor'] . ");'>Editar</a></td>
-            </tr>";
+            </tr>
+            ";
     }
 }
 ?>
-</html>
+</tbody>
+</table>
+</div>
+
+<script type="text/javascript">
+//Datatables
+$(document).ready(function() {
+    $('#Tablas').DataTable( {
+      pageLength : 5,
+      lengthMenu: [[5, 10, 20, -1], [5, 10, 20, 'Todos']],
+      dom: 'Bfrtip',
+      buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5'
+        ]
+    } );
+} );
+</script>
