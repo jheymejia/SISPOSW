@@ -72,8 +72,8 @@ $conexion->close();
             <div class="row">
                 <!-- Botonera para Borrar el Formulario o Editar un Registro -->
                 <div class="col-lg-6">
-                    <button @click="enviarDatos()" type="button" class="btn btn-primary">Editar</button>
-                    <button class="btn btn-danger" onclick="cargarEmp();">Cancelar</button>
+                    <button @click="enviarDatos()" type="button" class="btn btn-primary">Guardar</button>
+                    <button class="btn btn-danger" onclick="cargarEmp()">Cancelar</button>
 
                     <div class="col text-right">
                         <?php if ($_SESSION['rol'] == 1) { ?>
