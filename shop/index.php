@@ -622,12 +622,10 @@ ini_set('display_errors', '0');
 																				</div>
 																				<div class="product-price">
 																					<span class="new-price">$ <?php echo $row['ValorUnitario'] ?></span>
-<<<<<<< HEAD
 																					<form action="procarrito.php" method="post">
 																						<input type="text" name="id" id="id" value="<?php echo $row['Id_Producto'] ?>">
 																						<input type="text" name="usuario" id="usuario" value="<?php echo $_SESSION['id'] ?>">
 																						<a class="button add-btn" data-toggle="tooltip"><input type="submit" name="boton"><i class="material-icons">shopping_cart</i></a>
-=======
 																					<form action="carrito.php" method="post">
 																						<input type="hidden" name="id" id="id" value="<?php echo $row['Id_Producto'] ?>">
 																						<input type="hidden" name="usuario" id="usuario" value="<?php echo $_SESSION['id'] ?>">
@@ -635,7 +633,6 @@ ini_set('display_errors', '0');
 																						if(isset($_SESSION['rol'])){ ?>
 																						<button class="btn button add-btn" type="submit" name="boton" data-toggle="tooltip"><i class="material-icons">shopping_cart</i></button>
 																						<?php } ?>
->>>>>>> e819fa1d30a9e27d7f55ac2e1a7fe887de57e094
 																					</form>
 																				</div>
 																			</div>
