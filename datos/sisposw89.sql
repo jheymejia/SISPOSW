@@ -1435,10 +1435,13 @@ INSERT INTO `tipo_identificacion` (`id_identificacion`, `identificacion`) VALUES
 --
 
 CREATE TABLE `usuarios` (
-  `Id_usuario` int(11) NOT NULL,
+  `Id_usuario` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(30) DEFAULT NULL,
   `pass` varchar(50) DEFAULT NULL,
-  `rol` int(11) DEFAULT NULL
+  `rol` int(11) DEFAULT NULL,
+  PRIMARY KEY (`Id_usuario`),
+  UNIQUE KEY `email` (`email`),
+  KEY `rol` (`rol`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
