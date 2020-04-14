@@ -283,51 +283,7 @@ ini_set('display_errors', '0');
 										<div class="mini-cart-area">
 											<ul>
 												<li><a href="favoritos.php"><i class="ion-heart"></i></a></li>
-												<li><a href="carrito.php"><i class="ion-android-cart"></i><span class="cart-add">2</span><span class="cart-total"> $290.000 <i class="fa fa-angle-down"></i></span></a>
-												<li><a href="compras.php"><i class="ion-android-cart"></i><span class="cart-add">2</span><span class="cart-total"> $290.000 <i class="fa fa-angle-down"></i></span></a>
-													<ul class="cart-dropdown">
-														<!--Single Cart Item Start-->
-														<li class="cart-item">
-															<div class="cart-img">
-																<a href="carrito.php"><img src="img/cart/1.jpg" alt=""></a>
-															</div>
-															<div class="cart-content">
-																<h4><a href="carrito.php">Tecno Monitoreo</a></h4>
-																<p class="cart-quantity">Und:1</p>
-																<p class="cart-price">$110.000</p>
-															</div>
-															<div class="cart-close">
-																<a href="#" title="Remove"><i class="ion-android-close"></i></a>
-															</div>
-														</li>
-														<!--Single Cart Item Start-->
-														<!--Single Cart Item Start-->
-														<li class="cart-item">
-															<div class="cart-img">
-																<a href="carrito.php"><img src="img/cart/2.jpg" alt=""></a>
-															</div>
-															<div class="cart-content">
-																<h4><a href="carrito.php">Random TV</a></h4>
-																<p class="cart-quantity">Und:2</p>
-																<p class="cart-price">$90.000</p>
-															</div>
-															<div class="cart-close">
-																<a href="carrito.php" title="Remove"><i class="ion-android-close"></i></a>
-															</div>
-														</li>
-														<!--Single Cart Item Start-->
-														<!--Cart Total Start-->
-														<li class="cart-total-amount mtb-20">
-															<h4>SubTotal : <span class="pull-right">$290.000</span></h4>
-														</li>
-														<!--Cart Total End-->
-														<!--Cart Button Start-->
-														<li class="cart-button">
-															<a href="carrito.php" class="button2">Ver Carrito</a>															
-														</li>
-														<!--Cart Button End-->
-													</ul>
-												</li>
+												<li><a href="carrito.php"><i class="ion-android-cart"></i><span class="cart-add">2</span><span class="cart-total"> $290.000 <i class="fa fa-angle-down"></i></span></a>												
 											</ul>
 										</div>
 									</div>
