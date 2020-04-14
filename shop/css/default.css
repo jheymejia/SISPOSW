@@ -295,28 +295,31 @@ a.button:hover{
     background: #00bf72;
     color: #fff;
 }
-a.button.add-btn,a.button.add-btn.big {
+.button.add-btn,.button.add-btn.big {
 	background: #31353D;
 	height: 40px;
 	line-height: 40px;
 	position: absolute;
 	left: 0;
 	top: 40px;
-	opacity: 0;
-	visibility: hidden;
+	opacity: 0;	
 	transition: all 0.3s ease-in-out;
 	margin: 0 12px;
 	right: 0;
 	text-transform: capitalize;
 	font-weight: 400;
-	font-size: 14px;
+    font-size: 14px;
+    width: -webkit-fill-available;
 }
-a.button.add-btn.big {
+.button.add-btn.big {
 	top: auto;
 	bottom: 15px;
 }
-a.button.add-btn:hover{
+.single-product:hover .button.add-btn {
+    opacity: 1;
     background: #00bf72;
+    width: -webkit-fill-available;    
+    color: #fff;
 }
 /*Modal button*/
 .button {

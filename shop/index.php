@@ -2,6 +2,12 @@
 require "../datos/conexioncore.php";
 session_start();
 ?>
+<?php
+//Ocultar errores en prducción
+error_reporting(E_ALL);
+ini_set('display_errors', '0');
+
+?>
 <!doctype html>
 <html class="no-js" lang="es">
 
@@ -208,7 +214,7 @@ session_start();
 													}
 													?>
 												</span></li>
-											<li class="account"><a href="../app/micuenta.php">Mi Cuenta<i class="fa fa-angle-down"></i></a>
+											<li class="account"><a href="#">Mi Cuenta<i class="fa fa-angle-down"></i></a>
 												<ul class="ht-dropdown">
 													<?php
 													if (!isset($_SESSION['rol'])) {
@@ -225,7 +231,6 @@ session_start();
 
 															<li><a href="carrito.php">Mi Carrito</a></li>
 
-															<li><a href="favoritos.php">Favoritos</a></li>
 														<?php } else {
 															echo "<li><a href='../app/index.php'>Panel</a></li> ";
 														}
@@ -279,6 +284,7 @@ session_start();
 											<ul>
 												<li><a href="favoritos.php"><i class="ion-heart"></i></a></li>
 												<li><a href="carrito.php"><i class="ion-android-cart"></i><span class="cart-add">2</span><span class="cart-total"> $290.000 <i class="fa fa-angle-down"></i></span></a>
+												<li><a href="compras.php"><i class="ion-android-cart"></i><span class="cart-add">2</span><span class="cart-total"> $290.000 <i class="fa fa-angle-down"></i></span></a>
 													<ul class="cart-dropdown">
 														<!--Single Cart Item Start-->
 														<li class="cart-item">
@@ -606,8 +612,6 @@ session_start();
 																					<img class="hover-img" src="img/product/12.jpg" alt="">
 																				</a>
 																				<ul class="product-action">
-																					<li><a href="#" data-toggle="tooltip" title="Favorito"><i class="ion-android-favorite-outline"></i></a></li>
-
 																					<li><a href="#" data-toggle="modal" title="Ampliar" data-target="#myModal"><i class="ion-android-expand"></i></a></li>
 																				</ul>
 																			</div>
@@ -618,10 +622,20 @@ session_start();
 																				</div>
 																				<div class="product-price">
 																					<span class="new-price">$ <?php echo $row['ValorUnitario'] ?></span>
+<<<<<<< HEAD
 																					<form action="procarrito.php" method="post">
 																						<input type="text" name="id" id="id" value="<?php echo $row['Id_Producto'] ?>">
 																						<input type="text" name="usuario" id="usuario" value="<?php echo $_SESSION['id'] ?>">
 																						<a class="button add-btn" data-toggle="tooltip"><input type="submit" name="boton"><i class="material-icons">shopping_cart</i></a>
+=======
+																					<form action="carrito.php" method="post">
+																						<input type="hidden" name="id" id="id" value="<?php echo $row['Id_Producto'] ?>">
+																						<input type="hidden" name="usuario" id="usuario" value="<?php echo $_SESSION['id'] ?>">
+																						<?php
+																						if(isset($_SESSION['rol'])){ ?>
+																						<button class="btn button add-btn" type="submit" name="boton" data-toggle="tooltip"><i class="material-icons">shopping_cart</i></button>
+																						<?php } ?>
+>>>>>>> e819fa1d30a9e27d7f55ac2e1a7fe887de57e094
 																					</form>
 																				</div>
 																			</div>
