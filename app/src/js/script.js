@@ -64,11 +64,11 @@ function cargarEmp() {
 //Menú AJAX Carga de SubModulos en Modal
 //Son los modulos de edición de registros
 function edEmp(id) {
-  var url = "mods/empleados/modempleado.php?id=" + id;
+  var url = "mods/empleados/modempleado.php";
   $.ajax({
     type: "POST",
     url: url,
-    data: {},
+    data: {id},
     success: function(datos) {
       $('#cargaModulo').html(datos);
     }
@@ -76,11 +76,11 @@ function edEmp(id) {
 }
 
 function edCat(id) {
-  var url = "mods/empleados/modcatalogo.php?id=" + id;
+  var url = "mods/empleados/modcatalogo.php";
   $.ajax({
     type: "POST",
     url: url,
-    data: {},
+    data: {id},
     success: function(datos) {
       $('#cargaModulo').html(datos);
     }
@@ -88,11 +88,11 @@ function edCat(id) {
 }
 
 function edCli(id) {
-  var url = "mods/empleados/modcliente.php?id=" + id;
+  var url = "mods/empleados/modcliente.php";
   $.ajax({
     type: "POST",
     url: url,
-    data: {},
+    data: {id},
     success: function(datos) {
       $('#cargaModulo').html(datos);
     }
@@ -100,11 +100,11 @@ function edCli(id) {
 }
 
 function edProv(id) {
-  var url = "mods/empleados/modproveedor.php?id=" + id;
+  var url = "mods/empleados/modproveedor.php";
   $.ajax({
     type: "POST",
     url: url,
-    data: {},
+    data: {id},
     success: function(datos) {
       $('#cargaModulo').html(datos);
     }

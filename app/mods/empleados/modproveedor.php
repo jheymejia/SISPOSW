@@ -4,7 +4,7 @@ session_start();
 require('../../rq/provmod.php');
 //Sentencia y condicional SQL que recibirá el id por medio del metodo GET
 $sql = "Select P.Id_Proveedor, P.Nombre_Prov, C.IdCiudad, C.Nombre, C.Departamento, P.Direccion, P.Telefonos, P.Email
-from proveedores P Inner Join ciudad C On P.IdCiudad=C.IdCiudad WHERE Id_Proveedor =" . $_GET['id'];
+from proveedores P Inner Join ciudad C On P.IdCiudad=C.IdCiudad WHERE Id_Proveedor =" . $_POST['id'];
 $resultado = $conexion->query($sql)
     or die('Error al intentar realizar la consulta');
 $fila = null;
@@ -28,46 +28,46 @@ $conexion->close();
             <div class="row">
                 <div class="col-lg-6">
                     <label>ID Proveedor</label>
-                    <input type="number" v-model="idProveedor" class="form-control" name="txtId" placeholder="">
+                    <input type="number" v-model="idProveedor" class="form-control" placeholder="">
                 </div>
                 <div class="col-lg-6">
                     <label>Nombre</label>
-                    <input type="text" v-model="nombres" name="txtNombres" class="form-control" placeholder="" />
+                    <input type="text" v-model="nombres" class="form-control" placeholder="" />
                 </div>
             </div>
             <br />
             <div class="row">
                 <div class="col-lg-6">
                     <label>Email</label>
-                    <input type="text" name="txtEmail" v-model="email" class="form-control" placeholder="" />
+                    <input type="text" v-model="email" class="form-control" placeholder="" />
                 </div>
                 <div class="col-lg-6">
                     <label>Telefonos</label>
-                    <input type="text" name="txttelefonos" v-model="telefonos" class="form-control" placeholder="" />
+                    <input type="text" v-model="telefonos" class="form-control" placeholder="" />
                 </div>
             </div>
             <br />
             <div class="row">
                 <div class="col-lg-6">
                     <label>Dirección</label>
-                    <input type="text" name="txtDireccion" v-model="direccion" class="form-control" placeholder="" />
+                    <input type="text" v-model="direccion" class="form-control" placeholder="" />
                 </div>
             </div>
             <br>
             <div class="row">
                 <div class="col-6">
                     <label style="color:black">Anterior</label>
-                    <input style="color:black" disabled type="text" v-model="dbef" name="txtBefore" class="form-control" placeholder="" />
+                    <input style="color:black" disabled type="text" v-model="dbef" class="form-control" placeholder="" />
                 </div>
                 <div class="col-6">
                     <label style="color:black">Anterior</label>
-                    <input style="color:black" disabled type="text" v-model="cbef" name="txtBefore" class="form-control" placeholder="" />
+                    <input style="color:black" disabled type="text" v-model="cbef" class="form-control" placeholder="" />
                 </div>
             </div><br>
             <div class="row">
                 <div class="col-6">
                     <label style='color:black;'>Departamento</label>
-                    <select v-model="departamento" name="departamento" id="departamento" class="form-control">
+                    <select v-model="departamento" id="departamento" class="form-control">
                         <?php
                         require_once("../../rq/funcionesprov.php");
                         $datos = Departamentos();
@@ -79,7 +79,7 @@ $conexion->close();
                 </div>
                 <div class="col-6">
                     <label style='color:black;'>Ciudad</label>
-                    <select v-model="ciudad" id='ciudad' name='ciudad' class='form-control'>ciudad</select>
+                    <select v-model="ciudad" id='ciudad' class='form-control'>ciudad</select>
                 </div>
             </div>
             <br />
@@ -175,11 +175,13 @@ $conexion->close();
                         });
                     },
                     borrarDatos: function(event) {
-
+                        const formulario = new FormData();
+                        formulario.set('idProveedor', this.idProveedor);
                         //Petición GET usando Axios
                         axios({
-                            method: 'GET', //Método de envio
-                            url: 'mods/empleados/procesar/delprov.php?id=' + this.idProveedor //Archivo donde se enviara el id del empleado a borrar
+                            method: 'POST', //Método de envio
+                            url: 'mods/empleados/procesar/delprov.php',//Archivo donde se enviara el id del empleado a borrar
+                            data: formulario
                         }).then(function(respuesta) { //Respuesta del servidor
                             console.log(respuesta);
                             alert(respuesta.data.msg);

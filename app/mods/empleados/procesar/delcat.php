@@ -2,8 +2,8 @@
 //Archivo PHP con la Conexion
 require('../../../../datos/conexioncore.php');
 //Condicional que recibe los datos desde archivo principal
-if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    $sql = "SELECT * from productos where Id_Producto = " . $_GET['id'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $sql = "SELECT * from productos where Id_Producto = " . $_POST['idProducto'];
     $resultado = $conexion->query($sql);
     $fila = null;
     if ($resultado->num_rows > 0) {

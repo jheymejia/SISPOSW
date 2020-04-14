@@ -3,7 +3,7 @@ session_start();
 //Código PHP para obtener el empleado a Editar
 require('../../rq/catmod.php');
 //Sentencia y condicional SQL que recibirá el id por medio del metodo GET
-$sql = "SELECT p.Id_Producto, p.Nombre, p.Descripcion, p.ValorUnitario, p.id_categoria, c.Id_Categoria, c.Nombre_Cat FROM productos p, categoria c where c.Id_Categoria = p.id_categoria and p.Id_Producto =" . $_GET['id'];
+$sql = "SELECT p.Id_Producto, p.Nombre, p.Descripcion, p.ValorUnitario, p.id_categoria, c.Id_Categoria, c.Nombre_Cat FROM productos p, categoria c where c.Id_Categoria = p.id_categoria and p.Id_Producto =" . $_POST['id'];
 $resultado = $conexion->query($sql)
     or die('Error al intentar realizar la consulta');
 $fila = null;
@@ -27,33 +27,33 @@ $conexion->close();
             <div class="row">
                 <div class="col-lg-6">
                     <label>Id Producto</label>
-                    <input type="text" v-model="idProducto" class="form-control" name="txtId" placeholder="">
+                    <input type="text" v-model="idProducto" class="form-control" placeholder="">
                 </div>
                 <div class="col-lg-6">
                     <label>Nombre</label>
-                    <input type="text" name="txtNombre" v-model="nombre" class="form-control" placeholder="" />
+                    <input type="text" v-model="nombre" class="form-control" placeholder="" />
                 </div>
             </div>
             <br />
             <div class="form-row">
                 <div class="col-lg-6">
                     <label>Descripcion</label>
-                    <input type="text" name="txtDescripcion" v-model="descripcion" class="form-control" placeholder="" />
+                    <input type="text" v-model="descripcion" class="form-control" placeholder="" />
                 </div>
                 <div class="col-lg-6">
                     <label>ValorUnitario</label>
-                    <input type="number" name="txtPrecio" v-model="precio" class="form-control" placeholder="" />
+                    <input type="number" v-model="precio" class="form-control" placeholder="" />
                 </div>
 
             </div><br>
             <div class="row">
                 <div class="col-lg-6">
                     <label style="color:black">Categoria Anterior</label>
-                    <input style="color:black" disabled type="text" v-model="before" name="txtBefore" class="form-control" placeholder="" />
+                    <input style="color:black" disabled type="text" v-model="before" class="form-control" placeholder="" />
                 </div>
                 <div class="col-lg-6">
                     <label>Categoria</label>
-                    <select v-model="categoria" id="label1" class="form-control" name="id_categoria" required>
+                    <select v-model="categoria" id="label1" class="form-control" required>
                         <option disabled value="">Seleccione una Categoria</option>
                         <?php while ($filas1 = mysqli_fetch_array($res1)) : ?>
                             <option value="<?php echo $filas1['Nombre_Cat'] ?>"><?php echo $filas1['Nombre_Cat'] ?></option>
@@ -153,11 +153,13 @@ $conexion->close();
                         });
                     },
                     borrarDatos: function(event) {
-
+                        const formulario = new FormData();
+                        formulario.set('idProducto', this.idProducto);
                         //Petición GET usando Axios
                         axios({
-                            method: 'GET', //Método de envio
-                            url: 'mods/empleados/procesar/delcat.php?id=' + this.idProducto //Archivo donde se enviara el id del empleado a borrar
+                            method: 'POST', //Método de envio
+                            url: 'mods/empleados/procesar/delcat.php', //Archivo donde se enviara el id del empleado a borrar
+                            data: formulario
                         }).then(function(respuesta) { //Respuesta del servidor
                             console.log(respuesta);
                             alert(respuesta.data.msg);

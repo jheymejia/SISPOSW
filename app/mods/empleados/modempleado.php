@@ -3,7 +3,7 @@ session_start();
 //Código PHP para obtener el empleado a Editar
 require('../../rq/empmod.php');
 //Sentencia y condicional SQL que recibirá el id por medio del metodo GET
-$sql = "SELECT Id_Empleado, id_identificacion, Id_usuario, Nombre, Apellido, Direccion, Celular, Telefono,  numero_identificacion, pass, email FROM personas p, empleados e, identificacion i, usuarios u where e.Persona = p.id_persona and p.Identificacion = i.id_identificacion and e.Usuario = u.Id_usuario and numero_identificacion =" . $_GET['id'];
+$sql = "SELECT Id_Empleado, id_identificacion, Id_usuario, Nombre, Apellido, Direccion, Celular, Telefono,  numero_identificacion, pass, email FROM personas p, empleados e, identificacion i, usuarios u where e.Persona = p.id_persona and p.Identificacion = i.id_identificacion and e.Usuario = u.Id_usuario and numero_identificacion =" . $_POST['id'];
 $resultado = $conexion->query($sql)
     or die('Error al intentar realizar la consulta');
 $fila = null;
@@ -27,44 +27,44 @@ $conexion->close();
             <div class="row">
                 <div class="col-lg-6">
                     <label>Número de Documento</label>
-                    <input type="text" v-model="idEmpleado" class="form-control" name="txtId" placeholder="">
+                    <input type="text" v-model="idEmpleado" class="form-control" placeholder="">
                 </div>
                 <div class="col-lg-6">
                     <label>Email</label>
-                    <input type="email" name="txtEmail" v-model="email" class="form-control" placeholder="" />
+                    <input type="email" v-model="email" class="form-control" placeholder="" />
                 </div>
             </div>
             <br />
             <div class="form-row">
                 <div class="col-lg-6">
                     <label>Celular</label>
-                    <input type="text" name="txtCelular" v-model="celular" class="form-control" placeholder="" />
+                    <input type="text" v-model="celular" class="form-control" placeholder="" />
                 </div>
                 <div class="col-lg-6">
                     <label>Contraseña</label>
-                    <input type="password" name="txtPasswd" v-model="pass" class="form-control" placeholder="" />
+                    <input type="password" v-model="pass" class="form-control" placeholder="" />
                 </div>
 
             </div><br>
             <div class="row">
                 <div class="col-lg-6">
                     <label>Nombres</label>
-                    <input type="text" v-model="nombres" name="txtNombres" class="form-control" placeholder="" />
+                    <input type="text" v-model="nombres" class="form-control" placeholder="" />
                 </div>
                 <div class="col-lg-6">
                     <label>Apellidos</label>
-                    <input type="text" name="txtApellidos" v-model="apellidos" class="form-control" placeholder="" />
+                    <input type="text" v-model="apellidos" class="form-control" placeholder="" />
                 </div>
             </div>
             <br />
             <div class="row">
                 <div class="col-lg-6">
                     <label>Teléfono</label>
-                    <input type="text" name="txtTelefono" v-model="telefono" class="form-control" placeholder="" />
+                    <input type="text" v-model="telefono" class="form-control" placeholder="" />
                 </div>
                 <div class="col-lg-6">
                     <label>Dirección</label>
-                    <input type="text" name="txtDireccion" v-model="direccion" class="form-control" placeholder="" />
+                    <input type="text" v-model="direccion" class="form-control" placeholder="" />
                 </div>
             </div>
             <br />
@@ -131,11 +131,13 @@ $conexion->close();
                         });
                     },
                     borrarDatos: function(event) {
-
+                        const formulario = new FormData();
+                        formulario.set('idEmpleado', this.idEmpleado);
                         //Petición GET usando Axios
                         axios({
-                            method: 'GET', //Método de envio
-                            url: 'mods/empleados/procesar/delemp.php?id=' + this.idEmpleado //Archivo donde se enviara el id del empleado a borrar
+                            method: 'POST', //Método de envio
+                            url: 'mods/empleados/procesar/delemp.php', //Archivo donde se enviara el id del empleado a borrar
+                            data: formulario
                         }).then(function(respuesta) { //Respuesta del servidor
                             console.log(respuesta);
                             alert(respuesta.data.msg);

@@ -2,8 +2,8 @@
 //Archivo PHP con la Conexion
 require('../../../../datos/conexioncore.php');
 //Condicional que recibe los datos desde archivo principal
-if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    $idProv = $_GET['id'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $idProv = $_POST['idProveedor'];
     //Respuesta por Defecto del servidor
     $respuesta = [];
     $respuesta['msg'] = 'Registro no desactivado';
