@@ -69,17 +69,7 @@
                   <span class="new-price">$45.900</span>
                 </div>
                 <a href="producto.php" class="see-all">Ver Características</a>
-                <div class="add-to-cart quantity">
-                  <form class="add-quantity" action="#">
-                    <div class="quantity modal-quantity">
-                      <label>Cantidad</label>
-                      <input type="number">
-                    </div>
-                    <div class="add-to-link">
-                      <button class="form-button" data-text="Agregar al Carrito">Agregar al Carrito</button>
-                    </div>
-                  </form>
-                </div>
+               
                 <div class="cart-description">
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et ipsum magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco,Proin lectus ipsum, gravida et mattis
                     vulputate, tristique ut lectus.</p>

@@ -209,7 +209,11 @@ if (($_SESSION['rol'] == 3)) {
 													<input type="text" name="tel" placeholder="Telefono">
 												</div>
 												<div class="last-name">
-												<input type="text" name="tipo" placeholder="Tipo de documento">
+												<select name="tipo" id="tipo">
+													<option value="0" disabled>Tipo Documento</option>
+													<option value="1">CC</option>
+													<option value="2">TI</option>
+												</select>
 												</div>
 												<div class="first-name">
 													<input type="text" name="iden" placeholder="Numero de identificacion">
