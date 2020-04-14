@@ -110,3 +110,15 @@ function edProv(id) {
     }
   });
 }
+//funciones de la tienda
+function deletprod(id) {
+  var url = "delprod.php";
+  $.ajax({
+    type: "POST",
+    url: url,
+    data: {id},
+    success: function() {
+      location.reload();
+    }
+  });
+}

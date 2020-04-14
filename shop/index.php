@@ -223,7 +223,7 @@ session_start();
 														?>
 															<li><a href='checkout.php'>Checkout</a></li>
 
-															<li><a href="compras.php">Mi Carrito</a></li>
+															<li><a href="carrito.php">Mi Carrito</a></li>
 
 															<li><a href="favoritos.php">Favoritos</a></li>
 														<?php } else {
@@ -278,15 +278,15 @@ session_start();
 										<div class="mini-cart-area">
 											<ul>
 												<li><a href="favoritos.php"><i class="ion-heart"></i></a></li>
-												<li><a href="compras.php"><i class="ion-android-cart"></i><span class="cart-add">2</span><span class="cart-total"> $290.000 <i class="fa fa-angle-down"></i></span></a>
+												<li><a href="carrito.php"><i class="ion-android-cart"></i><span class="cart-add">2</span><span class="cart-total"> $290.000 <i class="fa fa-angle-down"></i></span></a>
 													<ul class="cart-dropdown">
 														<!--Single Cart Item Start-->
 														<li class="cart-item">
 															<div class="cart-img">
-																<a href="compras.php"><img src="img/cart/1.jpg" alt=""></a>
+																<a href="carrito.php"><img src="img/cart/1.jpg" alt=""></a>
 															</div>
 															<div class="cart-content">
-																<h4><a href="compras.php">Tecno Monitoreo</a></h4>
+																<h4><a href="carrito.php">Tecno Monitoreo</a></h4>
 																<p class="cart-quantity">Und:1</p>
 																<p class="cart-price">$110.000</p>
 															</div>
@@ -298,15 +298,15 @@ session_start();
 														<!--Single Cart Item Start-->
 														<li class="cart-item">
 															<div class="cart-img">
-																<a href="compras.php"><img src="img/cart/2.jpg" alt=""></a>
+																<a href="carrito.php"><img src="img/cart/2.jpg" alt=""></a>
 															</div>
 															<div class="cart-content">
-																<h4><a href="compras.php">Random TV</a></h4>
+																<h4><a href="carrito.php">Random TV</a></h4>
 																<p class="cart-quantity">Und:2</p>
 																<p class="cart-price">$90.000</p>
 															</div>
 															<div class="cart-close">
-																<a href="compras.php" title="Remove"><i class="ion-android-close"></i></a>
+																<a href="carrito.php" title="Remove"><i class="ion-android-close"></i></a>
 															</div>
 														</li>
 														<!--Single Cart Item Start-->
@@ -317,8 +317,7 @@ session_start();
 														<!--Cart Total End-->
 														<!--Cart Button Start-->
 														<li class="cart-button">
-															<a href="compras.php" class="button2">Ver Carrito</a>
-															<a href="checkout.php" class="button2">Check out</a>
+															<a href="carrito.php" class="button2">Ver Carrito</a>															
 														</li>
 														<!--Cart Button End-->
 													</ul>
@@ -619,7 +618,7 @@ session_start();
 																				</div>
 																				<div class="product-price">
 																					<span class="new-price">$ <?php echo $row['ValorUnitario'] ?></span>
-																					<form action="carrito.php" method="post">
+																					<form action="procarrito.php" method="post">
 																						<input type="text" name="id" id="id" value="<?php echo $row['Id_Producto'] ?>">
 																						<input type="text" name="usuario" id="usuario" value="<?php echo $_SESSION['id'] ?>">
 																						<a class="button add-btn" data-toggle="tooltip"><input type="submit" name="boton"><i class="material-icons">shopping_cart</i></a>
@@ -676,7 +675,7 @@ session_start();
 																						</div>
 																						<div class="product-price mb-20">
 																							<span class="new-price">$ <?php echo $row['ValorUnitario'] ?></span>
-																						</div>
+																						</div>	
 																						<div class="product-discription">
 																							<p><?php echo $row['Descripcion'] ?>.</p>
 																						</div>
