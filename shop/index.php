@@ -619,7 +619,11 @@ session_start();
 																				</div>
 																				<div class="product-price">
 																					<span class="new-price">$ <?php echo $row['ValorUnitario'] ?></span>
-																					<a class="button add-btn" href="#" data-toggle="tooltip"><i class="material-icons">shopping_cart</i></a>
+																					<form action="carrito.php" method="post">
+																						<input type="text" name="id" id="id" value="<?php echo $row['Id_Producto'] ?>">
+																						<input type="text" name="usuario" id="usuario" value="<?php echo $_SESSION['id'] ?>">
+																						<a class="button add-btn" data-toggle="tooltip"><input type="submit" name="boton"><i class="material-icons">shopping_cart</i></a>
+																					</form>
 																				</div>
 																			</div>
 																		</div>

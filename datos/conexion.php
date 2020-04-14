@@ -116,6 +116,7 @@ class conexion
 
         $_SESSION['rol'] = $fila['rol'];
         $_SESSION['usuario'] = $fila['email'];
+        $_SESSION['id']= $fila['Id_usuario'];
 
         switch ($_SESSION['rol']) {
           case 1:
