@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 08, 2020 at 08:46 PM
+-- Generation Time: Apr 15, 2020 at 07:40 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -40,6 +40,31 @@ CREATE TABLE `administradores` (
 
 INSERT INTO `administradores` (`Id_admin`, `Persona`, `Usuario`) VALUES
 (1, 2, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `carrito`
+--
+
+CREATE TABLE `carrito` (
+  `id_carrito` int(11) NOT NULL,
+  `producto` int(11) NOT NULL,
+  `usuario` int(11) NOT NULL,
+  `estado` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `carrito`
+--
+
+INSERT INTO `carrito` (`id_carrito`, `producto`, `usuario`, `estado`) VALUES
+(86, 6, 23, 0),
+(87, 7, 23, 0),
+(88, 8, 23, 0),
+(89, 9, 23, 0),
+(90, 6, 23, 2),
+(91, 6, 23, 2);
 
 -- --------------------------------------------------------
 
@@ -1435,13 +1460,10 @@ INSERT INTO `tipo_identificacion` (`id_identificacion`, `identificacion`) VALUES
 --
 
 CREATE TABLE `usuarios` (
-  `Id_usuario` int(11) NOT NULL AUTO_INCREMENT,
+  `Id_usuario` int(11) NOT NULL,
   `email` varchar(30) DEFAULT NULL,
   `pass` varchar(50) DEFAULT NULL,
-  `rol` int(11) DEFAULT NULL,
-  PRIMARY KEY (`Id_usuario`),
-  UNIQUE KEY `email` (`email`),
-  KEY `rol` (`rol`)
+  `rol` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1469,6 +1491,24 @@ CREATE TABLE `venta_cabecera` (
   `Total_Factura` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `venta_cabecera`
+--
+
+INSERT INTO `venta_cabecera` (`Id_Venta`, `Id_Cliente`, `fecha`, `Factura`, `forma_pago`, `Total_Factura`) VALUES
+(1, 11, '2020-04-15', NULL, 'Efectivo', 25000),
+(2, 11, '2020-04-15', NULL, 'Efectivo', 25000),
+(3, 11, '2020-04-15', NULL, 'Efectivo', 0),
+(4, 11, '2020-04-15', NULL, 'Efectivo', 0),
+(5, 11, '2020-04-15', NULL, 'Efectivo', 84000),
+(6, 11, '2020-04-15', NULL, 'Efectivo', 109000),
+(7, 11, '2020-04-15', NULL, 'Efectivo', 84000),
+(8, 11, '2020-04-15', NULL, 'Efectivo', 129000),
+(9, 11, '2020-04-15', NULL, 'Efectivo', 0),
+(10, 11, '2020-04-15', NULL, 'Efectivo', 207000),
+(11, 11, '2020-04-15', NULL, 'Efectivo', 139000),
+(12, 11, '2020-04-15', NULL, 'Efectivo', 0);
+
 -- --------------------------------------------------------
 
 --
@@ -1483,6 +1523,34 @@ CREATE TABLE `venta_detalle` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data for table `venta_detalle`
+--
+
+INSERT INTO `venta_detalle` (`Id_Venta`, `Id_Producto`, `Cantidad`, `ValorUnitario`) VALUES
+(1, 6, 1, 10000),
+(2, 6, 1, 10000),
+(5, 6, 1, 10000),
+(5, 7, 1, 14000),
+(5, 8, 1, 15000),
+(6, 7, 1, 14000),
+(6, 6, 1, 10000),
+(6, 9, 2, 20000),
+(7, 6, 1, 10000),
+(7, 7, 1, 14000),
+(7, 8, 1, 15000),
+(8, 6, 1, 10000),
+(8, 7, 1, 14000),
+(8, 8, 4, 15000),
+(10, 6, 2, 10000),
+(10, 7, 3, 14000),
+(10, 8, 3, 15000),
+(10, 9, 2, 20000),
+(11, 6, 3, 10000),
+(11, 7, 1, 14000),
+(11, 8, 1, 15000),
+(11, 9, 1, 20000);
+
+--
 -- Indexes for dumped tables
 --
 
@@ -1493,6 +1561,14 @@ ALTER TABLE `administradores`
   ADD PRIMARY KEY (`Id_admin`),
   ADD KEY `Persona` (`Persona`),
   ADD KEY `Usuario` (`Usuario`);
+
+--
+-- Indexes for table `carrito`
+--
+ALTER TABLE `carrito`
+  ADD PRIMARY KEY (`id_carrito`),
+  ADD KEY `producto` (`producto`),
+  ADD KEY `usuario` (`usuario`);
 
 --
 -- Indexes for table `categoria`
@@ -1585,6 +1661,7 @@ ALTER TABLE `tipo_identificacion`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`Id_usuario`),
+  ADD UNIQUE KEY `email` (`email`),
   ADD KEY `rol` (`rol`);
 
 --
@@ -1610,6 +1687,12 @@ ALTER TABLE `venta_detalle`
 --
 ALTER TABLE `administradores`
   MODIFY `Id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `carrito`
+--
+ALTER TABLE `carrito`
+  MODIFY `id_carrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
 
 --
 -- AUTO_INCREMENT for table `categoria`
@@ -1669,7 +1752,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT for table `venta_cabecera`
 --
 ALTER TABLE `venta_cabecera`
-  MODIFY `Id_Venta` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id_Venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables
@@ -1681,6 +1764,13 @@ ALTER TABLE `venta_cabecera`
 ALTER TABLE `administradores`
   ADD CONSTRAINT `administradores_ibfk_1` FOREIGN KEY (`Persona`) REFERENCES `personas` (`id_persona`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `administradores_ibfk_2` FOREIGN KEY (`Usuario`) REFERENCES `usuarios` (`Id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `carrito`
+--
+ALTER TABLE `carrito`
+  ADD CONSTRAINT `carrito_ibfk_1` FOREIGN KEY (`producto`) REFERENCES `productos` (`Id_Producto`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `carrito_ibfk_2` FOREIGN KEY (`usuario`) REFERENCES `usuarios` (`Id_usuario`);
 
 --
 -- Constraints for table `clientes`
