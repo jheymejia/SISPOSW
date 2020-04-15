@@ -5,6 +5,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>FAQ- SysPOSw</title>
+    <link rel="shortcut icon" href="img/favicon.png">
 <?php include "include/header.php"; ?>
 		<!--Frequently Questions Area Start-->
         <div class="container">

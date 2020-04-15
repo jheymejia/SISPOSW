@@ -12,6 +12,14 @@ if (($_SESSION['rol'] == 1) || ($_SESSION['rol'] == 2)) {
 </head>
 
 <body>
+
+<!-- Carga de intro -->
+<div id="preloader">
+		<div id="loader">
+      CARGANDO
+    </div>
+	</div>
+
   <div class="page-wrapper chiller-theme toggled">
 
     <!-- Módulos en Botones flotantes -->
@@ -256,6 +264,16 @@ if (($_SESSION['rol'] == 1) || ($_SESSION['rol'] == 2)) {
       });
 
     });
+
+    $(window).load(function() {
+				$('#preloader').fadeOut('slow');
+				$('body').css({
+					'overflow': 'visible'
+				});
+				setTimeout(function() {
+					$('#preloader').hide();
+				}, 4000);
+			})
   </script>
 
 </body>

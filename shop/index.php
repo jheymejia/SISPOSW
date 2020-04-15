@@ -17,6 +17,7 @@ ini_set('display_errors', '0');
 	<title>SysPOSw - Tienda Electrónica</title>
 	<meta name="description" content="SysPOSw - Proyecto presentado por el TPS-89 2020">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" href="img/favicon.png">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script>
 		$(document).ready(function() {

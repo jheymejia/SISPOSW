@@ -5,7 +5,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Single Product- SysPOSw</title>
+    <title>Vista de Producto- SysPOSw</title>
+    <link rel="shortcut icon" href="img/favicon.png">
     <?php include "include/header.php"; ?>
 		<!--Single Product Area Start-->
 		<section class="single-product-area mt-20">

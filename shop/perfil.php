@@ -15,6 +15,7 @@ if (($_SESSION['rol'] == 3)) {
 		<meta charset="utf-8">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
 		<title>Perfil- SysPOSw</title>
+		<link rel="shortcut icon" href="img/favicon.png">
 		<meta name="description" content="SysPOSw - Proyecto presentado por el TPS-89 2020">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
