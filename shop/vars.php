@@ -16,6 +16,6 @@ if ($query->num_rows > 0) {
         number_format($cant['cantidad'] * $rowprod['ValorUnitario']);
         $total = $total + ($cant['cantidad'] * $rowprod['ValorUnitario']);
         $numprod = $numprod + $cant['cantidad'];
-        $total = $total + $flete;
     }
+    $total = $total + $flete;
 }

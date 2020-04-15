@@ -1,0 +1,53 @@
+.shipAddr{
+margin: 2% 20% 5% 20%;
+-webkit-tap-highlight-color: rgba(0,0,0,0);
+font-family: 'Open Sans', sans-serif;
+font-weight: 400;
+font-style: normal;
+line-height: 25px;
+color: #7a7a7a;
+font-size: 14px;
+box-sizing: border-box;
+}
+
+.button2{        
+font-family: 'Open Sans', sans-serif;
+font-style: normal;
+box-sizing: border-box;
+border: 1px solid #4c4c4c;
+margin-top: 26px;
+box-shadow: none;
+border-radius: 3px;
+display: inline-block;
+font-size: 1em;
+font-weight: 400;
+height: 42px;
+line-height: 42px;
+overflow: hidden;
+padding: 0 25px;
+text-shadow: none;
+text-transform: capitalize;
+text-align: center;
+vertical-align: middle;
+white-space: nowrap;
+outline: 0;
+text-decoration: none;
+background: #00bf72;
+color: #fff;
+border-color: #00bf72;
+}
+h2{
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+text-align: center;
+box-sizing: border-box;
+line-height: 1.1;
+font-family: 'Open Sans', sans-serif;
+color: #31353D;
+margin-top: 0px;
+font-style: normal;
+margin: 0 0 5px;
+text-transform: uppercase;
+margin-bottom: 40px;
+font-weight: 900;
+font-size: 24px;
+}
