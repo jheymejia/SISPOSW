@@ -3,9 +3,21 @@ require('../../rq/empmod.php');
 // Archivo Requerido para mostrar los Empleados en la tabla de abajo 
 ?>
 <!-- Aplicacion VUE -->
-<h1 class="text-center">Administracion Empleados</h1>
+<?php $hora = new DateTime("now", new DateTimeZone('America/Bogota')); ?>
+        <header class="mb-5">
+          <nav class="navbar bg-menu bg-dark-menu text-white rounded-pill">
+            <a class="navbar-brand"><strong>Administración Empleados</strong></a>
+            <div class="float-right text-light">
+              <ul class="nav justify-content-end">
+                <li class="nav-item">
+                  <?php echo $hora->format('d/m/Y h:i a');?>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </header>
 <script type="text/javascript">
-  $(Document).ready(function() {
+  $(document).on('ready', function() {
     $("#buscar").on("click", (e) => {
       e.preventDefault();
       CargarDatosBuEmp();

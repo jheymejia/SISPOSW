@@ -3,9 +3,21 @@ require('../../rq/catmod.php');
 // Archivo Requerido para mostrar los Productos en la tabla de abajo y para mostrar opciones del SELECT
 ?>
 <!-- Aplicacion VUE -->
-<h1 class="text-center">Administracion Productos</h1>
+<?php $hora = new DateTime("now", new DateTimeZone('America/Bogota')); ?>
+        <header class="mb-5">
+          <nav class="navbar bg-menu bg-dark-menu text-white rounded-pill">
+            <a class="navbar-brand"><strong>Administración Productos</strong></a>
+            <div class="float-right text-light">
+              <ul class="nav justify-content-end">
+                <li class="nav-item">
+                  <?php echo $hora->format('d/m/Y h:i a');?>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </header>
 <script type="text/javascript">
-    $(Document).ready(function() {
+    $(document).on('ready', function() {
         $("#buscar").on("click", (e) => {
             e.preventDefault();
             CargarDatosBuCat();

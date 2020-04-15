@@ -50,7 +50,7 @@ require('../../rq/provmod.php');
 </div>
 
 <script type="text/javascript">
-  $(Document).ready(function() {
+  $(document).on('ready', function() {
     $("#buscar").on("click", (e) => {
       e.preventDefault();
       CargarDatosprov();
@@ -197,7 +197,7 @@ require('../../rq/provmod.php');
   });
 </script>
 <script type="text/javascript">
-  $(document).ready(function() {
+  $(document).on('ready', function() {
     $('#departamento').val(1);
     recargarLista();
 

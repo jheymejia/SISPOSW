@@ -113,7 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <script type="text/javascript">
 //Datatables
-$(document).ready(function() {
+$(document).on('ready', function() {
     $('#Tablas').DataTable( {
       pageLength : 5,
       lengthMenu: [[5, 10, 20, -1], [5, 10, 20, 'Todos']],
