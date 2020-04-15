@@ -11,7 +11,8 @@
 <body>
 
   <h2 style="position: absolute;top: 1rem;left: 1rem;">
-    <a href="../shop/index.php" title="Regresar" style="color: #fff; text-decoration: none;"><i class="material-icons" style="vertical-align: text-bottom;">home</i> Inicio</a>
+    <a href="../shop/index.php" title="Regresar" style="color: #fff; text-decoration: none;"><i class="material-icons"
+        style="vertical-align: text-bottom;">home</i> Inicio</a>
   </h2>
 
   <div class="container" id="container">
@@ -74,6 +75,20 @@
   </footer>
 
   <?php require 'rq/scripts.php';  ?>
+  <script>
+  //Animación Login
+  const signUpButton = document.getElementById('signUp');
+  const signInButton = document.getElementById('signIn');
+  const container = document.getElementById('container');
+
+  signUpButton.addEventListener('click', () => {
+    container.classList.add('right-panel-active');
+  });
+
+  signInButton.addEventListener('click', () => {
+    container.classList.remove('right-panel-active');
+  });
+  </script>
 </body>
 
 </html>
