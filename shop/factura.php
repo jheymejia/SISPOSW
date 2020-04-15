@@ -1,25 +1,28 @@
 <?php
-if (isset($_POST["pagofactura"])) {
-    session_start();
-    $nombrecliente = $_POST['name'];
-    $docucliente = $_POST['id'];
-    $depcliente = $_POST['departamento'];
-    $cidcliente = $_POST['ciudad'];
-    $dircliente = $_POST['direc'];
-    $phocliente = $_POST['phone'];
-    $methodcliente = (substr($_POST['cardNumber'], -4));
+require('../datos/conexioncore.php');
+session_start();
+$query = $conexion->query("SELECT * FROM carrito WHERE usuario = '" . $_SESSION['id'] . "' AND estado = '1'");
+if ($query->num_rows > 0) {
+    if (isset($_POST["pagofactura"])) {
+        $nombrecliente = $_POST['name'];
+        $docucliente = $_POST['id'];
+        $depcliente = $_POST['departamento'];
+        $cidcliente = $_POST['ciudad'];
+        $dircliente = $_POST['direc'];
+        $phocliente = $_POST['phone'];
+        $methodcliente = (substr($_POST['cardNumber'], -4));
 ?>
-    <!doctype html>
-    <html class="no-js" lang="es">
+        <!doctype html>
+        <html class="no-js" lang="es">
 
-    <head>
-        <title>Factura- SysPOSw</title>
-        <link rel="stylesheet" href="css/cssfactura.css">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <head>
+            <title>Factura- SysPOSw</title>
+            <link rel="stylesheet" href="css/cssfactura.css">
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+            <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        </head>
         <?php
-        $fecha = date("Y") . date("m") . date("d");
-        require('../datos/conexioncore.php');
+        $fecha = date("Y") . date("m") . date("d");        
         $clientex = $conexion->query("SELECT Id_Cliente, id_identificacion, Id_usuario, Nombre, Apellido, Direccion, Celular, Telefono, numero_identificacion, pass, email FROM personas p, clientes c, identificacion i, usuarios u where c.Persona = p.id_persona and p.Identificacion = i.id_identificacion and c.Usuario = '" . $_SESSION['id'] . "'");
         $cli = $clientex->fetch_assoc();
         $total = 0;
@@ -38,7 +41,7 @@ if (isset($_POST["pagofactura"])) {
                 $total = $total + $flete;
             }
         }
-        $newsell = $conexion->query("INSERT INTO venta_cabecera (Id_Cliente, fecha, Factura, forma_pago, Total_Factura) VALUES ('" . $cli['Id_Cliente'] . "', '" . $fecha . "', NULL, 'Efectivo', '" . $total . "')");
+        $newsell = $conexion->query("INSERT INTO venta_cabecera (Id_Cliente, fecha, Factura, forma_pago, Total_Factura) VALUES ('" . $cli['Id_Cliente'] . "', '" . $fecha . "', 'Tarjeta', '" . $total . "')");
         $query = $conexion->query("SELECT * FROM carrito WHERE usuario = '" . $_SESSION['id'] . "' AND estado = '1'");
         if ($query->num_rows > 0) {
             while ($row = $query->fetch_assoc()) {
@@ -110,9 +113,9 @@ if (isset($_POST["pagofactura"])) {
                                 </table>
                             </div>
                             <div class="about-us-btn text-center">
-                            <a id="buttonimp" class="btn btn-success btn-lg" type="button"><i class="material-icons">local_printshop</i>  Imprimir</a>
-                            <a href="index.php" id="home" class="btn btn-success btn-lg" type="button"><i class="material-icons">shopping_cart</i> Seguir Comprando</a>
-                                
+                                <a id="buttonimp" class="btn btn-success btn-lg" type="button"><i class="material-icons">local_printshop</i> Imprimir</a>
+                                <a href="index.php" id="home" class="btn btn-success btn-lg" type="button"><i class="material-icons">shopping_cart</i> Seguir Comprando</a>
+
                             </div>
                         </div>
                     </div>
@@ -134,11 +137,50 @@ if (isset($_POST["pagofactura"])) {
         <script>
             $('#buttonimp').on("click", function() {
                 $('#imprime').printThis({
-                    importCSS: true,                    
+                    importCSS: true,
                 });
             });
         </script>
     <?php
-    $updateprod = $conexion->query("UPDATE carrito SET estado = 0 WHERE usuario = '" . $_SESSION['id'] . "' AND estado = '1'");
-}
+        $updateprod = $conexion->query("UPDATE carrito SET estado = 0 WHERE usuario = '" . $_SESSION['id'] . "' AND estado = '1'");
+    }
+} else {
     ?>
+    <!doctype html>
+    <html class="no-js" lang="es">
+
+    <head>
+        <title>Factura- SysPOSw</title>
+        <link rel="stylesheet" href="css/cssfactura.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    </head>
+    <div class="container">
+        <section class="about-us-area">
+
+            <!--About Us Image Start-->
+            <div class="">
+            </div>
+            <!--About Us Image End-->
+            <div class="container-fluid">
+                <div class="row">
+                    <div style="margin-top: 20%" class="col">
+                        <div class="about-us-title text-center">
+                            <h2><strong>¡Upps...! Hubo un error,</strong></h2>
+                        </div>
+                        <div id="imprime" class="shipAddr">
+                            <p class="text-center">Parece que aún no facturaste, o no tienes productos en el carrito<br>Por favor, revisa tu carrito y tus metodos de pago.</p>                        
+                        </div>
+                        <div class="about-us-btn text-center">                            
+                            <a href="index.php" id="home" class="btn btn-success btn-lg" type="button"><i class="material-icons">shopping_cart</i> Volver a la Tienda</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                </div>
+            </div>
+        </section>
+        <!--Aboout Us Area End-->
+    </div><br>
+
+<?php } ?>
