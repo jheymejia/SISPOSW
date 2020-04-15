@@ -95,7 +95,10 @@ include "../datos/conexioncore.php";
                                                     <span><?php echo number_format($cant['cantidad'] * $rowprod['ValorUnitario']) ?></span>
                                                 </td>
                                             </tr>
-                                            <?php $total = $total + ($cant['cantidad'] * $rowprod['ValorUnitario']); ?>
+                                            <?php $total = $total + ($cant['cantidad'] * $rowprod['ValorUnitario']);
+                                            $numprod = 0;
+                                            $numprod = $numprod + $cant['cantidad'];
+                                            ?>
                                         </tbody>
                                 <?php }
                                 } ?>
@@ -139,15 +142,14 @@ include "../datos/conexioncore.php";
             <div class="modal-content">
                 <div class="modal-header text-center">
                     <br>
-                    <h4 class="modal-title w-100 font-weight-bold">Realizar Pago</h4>
+                    <h4 class="modal-title w-100 font-weight-bold">Verifique sus Datos</h4>
                 </div>
                 <div class="modal-body mx-3">
-                    <form class="" action="realizarpago.php" method="post">
+                    <form class="" action="factura.php" method="post">
                         <!-- Campos de Inserccion -->
                         <?php
                         $clientex = $conexion->query("SELECT Id_Cliente, id_identificacion, Id_usuario, Nombre, Apellido, Direccion, Celular, Telefono,  numero_identificacion, pass, email FROM personas p, clientes c, identificacion i, usuarios u where c.Persona = p.id_persona and p.Identificacion = i.id_identificacion and c.Usuario = '" . $_SESSION['id'] . "'");
                         $cli = $clientex->fetch_assoc();
-
                         ?>
                         <div class="form-row">
                             <div class="col">
@@ -155,38 +157,50 @@ include "../datos/conexioncore.php";
                                 <?php echo "<input class='form-control' type='text' placeholder='Nombre Completo' name='name' required value='" . $cli['Nombre'] . " " . $cli['Apellido'] . "'>" ?>
                             </div>
                             <div class="col">
-                                <label>Documento</label>
-                                <?php echo "<input class='form-control' type='text' placeholder='Número Documento' name='name' required value='" . $cli['numero_identificacion'] . "'>" ?>
+                                <label>Número de Documento</label>
+                                <?php echo "<input class='form-control' type='text' placeholder='Número Documento' name='id' required value='" . $cli['numero_identificacion'] . "'>" ?>
+                            </div>
+                            <div class="col">
+                                <label>Departamento</label>
+                                <?php echo "<input class='form-control' type='text' placeholder='Departamento' name='departamento' required value=''>" ?>
+                            </div>
+                            <div class="col">
+                                <label>Ciudad</label>
+                                <?php echo "<input class='form-control' type='text' placeholder='Ciudad' name='ciudad' required value=''>" ?>
                             </div>
                             <div class="col">
                                 <label>Dirección</label>
-                                <?php echo "<input class='form-control' type='text' placeholder='Direccion' name='name' required value='" . $cli['Direccion'] . "'>" ?>
+                                <?php echo "<input class='form-control' type='text' placeholder='Direccion' name='direc' required value='" . $cli['Direccion'] . "'>" ?>
                             </div>
                             <div class="col">
                                 <label>Contacto</label>
-                                <?php echo "<input class='form-control' type='text' placeholder='Contacto' name='name' required value='" . $cli['Celular'] . "'>" ?>
-                            </div>
-                            <div class="shop-table table-responsive">
-                                <table>
-                                    <tbody>
-                                        <tr class="cart-subtotal">
-                                            <td data-title="Subtotal"><span><?php echo $total ?></span></td>
-                                        </tr>
-                                        <tr class="shipping">
-                                            <td data-title="Domicilio">Valor del flete nacional: <Span><?php echo $flete ?></Span></td>
-                                        </tr>
-                                        <tr class="order-total">
-                                            <td data-title="Total"><span><strong><?php echo number_format($total + $flete) ?></strong></span></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <?php echo "<input class='form-control' type='text' placeholder='Contacto' name='phone' required value='" . $cli['Celular'] . "'>" ?>
+                            </div><br>
+                            <div class="checkout-payment">
+                                <ul>
+                                    <li class="payment_method_cheque-li">
+                                        <input id="payment_method_cheque" class="input-radio" name="payment_method" checked="checked" value="bacs" type="radio">
+                                        <label for="payment_method_cheque">Tarjeta de Credito</label>
+                                        <div class="pay-box payment_method_cheque"><br>
+                                            <img src="img/payment/payment.png" alt=""><br>
+                                            <label>Titular de la tarjeta</label>
+                                            <?php echo "<input class='form-control' type='text' placeholder='Titular' name='tname' required value='" . $cli['Nombre'] . " " . $cli['Apellido'] . "'>" ?>
+                                            <label for="cardNumber">Número de Tarjeta</label>
+                                            <input type="text" maxlength="16" id="cardNumber" name="cardNumber" class="form-control" placeholder="Ingrese el número de tarjeta" value="">
+                                            <label for="expDate">Fecha de Vencimiento</label>
+                                            <input type="date" id="expDate" name="expDate" class="form-control" placeholder="mm/aa" value="">
+                                            <label for="verificationCode">Codigo CVV</label>
+                                            <input type="password" maxlength="4" id="verificationCode" name="verificationCode" class="form-control" placeholder="Ingrese el código de seguridad" value="">
+                                        </div>
+                                    </li>                                    
+                                </ul>
                             </div>
                         </div>
                         <!-- Campos de Inserccion -->
                         <div style="text-align: center" class="form-row">
                             <!-- Botonera para Limpiar el Formulario o hacer un Registro -->
                             <div style="text-align: center" class="col"><br>
-                                <input class="btn btn-primary" type="button" value="Enviar" name="catalogo" @click="enviarDatos()">
+                                <input class="btn btn-primary" type="submit" value="Pagar" name="pagofactura">
                             </div>
                             <!-- Botonera para Limpiar el Formulario o hacer un Registro -->
                         </div>

@@ -10,7 +10,7 @@ require('../../rq/provmod.php');
     <div class="float-right text-light">
       <ul class="nav justify-content-end">
         <li class="nav-item">
-          <?php echo $hora->format('d/m/Y h:i a');?>
+          <?php echo $hora->format('d/m/Y h:i a'); ?>
         </li>
       </ul>
     </div>
@@ -111,13 +111,13 @@ require('../../rq/provmod.php');
                 <label>Departamento</label>
                 <select v-model="departamento" name="departamento" id="departamento" class="form-control">
                   <?php
-                    require_once("../../rq/funcionesprov.php");
-                    $datos = Departamentos();
-                    foreach ($datos as $key => $dato) {
-                        echo ("<option value='$dato[Departamento]' >$dato[Departamento]</option>");
-                    }
-                    echo "</select>";
-                    ?></div>
+                  require_once("../../rq/funcionesprov.php");
+                  $datos = Departamentos();
+                  foreach ($datos as $key => $dato) {
+                    echo ("<option value='$dato[Departamento]' >$dato[Departamento]</option>");
+                  }
+                  echo "</select>";
+                  ?></div>
               <div class="col-5">
                 <label>Ciudad</label>
                 <select v-model="ciudad" id='ciudad' name='ciudad' class='form-control'>ciudad</select>

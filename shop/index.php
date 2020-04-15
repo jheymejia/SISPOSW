@@ -227,7 +227,6 @@ ini_set('display_errors', '0');
 													if (isset($_SESSION['rol'])) {
 														if ($_SESSION['rol'] == 3) {
 														?>
-															<li><a href='checkout.php'>Checkout</a></li>
 
 															<li><a href="carrito.php">Mi Carrito</a></li>
 
@@ -282,8 +281,8 @@ ini_set('display_errors', '0');
 									<div class="col-md-3 col-sm-4 col-xs-12">
 										<div class="mini-cart-area">
 											<ul>
-												<li><a href="favoritos.php"><i class="ion-heart"></i></a></li>
-												<li><a href="carrito.php"><i class="ion-android-cart"></i><span class="cart-add">2</span><span class="cart-total"> $290.000 <i class="fa fa-angle-down"></i></span></a>												
+												<?php require('vars.php') ?>												
+												<?php echo "<li><a href='carrito.php'><i class='ion-android-cart'></i><span class='cart-add'>".$numprod."</span><span class='cart-total'>$".number_format($total)."<i class='fa fa-angle-down'></i></span></a>" ?>
 											</ul>
 										</div>
 									</div>
@@ -542,7 +541,7 @@ ini_set('display_errors', '0');
 							</div>
 							<!--Shop Tab Menu End-->
 							<!--Shop Product Area Start-->
-							<div class="shop-product-area" >
+							<div class="shop-product-area">
 								<div class="tab-content">
 									<!--Grid View Start-->
 									<div id="grid-view" class="tab-pane fade in active">
@@ -582,8 +581,8 @@ ini_set('display_errors', '0');
 																						<input type="text" name="id" id="id" value="<?php echo $row['Id_Producto'] ?>">
 																						<input type="text" name="usuario" id="usuario" value="<?php echo $_SESSION['id'] ?>">
 																						<?php
-																						if(isset($_SESSION['rol'])){ ?>
-																						<button class="btn button add-btn" type="submit" name="boton" data-toggle="tooltip"><i class="material-icons">shopping_cart</i></button>
+																						if (isset($_SESSION['rol'])) { ?>
+																							<button class="btn button add-btn" type="submit" name="boton" data-toggle="tooltip"><i class="material-icons">shopping_cart</i></button>
 																						<?php } ?>
 																					</form>
 																				</div>
@@ -638,7 +637,7 @@ ini_set('display_errors', '0');
 																						</div>
 																						<div class="product-price mb-20">
 																							<span class="new-price">$ <?php echo $row['ValorUnitario'] ?></span>
-																						</div>	
+																						</div>
 																						<div class="product-discription">
 																							<p><?php echo $row['Descripcion'] ?>.</p>
 																						</div>

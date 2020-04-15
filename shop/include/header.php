@@ -3,7 +3,7 @@ require "../datos/conexioncore.php";
 session_start();
 ?>
 <meta name="description" content="SysPOSw - Proyecto presentado por el TPS-89 2020">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
@@ -152,7 +152,7 @@ session_start();
 															}
 															echo "$nombre <strong>$apellido</strong> ";
 														}
-													}else{
+													} else {
 														echo "Registrate y se parte de la mejor <strong>EXPERIENCIA</strong> de compras";
 													}
 													?>
@@ -170,11 +170,7 @@ session_start();
 													if (isset($_SESSION['rol'])) {
 														if ($_SESSION['rol'] == 3) {
 														?>
-															<li><a href='checkout.php'>Checkout</a></li>
-
-															<li><a href="compras.php">Mi Carrito</a></li>
-
-															<li><a href="favoritos.php">Favoritos</a></li>
+															<li><a href="carrito.php">Mi Carrito</a></li>
 														<?php } else {
 															echo "<li><a href='../app/index.php'>Panel</a></li> ";
 														}
@@ -226,8 +222,8 @@ session_start();
 									<div class="col-md-3 col-sm-4 col-xs-12">
 										<div class="mini-cart-area">
 											<ul>
-												<li><a href="favoritos.php"><i class="ion-heart"></i></a></li>
-												<li><a href="carrito.php"><i class="ion-android-cart"></i><span class="cart-add">2</span><span class="cart-total"> $290.000 <i class="fa fa-angle-down"></i></span></a>												
+												<?php require('vars.php') ?>
+												<?php echo "<li><a href='carrito.php'><i class='ion-android-cart'></i><span class='cart-add'>" . $numprod . "</span><span class='cart-total'>$" . number_format($total) . "<i class='fa fa-angle-down'></i></span></a>" ?>
 											</ul>
 										</div>
 									</div>
@@ -266,8 +262,8 @@ session_start();
 
 												<li class=""><a href="contacto.php">Contacto</a></li>
 
-                        <li class=""><a href="nosotros.php">Nosotros</a></li>
-                        
+												<li class=""><a href="nosotros.php">Nosotros</a></li>
+
 											</ul>
 										</nav>
 									</div>
@@ -312,4 +308,3 @@ session_start();
 				</div>
 			</header>
 			<!--Header Area End-->
-
