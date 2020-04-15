@@ -9,16 +9,15 @@ if (($_SESSION['rol'] == 1) || ($_SESSION['rol'] == 2)) {
 <head>
   <title>Panel Administrativo - SysPOSw TPS89</title>
   <?php require 'rq/head.php'; ?>
+  <link type="text/css" rel="stylesheet" href="src/css/animaciones.css">
 </head>
 
 <body>
 
-<!-- Carga de intro -->
-<div id="preloader">
-		<div id="loader">
-      CARGANDO
-    </div>
-	</div>
+  <!-- Carga de intro -->
+  <div id="preloader">
+   <?php include 'intro.php';?>
+  </div>
 
   <div class="page-wrapper chiller-theme toggled">
 
@@ -232,48 +231,48 @@ if (($_SESSION['rol'] == 1) || ($_SESSION['rol'] == 2)) {
 
   <?php require 'rq/scripts.php'; ?>
   <script>
-    jQuery(function($) {
+  jQuery(function($) {
 
-      $(".sidebar-dropdown > a").click(function() {
-        $(".sidebar-submenu").slideUp(200);
-        if (
-          $(this)
+    $(".sidebar-dropdown > a").click(function() {
+      $(".sidebar-submenu").slideUp(200);
+      if (
+        $(this)
+        .parent()
+        .hasClass("active")
+      ) {
+        $(".sidebar-dropdown").removeClass("active");
+        $(this)
           .parent()
-          .hasClass("active")
-        ) {
-          $(".sidebar-dropdown").removeClass("active");
-          $(this)
-            .parent()
-            .removeClass("active");
-        } else {
-          $(".sidebar-dropdown").removeClass("active");
-          $(this)
-            .next(".sidebar-submenu")
-            .slideDown(200);
-          $(this)
-            .parent()
-            .addClass("active");
-        }
-      });
-
-      $("#close-sidebar").click(function() {
-        $(".page-wrapper").removeClass("toggled");
-      });
-      $("#show-sidebar").click(function() {
-        $(".page-wrapper").addClass("toggled");
-      });
-
+          .removeClass("active");
+      } else {
+        $(".sidebar-dropdown").removeClass("active");
+        $(this)
+          .next(".sidebar-submenu")
+          .slideDown(200);
+        $(this)
+          .parent()
+          .addClass("active");
+      }
     });
 
-    $(window).load(function() {
-				$('#preloader').fadeOut('slow');
-				$('body').css({
-					'overflow': 'visible'
-				});
-				setTimeout(function() {
-					$('#preloader').hide();
-				}, 4000);
-			})
+    $("#close-sidebar").click(function() {
+      $(".page-wrapper").removeClass("toggled");
+    });
+    $("#show-sidebar").click(function() {
+      $(".page-wrapper").addClass("toggled");
+    });
+
+  });
+
+  $(window).on('load', function() {
+    $('#preloader').fadeOut('slow');
+    $('body').css({
+      'overflow': 'visible'
+    });
+    setTimeout(function() {
+      $('#preloader').hide();
+    }, 4000);
+  })
   </script>
 
 </body>
