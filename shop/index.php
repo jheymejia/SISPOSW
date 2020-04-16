@@ -579,8 +579,8 @@ ini_set('display_errors', '0');
 																				<div class="product-price">
 																					<span class="new-price">$ <?php echo $row['ValorUnitario'] ?></span>
 																					<form action="procarrito.php" method="post">
-																						<input type="text" name="id" id="id" value="<?php echo $row['Id_Producto'] ?>">
-																						<input type="text" name="usuario" id="usuario" value="<?php echo $_SESSION['id'] ?>">
+																						<input type="hidden" name="id" id="id" value="<?php echo $row['Id_Producto'] ?>">
+																						<input type="hidden" name="usuario" id="usuario" value="<?php echo $_SESSION['id'] ?>">
 																						<?php
 																						if (isset($_SESSION['rol'])) { ?>
 																							<button class="btn button add-btn" type="submit" name="boton" data-toggle="tooltip"><i class="material-icons">shopping_cart</i></button>
