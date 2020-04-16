@@ -1,9 +1,9 @@
 <?php
 require('../datos/conexioncore.php');
 session_start();
-$query = $conexion->query("SELECT * FROM carrito WHERE usuario = '" . $_SESSION['id'] . "' AND estado = '1'");
-if ($query->num_rows > 0) {
-    if (isset($_POST["pagofactura"])) {
+if (isset($_POST["pagofactura"])) {
+    if ($query->num_rows > 0) {
+        $query = $conexion->query("SELECT * FROM carrito WHERE usuario = '" . $_SESSION['id'] . "' AND estado = '1'");
         $nombrecliente = $_POST['name'];
         $docucliente = $_POST['id'];
         $depcliente = $_POST['departamento'];
@@ -22,7 +22,7 @@ if ($query->num_rows > 0) {
             <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         </head>
         <?php
-        $fecha = date("Y") . date("m") . date("d");        
+        $fecha = date("Y") . date("m") . date("d");
         $clientex = $conexion->query("SELECT Id_Cliente, id_identificacion, Id_usuario, Nombre, Apellido, Direccion, Celular, Telefono, numero_identificacion, pass, email FROM personas p, clientes c, identificacion i, usuarios u where c.Persona = p.id_persona and p.Identificacion = i.id_identificacion and c.Usuario = '" . $_SESSION['id'] . "'");
         $cli = $clientex->fetch_assoc();
         $total = 0;
@@ -38,8 +38,8 @@ if ($query->num_rows > 0) {
                 number_format($cant['cantidad'] * $rowprod['ValorUnitario']);
                 $total = $total + ($cant['cantidad'] * $rowprod['ValorUnitario']);
                 $numprod = $numprod + $cant['cantidad'];
-                $total = $total + $flete;
             }
+            $total = $total + $flete;
         }
         $newsell = $conexion->query("INSERT INTO venta_cabecera (Id_Cliente, doc_cliente, nom_cliente, fecha, forma_pago, Total_Venta) VALUES ('" . $cli['Id_Cliente'] . "','" . $docucliente . "' , '" . $nombrecliente . "' ,'" . $fecha . "', 'Tarjeta', '" . $total . "')");
         $query = $conexion->query("SELECT * FROM carrito WHERE usuario = '" . $_SESSION['id'] . "' AND estado = '1'");
@@ -106,7 +106,10 @@ if ($query->num_rows > 0) {
                                                 $numprod = 0;
                                                 $numprod = $numprod + $cant['cantidad'];
                                             }
+                                            $flete = 15000;
+                                            $total = $total + $flete;
                                         }
+                                        echo "<tr><td></td><td></td><td><strong>Envío: </strong></td><td>" . number_format($flete) . "</td></tr>";
                                         echo "<tr><td></td><td></td><td><strong>Total: </strong></td><td>" . number_format($total) . "</td></tr>";
                                         ?>
                                     </tbody>
@@ -169,9 +172,9 @@ if ($query->num_rows > 0) {
                             <h2><strong>¡Upps...! Hubo un error,</strong></h2>
                         </div>
                         <div id="imprime" class="shipAddr">
-                            <p class="text-center">Parece que aún no facturaste, o no tienes productos en el carrito<br>Por favor, revisa tu carrito y tus metodos de pago.</p>                        
+                            <p class="text-center">Parece que aún no facturaste, o no tienes productos en el carrito<br>Por favor, revisa tu carrito y tus metodos de pago.</p>
                         </div>
-                        <div class="about-us-btn text-center">                            
+                        <div class="about-us-btn text-center">
                             <a href="index.php" id="home" class="btn btn-success btn-lg" type="button"><i class="material-icons">shopping_cart</i> Volver a la Tienda</a>
                         </div>
                     </div>
