@@ -44,7 +44,7 @@ if (($_SESSION['rol'] == 1) || ($_SESSION['rol'] == 2)) {
         <i class="btn-menu material-icons"> people </i>
       </a>
       <?php } ?>
-      <a id="show-sidebar" class="btn-dark fabs" href="#">
+      <a id="show-sidebar" onclick="showReport();" class="btn-dark fabs" href="#">
         <i class="btn-menu material-icons"> bar_chart </i>
       </a>
 
@@ -182,7 +182,7 @@ if (($_SESSION['rol'] == 1) || ($_SESSION['rol'] == 2)) {
             </li>
             <?php } ?>
             <li class="sidebar-dropdown">
-              <a href="#">
+            <a onclick="showReport();" href="#">
                 <i class="material-icons">bar_chart</i>
                 <span>Informes</span>
               </a>
