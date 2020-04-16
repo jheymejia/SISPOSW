@@ -6,10 +6,10 @@ if (isset($_POST['boton'])) {
     if ($cant['cantidad'] >= 1) {
         $sql = "INSERT INTO carrito (producto, usuario, estado) VALUES ('" . $_POST['id'] . "','" . $_POST['usuario'] . "','2')";
         $insert = $conexion->query($sql);
-        echo '<script type="text/javascript">window.location.href="index.php#productos";</script>';
+        echo "<script type='text/javascript'>window.location.href='index.php#".$_POST['id']."';</script>";
     } else {
         $sql = "INSERT INTO carrito (producto, usuario, estado) VALUES ('" . $_POST['id'] . "','" . $_POST['usuario'] . "','1')";
         $insert = $conexion->query($sql);
-        echo '<script type="text/javascript">window.location.href="index.php#productos";</script>';
+        echo "<script type='text/javascript'>window.location.href='index.php#".$_POST['id']."';</script>";
     }
 }
