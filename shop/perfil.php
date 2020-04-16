@@ -232,22 +232,19 @@ if (($_SESSION['rol'] == 3)) {
 								<div class="col-md-5">
 									<div class="contact-address-info">
 										<div class="contact-form-title">
-											<h2>CONTACT US</h2>
+											<h2>Contáctanos si tienes problemas</h2>
 										</div>
 										<div class="contact-description mb-35">
-											<p>Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram anteposuerit litterarum formas human.</p>
+											<p>Mirum est notare quam littera gothica, quam nunc putamus parum claram anteposuerit litterarum formas human.</p>
 										</div>
 										<div class="contact-address mb-35">
 											<ul>
 												<li><i class="fa fa-fax"></i> Address : No 40 Baria Sreet 133/2 NewYork City</li>
-												<li><i class="fa fa-phone"></i> 0(1234) 567 890</li>
-												<li><i class="fa fa-envelope-o"></i> Infor@chairman.com</li>
+												<li><i class="fa fa-phone"></i> 0(1234) i67 890</li>
+												<li><i class="fa fa-envelope-o"></i> info@tps.com</li>
 											</ul>
 										</div>
-										<div class="woring-hours mb-35">
-											<h3><strong>Working hours</strong></h3>
-											<p><strong>Monday – Saturday</strong>: 08AM – 22PM</p>
-										</div>
+									
 									</div>
 								</div>
 								<!--Contact Address End-->

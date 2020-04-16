@@ -174,22 +174,22 @@ ini_set('display_errors', '0');
                         <?php
                         if (!isset($_SESSION['rol'])) {
                         ?>
-                          <li><a href="../app/login.php">Ingresar</a></li>
+                        <li><a href="../app/login.php">Ingresar</a></li>
 
-                          <li><a href="../app/login.php">Registrate</a></li>
-                          <?php
+                        <li><a href="../app/login.php">Registrate</a></li>
+                        <?php
                         }
                         if (isset($_SESSION['rol'])) {
                           if ($_SESSION['rol'] == 3) {
                           ?>
 
-                            <li><a href="carrito.php">Mi Carrito</a></li>
+                        <li><a href="carrito.php">Mi Carrito</a></li>
 
-                          <?php } else {
+                        <?php } else {
                             echo "<li><a href='../app/index.php'>Panel</a></li> ";
                           }
                           ?>
-                          <li><a href='../app/salir.php'>salir</a></li>
+                        <li><a href='../app/salir.php'>salir</a></li>
                         <?php } ?>
                       </ul>
                     </li>
@@ -221,7 +221,8 @@ ini_set('display_errors', '0');
 
                 <form action="/search" method="get" role="search" style="position: relative;" class="search-box-area">
                   <div class="search-box">
-                    <input type="search" class="email" name="q" value="" placeholder="Busca en nuestra tienda..." aria-label="Busca en nuestra tienda..." autocomplete="off">
+                    <input type="search" class="email" name="q" value="" placeholder="Busca en nuestra tienda..."
+                      aria-label="Busca en nuestra tienda..." autocomplete="off">
                     <button type="submit"><i class="ion-ios-search-strong"></i></button>
                   </div>
                   <ul class="search-results home-two" style="position: absolute; left: 0px; top: 50px; display: none;">
@@ -234,14 +235,14 @@ ini_set('display_errors', '0');
               <?php
               if (isset($_SESSION['rol'])) {
               ?>
-                <div class="col-md-3 col-sm-4 col-xs-12">
-                  <div class="mini-cart-area">
-                    <ul>
-                      <?php require('vars.php') ?>
-                      <?php echo "<li><a href='carrito.php'><i class='ion-android-cart'></i><span class='cart-add'>" . $numprod . "</span><span class='cart-total'>$" . number_format($total) . "<i class='fa fa-angle-down'></i></span></a>" ?>
-                    </ul>
-                  </div>
+              <div class="col-md-3 col-sm-4 col-xs-12">
+                <div class="mini-cart-area">
+                  <ul>
+                    <?php require('vars.php') ?>
+                    <?php echo "<li><a href='carrito.php'><i class='ion-android-cart'></i><span class='cart-add'>" . $numprod . "</span><span class='cart-total'>$" . number_format($total) . "<i class='fa fa-angle-down'></i></span></a>" ?>
+                  </ul>
                 </div>
+              </div>
               <?php } ?>
               <!--Mini Cart End-->
             </div>
@@ -341,7 +342,8 @@ ini_set('display_errors', '0');
                     <h4 class="wow animated fadeInLeft" data-wow-duration="1.5s" data-wow-delay="0.5s">Desde
                       <span>$590.000</span></h4>
                     <div class="slider-button">
-                      <a href="#" class="wow button animated fadeInLeft" data-text="Shop now" data-wow-duration="2.5s" data-wow-delay="0.5s">Conoce Más</a>
+                      <a href="#" class="wow button animated fadeInLeft" data-text="Shop now" data-wow-duration="2.5s"
+                        data-wow-delay="0.5s">Conoce Más</a>
                     </div>
                   </div>
                 </div>
@@ -358,7 +360,8 @@ ini_set('display_errors', '0');
                     <h4 class="wow animated fadeInLeft" data-wow-duration="2s" data-wow-delay="0.5s">Desde
                       <span>$5'399.000</span></h4>
                     <div class="slider-button">
-                      <a href="#" class="wow button animated fadeInLeft" data-text="Shop now" data-wow-duration="2.5s" data-wow-delay="0.5s">Adquiérelo Ahora</a>
+                      <a href="#" class="wow button animated fadeInLeft" data-text="Shop now" data-wow-duration="2.5s"
+                        data-wow-delay="0.5s">Adquiérelo Ahora</a>
                     </div>
                   </div>
                 </div>
@@ -375,7 +378,8 @@ ini_set('display_errors', '0');
                     <h4 class="wow animated fadeInLeft" data-wow-duration="2s" data-wow-delay="0.5s">Desde
                       <span>$3'490.000</span></h4>
                     <div class="slider-button">
-                      <a href="#" class="wow button animated fadeInLeft" data-text="Shop now" data-wow-duration="2.5s" data-wow-delay="0.5s">Ver Características</a>
+                      <a href="#" class="wow button animated fadeInLeft" data-text="Shop now" data-wow-duration="2.5s"
+                        data-wow-delay="0.5s">Ver Características</a>
                     </div>
                   </div>
                 </div>
@@ -512,45 +516,49 @@ ini_set('display_errors', '0');
                         $query = $conexion->query("SELECT * FROM productos");
                         if ($query->num_rows > 0) {
                           while ($row = $query->fetch_assoc()) {
-                            $Id = $row["Id_Categoria"];
+                            $Id = $row["id_categoria"];
                             $query2 = $conexion->query("SELECT * FROM categoria WHERE Id_Categoria = '" . $Id . "'");
                             if ($query2->num_rows > 0) {
                               while ($cat = $query2->fetch_assoc()) {
                                 $nomcat = $cat["Nombre_Cat"]; ?>
 
 
-                                <!-- Producto individual-->
-                                <div class="col-md-3 col-sm-3 item-col2 product-item" category=<?php echo "$nomcat" ?> id="<?php echo $row['Id_Producto'] ?>">
-                                  <div class="single-product">
-                                    <div class="product-img">
-                                      <a href="single-product.html">
-                                        <img class="first-img" src="img/product/<?php echo "$Id" ?>a.jpg" alt="">
-                                        <img class="hover-img" src="img/product/<?php echo "$Id" ?>b.jpg" alt="">
-                                      </a>
-                                      <ul class="product-action">
-                                        <li><a href="#" data-toggle="modal" title="Ampliar" data-target="#myModal"><i class="ion-android-expand"></i></a></li>
-                                      </ul>
-                                    </div>
-                                    <div class="product-content">
-                                      <h2><a href="single-product.html"><?php echo $row['Nombre'] ?></a></h2>
-                                      <div class="rating">
-                                        <?php echo $nomcat ?>
-                                      </div>
-                                      <div class="product-price">
-                                        <span class="new-price">$ <?php echo $row['ValorUnitario'] ?></span>
-                                        <form action="procarrito.php" method="post">
-                                          <input type="hidden" name="id" id="id" value="<?php echo $row['Id_Producto'] ?>">
-                                          <input type="hidden" name="usuario" id="usuario" value="<?php echo $_SESSION['id'] ?>">
-                                          <?php
+                        <!-- Producto individual-->
+                        <div class="col-md-3 col-sm-3 item-col2 product-item" category=<?php echo "$nomcat" ?>
+                          id="<?php echo $row['Id_Producto'] ?>">
+                          <div class="single-product">
+                            <div class="product-img">
+                              <a href="single-product.html">
+                                <img class="first-img" src="img/product/<?php echo "$Id" ?>a.jpg" alt="">
+                                <img class="hover-img" src="img/product/<?php echo "$Id" ?>b.jpg" alt="">
+                              </a>
+                              <ul class="product-action">
+                                <li><a href="#" data-toggle="modal" title="Ampliar" data-target="#myModal"><i
+                                      class="ion-android-expand"></i></a></li>
+                              </ul>
+                            </div>
+                            <div class="product-content">
+                              <h2><a href="single-product.html"><?php echo $row['Nombre'] ?></a></h2>
+                              <div class="rating">
+                                <?php echo $nomcat ?>
+                              </div>
+                              <div class="product-price">
+                                <span class="new-price">$ <?php echo $row['ValorUnitario'] ?></span>
+                                <form action="procarrito.php" method="post">
+                                  <input type="hidden" name="id" id="id" value="<?php echo $row['Id_Producto'] ?>">
+                                  <input type="hidden" name="usuario" id="usuario"
+                                    value="<?php echo $_SESSION['id'] ?>">
+                                  <?php
                                           if (isset($_SESSION['rol'])) { ?>
-                                            <button class="btn button add-btn" type="submit" name="boton" data-toggle="tooltip"><i class="material-icons">shopping_cart</i></button>
-                                          <?php } ?>
-                                        </form>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                                <!-- Fin producto individual -->
+                                  <button class="btn button add-btn" type="submit" name="boton" data-toggle="tooltip"><i
+                                      class="material-icons">shopping_cart</i></button>
+                                  <?php } ?>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Fin producto individual -->
 
                         <?php
                               }
@@ -585,47 +593,52 @@ ini_set('display_errors', '0');
                               while ($cat = $query2->fetch_assoc()) {
                                 $nomcat = $cat["Nombre_Cat"]; ?>
 
-                                <!-- Producto individual en vista de fila -->
-                                <div class="col-md-12 product-item" category=<?php echo "$nomcat" ?> id="<?php echo $row['Id_Producto'] ?>">
-                                  <div class="single-item">
-                                    <div class="product-img img-full">
-                                      <div class="col-md-4 col-sm-4">
-                                        <a href="single-product.html">
-                                          <img class="first-img" src="img/product/<?php echo "$Id" ?>a.jpg" alt="">
-                                          <img class="hover-img" src="img/product/<?php echo "$Id" ?>b.jpg" alt="">
-                                        </a>
-                                      </div>
-                                      <div class="col-md-8 col-sm-8">
-                                        <div class="product-content-2">
-                                          <h2><a href="single-product.html"><?php echo $row['Nombre'] ?></a></h2>
-                                          <div class="product-price mb-20">
-                                            <span class="new-price">$ <?php echo $row['ValorUnitario'] ?></span>
-                                          </div>
-                                          <div class="product-discription">
-                                            <p><?php echo $row['Descripcion'] ?>.</p>
-                                          </div>
-                                          <div class="pro-action-2">
-                                            <ul class="product-cart-area-list">
-                                              <li>
-                                                <form action="procarrito.php" method="post">
-                                                  <input type="hidden" name="id" id="id" value="<?php echo $row['Id_Producto'] ?>">
-                                                  <input type="hidden" name="usuario" id="usuario" value="<?php echo $_SESSION['id'] ?>">
-                                                  <?php
+                        <!-- Producto individual en vista de fila -->
+                        <div class="col-md-12 product-item" category=<?php echo "$nomcat" ?>
+                          id="<?php echo $row['Id_Producto'] ?>">
+                          <div class="single-item">
+                            <div class="product-img img-full">
+                              <div class="col-md-4 col-sm-4">
+                                <a href="single-product.html">
+                                  <img class="first-img" src="img/product/<?php echo "$Id" ?>a.jpg" alt="">
+                                  <img class="hover-img" src="img/product/<?php echo "$Id" ?>b.jpg" alt="">
+                                </a>
+                              </div>
+                              <div class="col-md-8 col-sm-8">
+                                <div class="product-content-2">
+                                  <h2><a href="single-product.html"><?php echo $row['Nombre'] ?></a></h2>
+                                  <div class="product-price mb-20">
+                                    <span class="new-price">$ <?php echo $row['ValorUnitario'] ?></span>
+                                  </div>
+                                  <div class="product-discription">
+                                    <p><?php echo $row['Descripcion'] ?>.</p>
+                                  </div>
+                                  <div class="pro-action-2">
+                                    <ul class="product-cart-area-list">
+                                      <li>
+                                        <form action="procarrito.php" method="post">
+                                          <input type="hidden" name="id" id="id"
+                                            value="<?php echo $row['Id_Producto'] ?>">
+                                          <input type="hidden" name="usuario" id="usuario"
+                                            value="<?php echo $_SESSION['id'] ?>">
+                                          <?php
                                                   if (isset($_SESSION['rol'])) { ?>
-                                                    <button class="action-btn big" type="submit" name="boton" data-toggle="tooltip"><i class="material-icons">shopping_cart</i></button>
-                                                  <?php } ?>
-                                                </form>
-                                              </li>
-                                              <li><a class="action-btn small" href="#" data-toggle="modal" title="Ampliar" data-target="#myModal"><i class="ion-android-expand"></i></a></li>
-                                            </ul>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
+                                          <button class="action-btn big" type="submit" name="boton"
+                                            data-toggle="tooltip"><i class="material-icons">shopping_cart</i></button>
+                                          <?php } ?>
+                                        </form>
+                                      </li>
+                                      <li><a class="action-btn small" href="#" data-toggle="modal" title="Ampliar"
+                                          data-target="#myModal"><i class="ion-android-expand"></i></a></li>
+                                    </ul>
                                   </div>
                                 </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
 
-                                <!--final producto individual vista fila-->
+                        <!--final producto individual vista fila-->
                         <?php
                               }
                             }
@@ -718,47 +731,47 @@ ini_set('display_errors', '0');
     <?php include('include/scripts.php'); ?>
 
     <script>
-      $(document).ready(function() {
+    $(document).ready(function() {
 
-        // AGREGANDO CLASE ACTIVE AL PRIMER ENLACE ====================
-        $('.category_list .category_item[category="all"]').addClass('ct_item-active');
+      // AGREGANDO CLASE ACTIVE AL PRIMER ENLACE ====================
+      $('.category_list .category_item[category="all"]').addClass('ct_item-active');
 
-        // FILTRANDO PRODUCTOS  ============================================
+      // FILTRANDO PRODUCTOS  ============================================
 
-        $('.category_item').click(function() {
-          var catProduct = $(this).attr('category');
-          console.log(catProduct);
+      $('.category_item').click(function() {
+        var catProduct = $(this).attr('category');
+        console.log(catProduct);
 
-          // AGREGANDO CLASE ACTIVE AL ENLACE SELECCIONADO
-          $('.category_item').removeClass('ct_item-active');
-          $(this).addClass('ct_item-active');
+        // AGREGANDO CLASE ACTIVE AL ENLACE SELECCIONADO
+        $('.category_item').removeClass('ct_item-active');
+        $(this).addClass('ct_item-active');
 
-          // OCULTANDO PRODUCTOS =========================
-          $('.product-item').css('transform', 'scale(0)');
+        // OCULTANDO PRODUCTOS =========================
+        $('.product-item').css('transform', 'scale(0)');
 
-          function hideProduct() {
-            $('.product-item').hide();
-          }
-          setTimeout(hideProduct, 400);
+        function hideProduct() {
+          $('.product-item').hide();
+        }
+        setTimeout(hideProduct, 400);
 
-          // MOSTRANDO PRODUCTOS =========================
-          function showProduct() {
-            $('.product-item[category="' + catProduct + '"]').show();
-            $('.product-item[category="' + catProduct + '"]').css('transform', 'scale(1)');
-          }
-          setTimeout(showProduct, 400);
-        });
-
-        // MOSTRANDO TODOS LOS PRODUCTOS =======================
-
-        $('.category_item[category="all"]').click(function() {
-          function showAll() {
-            $('.product-item').show();
-            $('.product-item').css('transform', 'scale(1)');
-          }
-          setTimeout(showAll, 400);
-        });
+        // MOSTRANDO PRODUCTOS =========================
+        function showProduct() {
+          $('.product-item[category="' + catProduct + '"]').show();
+          $('.product-item[category="' + catProduct + '"]').css('transform', 'scale(1)');
+        }
+        setTimeout(showProduct, 400);
       });
+
+      // MOSTRANDO TODOS LOS PRODUCTOS =======================
+
+      $('.category_item[category="all"]').click(function() {
+        function showAll() {
+          $('.product-item').show();
+          $('.product-item').css('transform', 'scale(1)');
+        }
+        setTimeout(showAll, 400);
+      });
+    });
     </script>
 </body>
 

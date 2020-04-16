@@ -223,7 +223,7 @@ session_start();
 										<div class="mini-cart-area">
 											<ul>
 												<?php require('vars.php') ?>
-												<?php echo "<li><a href='carrito.php'><i class='ion-android-cart'></i><span class='cart-add'>" . $numprod . "</span><span class='cart-total'>$" . number_format($total-15000) . "<i class='fa fa-angle-down'></i></span></a>" ?>
+												<?php echo "<li><a href='carrito.php'><i class='ion-android-cart'></i><span class='cart-add'>" . $numprod . "</span><span class='cart-total'>$" . number_format($total) . "<i class='fa fa-angle-down'></i></span></a>" ?>
 											</ul>
 										</div>
 									</div>
