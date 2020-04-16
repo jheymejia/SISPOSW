@@ -47,6 +47,28 @@ function cargarEmp() {
     }
   });
 }
+function showReport() {
+  var url = "mods/empleados/showreport.php"
+  $.ajax({
+    type: "POST",
+    url: url,
+    data: {},
+    success: function(datos) {
+      $('#cargaModulo').html(datos);
+    }
+  });
+}
+function repDetail(id) {
+  var url = "mods/empleados/reportdetail.php";
+  $.ajax({
+    type: "POST",
+    url: url,
+    data: {id},
+    success: function(datos) {
+      $('#cargaModulo').html(datos);
+    }
+  });
+}
 //Menú AJAX Carga de SubModulos en Modal
 //Son los modulos de edición de registros
 function edEmp(id) {
