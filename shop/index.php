@@ -521,7 +521,6 @@ ini_set('display_errors', '0');
 
 
                         <?php
-<<<<<<< Updated upstream
                         $query = $conexion->query("SELECT * FROM productos");
                         if ($query->num_rows > 0) {
                           while ($row = $query->fetch_assoc()) {
