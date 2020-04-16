@@ -528,8 +528,8 @@ ini_set('display_errors', '0');
                           <div class="single-product">
                             <div class="product-img">
                               <a href="single-product.html">
-                                <img class="first-img" src="img/product/<?php echo $row['Id_Categoria'] ?>a.jpg" alt="">
-                                <img class="hover-img" src="img/product/<?php echo $row['Id_Categoria'] ?>b.jpg" alt="">
+                                <img class="first-img" src="img/product/<?php echo "$Id" ?>a.jpg" alt="">
+                                <img class="hover-img" src="img/product/<?php echo "$Id" ?>b.jpg" alt="">
                               </a>
                               <ul class="product-action">
                                 <li><a href="#" data-toggle="modal" title="Ampliar" data-target="#myModal"><i
@@ -598,8 +598,8 @@ ini_set('display_errors', '0');
                             <div class="product-img img-full">
                               <div class="col-md-4 col-sm-4">
                                 <a href="single-product.html">
-                                  <img class="first-img" src="img/product/3.jpg" alt="">
-                                  <img class="hover-img" src="img/product/4.jpg" alt="">
+                                  <img class="first-img" src="img/product/<?php echo "$Id" ?>a.jpg" alt="">
+                                  <img class="hover-img" src="img/product/<?php echo "$Id" ?>b.jpg" alt="">
                                 </a>
                               </div>
                               <div class="col-md-8 col-sm-8">
