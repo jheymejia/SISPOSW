@@ -206,7 +206,7 @@ $(".alert-success").delay(4000).slideUp(200, function() {
 });
 </script>
 <script type="text/javascript">
-$(document).on('ready', function() {
+$(document).ready( function() {
   $('#departamento').val(1);
   recargarLista();
 

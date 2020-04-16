@@ -41,7 +41,7 @@ if ($query->num_rows > 0) {
                 $total = $total + $flete;
             }
         }
-        $newsell = $conexion->query("INSERT INTO venta_cabecera (Id_Cliente, fecha, forma_pago, Total_Venta) VALUES ('" . $cli['Id_Cliente'] . "', '" . $fecha . "', 'Tarjeta', '" . $total . "')");
+        $newsell = $conexion->query("INSERT INTO venta_cabecera (Id_Cliente, doc_cliente, nom_cliente, fecha, forma_pago, Total_Venta) VALUES ('" . $cli['Id_Cliente'] . "','" . $docucliente . "' , '" . $nombrecliente . "' ,'" . $fecha . "', 'Tarjeta', '" . $total . "')");
         $query = $conexion->query("SELECT * FROM carrito WHERE usuario = '" . $_SESSION['id'] . "' AND estado = '1'");
         if ($query->num_rows > 0) {
             while ($row = $query->fetch_assoc()) {

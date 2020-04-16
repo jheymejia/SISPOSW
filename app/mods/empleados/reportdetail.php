@@ -16,6 +16,7 @@ $filfac = mysqli_fetch_array($fac)
             <th scope="col">Nombre Producto</th>
             <th scope="col">Cantidad</th>
             <th scope="col">Valor</th>            
+            <th scope="col">Sub Total</th>
         </tr>
     </thead>
     <?php
