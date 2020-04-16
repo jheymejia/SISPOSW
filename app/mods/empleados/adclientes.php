@@ -17,7 +17,7 @@ require('../../rq/climod.php');
   </nav>
 </header>
 <script type="text/javascript">
-$(document).on('ready', function() {
+$(document).ready( function() {
   $("#buscar").on("click", (e) => {
     e.preventDefault();
     CargarDatosBuCli();

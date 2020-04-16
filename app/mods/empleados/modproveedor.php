@@ -99,7 +99,7 @@ $conexion->close();
             </div>
         </form>
         <script type="text/javascript">
-            $(document).on('ready', function() {
+            $(document).ready( function() {
                 $('#departamento').val(1);
                 recargarLista();
 
