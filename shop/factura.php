@@ -2,8 +2,8 @@
 require('../datos/conexioncore.php');
 session_start();
 if (isset($_POST["pagofactura"])) {
+    $query = $conexion->query("SELECT * FROM carrito WHERE usuario = '" . $_SESSION['id'] . "' AND estado = '1'");
     if ($query->num_rows > 0) {
-        $query = $conexion->query("SELECT * FROM carrito WHERE usuario = '" . $_SESSION['id'] . "' AND estado = '1'");
         $nombrecliente = $_POST['name'];
         $docucliente = $_POST['id'];
         $depcliente = $_POST['departamento'];
