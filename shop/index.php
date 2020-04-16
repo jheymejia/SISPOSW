@@ -1,4 +1,5 @@
 <?php
+//Este es el Commit
 require "../datos/conexioncore.php";
 session_start();
 ?>
