@@ -513,10 +513,10 @@ ini_set('display_errors', '0');
 
 
                         <?php
-												$query = $conexion->query("SELECT * FROM Productos");
+												$query = $conexion->query("SELECT * FROM productos");
 												if ($query->num_rows > 0) {
 													while ($row = $query->fetch_assoc()) {
-														$Id = $row["id_categoria"];
+														$Id = $row["Id_Categoria"];
 														$query2 = $conexion->query("SELECT * FROM categoria WHERE Id_Categoria = '" . $Id . "'");
 														if ($query2->num_rows > 0) {
 															while ($cat = $query2->fetch_assoc()) {
@@ -528,8 +528,8 @@ ini_set('display_errors', '0');
                           <div class="single-product">
                             <div class="product-img">
                               <a href="single-product.html">
-                                <img class="first-img" src="img/product/11.jpg" alt="">
-                                <img class="hover-img" src="img/product/12.jpg" alt="">
+                                <img class="first-img" src="img/product/<?php echo $row['Id_Categoria'] ?>a.jpg" alt="">
+                                <img class="hover-img" src="img/product/<?php echo $row['Id_Categoria'] ?>b.jpg" alt="">
                               </a>
                               <ul class="product-action">
                                 <li><a href="#" data-toggle="modal" title="Ampliar" data-target="#myModal"><i
