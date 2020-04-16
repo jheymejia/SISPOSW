@@ -9,8 +9,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         require('../../../../datos/conexioncore.php');
         // $conexion=mysqli_connect("localhost", "root", "", "tps89") or
         // die("Problemas con la conexión");
-        $consulta = "Select P.Id_Proveedor, P.Nombre_Prov,C.IdCiudad, C.Nombre Ciudad, C.Departamento, P.Direccion, P.Telefonos, P.Email
-        from proveedores P Inner Join ciudad C On P.IdCiudad=C.IdCiudad Where P.Id_Proveedor like '%$id%' Order by P.Nombre_Prov";
+        $consulta = "Select P.Nit, P.Id_Proveedor, P.Nombre_Prov,C.IdCiudad, C.Nombre Ciudad, C.Departamento, P.Direccion, P.Telefonos, P.Email
+        from proveedores P Inner Join ciudad C On P.IdCiudad=C.IdCiudad Where P.Nit like '%$id%' Order by P.Nombre_Prov";
         $datos = mysqli_query($conexion, $consulta) or die(mysqli_error($conexion));
         mysqli_close($conexion);
         return $datos;
@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         require('../../../../datos/conexioncore.php');
         // $conexion=mysqli_connect("localhost", "root", "", "tps89") or
         // die("Problemas con la conexión");
-        $consulta = "Select P.Id_Proveedor, P.Nombre_Prov,C.IdCiudad, C.Nombre Ciudad, C.Departamento, P.Direccion, P.Telefonos, P.Email
+        $consulta = "Select P.Nit, P.Id_Proveedor, P.Nombre_Prov,C.IdCiudad, C.Nombre Ciudad, C.Departamento, P.Direccion, P.Telefonos, P.Email
         from proveedores P Inner Join ciudad C On P.IdCiudad=C.IdCiudad Where P.Nombre_Prov like '%$nombre%' Order by P.Nombre_Prov";
         $datos = mysqli_query($conexion, $consulta) or die(mysqli_error($conexion));
         mysqli_close($conexion);
@@ -29,26 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     function ProveedorXcorreo($correo)
     {
         require('../../../../datos/conexioncore.php');
-        $consulta = "Select P.Id_Proveedor, P.Nombre_Prov,C.IdCiudad, C.Nombre Ciudad, C.Departamento, P.Direccion, P.Telefonos, P.Email
+        $consulta = "Select P.Nit, P.Id_Proveedor, P.Nombre_Prov,C.IdCiudad, C.Nombre Ciudad, C.Departamento, P.Direccion, P.Telefonos, P.Email
         from proveedores P Inner Join ciudad C On P.IdCiudad=C.IdCiudad Where P.Email like '%$correo%' Order by P.Nombre_Prov";
-        $datos = mysqli_query($conexion, $consulta) or die(mysqli_error($conexion));
-        mysqli_close($conexion);
-        return $datos;
-    }
-    function ProveedorXciudad($ciudad)
-    {
-        require('../../../../datos/conexioncore.php');
-        $consulta = "Select P.Id_Proveedor, P.Nombre_Prov,C.IdCiudad, C.Nombre Ciudad, C.Departamento, P.Direccion, P.Telefonos, P.Email
-        from proveedores P Inner Join ciudad C On P.IdCiudad=C.IdCiudad Where C.Nombre like '%$ciudad%' Order by P.Nombre_Prov";
-        $datos = mysqli_query($conexion, $consulta) or die(mysqli_error($conexion));
-        mysqli_close($conexion);
-        return $datos;
-    }
-    function ProveedorXdepartamento($departamento)
-    {
-        require('../../../../datos/conexioncore.php');
-        $consulta = "Select P.Id_Proveedor, P.Nombre_Prov,C.IdCiudad, C.Nombre Ciudad, C.Departamento, P.Direccion, P.Telefonos, P.Email
-        from proveedores P Inner Join ciudad C On P.IdCiudad=C.IdCiudad Where C.Departamento like '%$departamento%' Order by P.Nombre_Prov";
         $datos = mysqli_query($conexion, $consulta) or die(mysqli_error($conexion));
         mysqli_close($conexion);
         return $datos;
@@ -82,6 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <thead class='thead-light'>
       <tr>
       <th class='th-sm'>Editar</th>
+      <th class='th-sm'>#</th>
       <th class='th-sm'>NIT</th>
       <th class='th-sm'>Nombre</th>
       <th class='th-sm'>Departamento</th>
@@ -96,6 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       echo "<tr>
             <td><a onclick='edProv(" . $dato['Id_Proveedor'] . ");'><i class='material-icons'> edit </i></a></td>
             <td>$dato[Id_Proveedor]</td>
+            <td>$dato[Nit]</td>
             <td>$dato[Nombre_Prov]</td>
             <td>$dato[Departamento]</td>
             <td>$dato[Ciudad]</td>

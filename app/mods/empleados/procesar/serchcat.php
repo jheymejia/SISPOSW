@@ -63,6 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       <th class='th-sm'>Descripción</th>
       <th class='th-sm'>Valor</th>
       <th class='th-sm'>Categoría</th>
+      <th class='th-sm'>Proveedor</th>      
       <th class='th-sm'>Acciones</th>
       </tr>
     </thead>
@@ -76,6 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <td>$dato[Descripcion]</td>
             <td>$dato[ValorUnitario]</td>
             <td>$dato[Nombre_Cat]</td>
+            <td>$dato[proveedor]</td>            
             <td><a onclick='edCat(" . $dato['Id_Producto'] . ");'>Editar</a></td>
             </tr>";
     }

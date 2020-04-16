@@ -24,8 +24,7 @@ require('../../rq/provmod.php');
 
     <div class="col-md-3">
       <i class="material-icons align-text-bottom">search</i>
-      <input oninput="CargarDatosprov()" class="form-control form-control-sm font1" type="text" placeholder="Buscar ..."
-        aria-label="Campo para Buscar" name="vrBuscar" id="vrBuscar" v-model="vrBuscar">
+      <input oninput="CargarDatosprov()" class="form-control form-control-sm font1" type="text" placeholder="Buscar ..." aria-label="Campo para Buscar" name="vrBuscar" id="vrBuscar" v-model="vrBuscar">
     </div>
 
     <div class="col-md-3">
@@ -41,8 +40,7 @@ require('../../rq/provmod.php');
     </div>
 
     <div class="col-md-4">
-      <button data-keyboard="true" data-backdrop="static" data-toggle="modal" data-target="#reg" type="button"
-        class="btn btn-sm success-color text-white font1"><i class="material-icons p-0 align-text-bottom">add</i>
+      <button data-keyboard="true" data-backdrop="static" data-toggle="modal" data-target="#reg" type="button" class="btn btn-sm success-color text-white font1"><i class="material-icons p-0 align-text-bottom">add</i>
         Nuevo</button>
     </div>
 
@@ -53,30 +51,30 @@ require('../../rq/provmod.php');
 
 
 <script type="text/javascript">
-$(document).ready( function() {
-  $("#buscar").on("click", (e) => {
-    e.preventDefault();
-    CargarDatosprov();
+  $(document).ready(function() {
+    $("#buscar").on("click", (e) => {
+      e.preventDefault();
+      CargarDatosprov();
+    })
   })
-})
 
-function CargarDatosprov() {
-  let buscaX = "";
-  let vrBusca = "";
-  buscaX = document.getElementById("buscarX").value;
-  vrBusca = document.getElementById("vrBuscar").value;
-  $.ajax({
-    type: "POST",
-    url: "mods/empleados/procesar/serchprov.php",
-    data: {
-      buscarX: buscaX,
-      vrBuscar: vrBusca
-    },
-    success: function(r) {
-      $('#Resultado').html(r);
-    }
-  });
-}
+  function CargarDatosprov() {
+    let buscaX = "";
+    let vrBusca = "";
+    buscaX = document.getElementById("buscarX").value;
+    vrBusca = document.getElementById("vrBuscar").value;
+    $.ajax({
+      type: "POST",
+      url: "mods/empleados/procesar/serchprov.php",
+      data: {
+        buscarX: buscaX,
+        vrBuscar: vrBusca
+      },
+      success: function(r) {
+        $('#Resultado').html(r);
+      }
+    });
+  }
 </script>
 
 <div id="vueapp">
@@ -91,26 +89,21 @@ function CargarDatosprov() {
             <!-- Campos de Inserccion -->
             <div class="form-row">
               <div class="col">
-                <input v-model="idProv" value aria-required="true" class="form-control" type="text" placeholder="Código"
-                  name="id_proveedor" id="id_proveedor">
+                <input v-model="idProv" value aria-required="true" class="form-control" type="text" placeholder="NIT" name="id_proveedor" id="id_proveedor">
               </div>
               <div class="col">
-                <input v-model="nombre" value aria-required="true" class="form-control" type="text" placeholder="Nombre"
-                  name="nombre" id="nombre">
+                <input v-model="nombre" value aria-required="true" class="form-control" type="text" placeholder="Nombre" name="nombre" id="nombre">
               </div>
               <div class="col">
-                <input v-model="direccion" value aria-required="true" class="form-control" type="text"
-                  placeholder="Dirección" name="direccion" id="direccion">
+                <input v-model="direccion" value aria-required="true" class="form-control" type="text" placeholder="Dirección" name="direccion" id="direccion">
               </div>
             </div><br>
             <div class="form-row">
               <div class="col">
-                <input v-model="email" value aria-required="true" class="form-control" type="text"
-                  placeholder="Correo Electrónico" name="email" id="email">
+                <input v-model="email" value aria-required="true" class="form-control" type="text" placeholder="Correo Electrónico" name="email" id="email">
               </div>
               <div class="col">
-                <input v-model="telefonos" value aria-required="true" class="form-control" type="text"
-                  placeholder="Teléfonos" name="telefonos" id="telefonos">
+                <input v-model="telefonos" value aria-required="true" class="form-control" type="text" placeholder="Teléfonos" name="telefonos" id="telefonos">
               </div>
             </div>
             <br>
@@ -136,8 +129,7 @@ function CargarDatosprov() {
               <!-- Botonera para Limpiar el Formulario o hacer un Registro -->
               <div style="text-align: center" class="col"><br>
                 <input class="btn btn-primary" type="reset" value="Limpiar">
-                <input class="btn btn-primary btn-success" type="button" value="Enviar" name="proveedores"
-                  @click="enviarDatos()">
+                <input class="btn btn-primary btn-success" type="button" value="Enviar" name="proveedores" @click="enviarDatos()" data-dismiss="modal">
               </div>
               <!-- Botonera para Limpiar el Formulario o hacer un Registro -->
             </div>
@@ -153,86 +145,85 @@ function CargarDatosprov() {
 
   <!-- Script del VUE.js -->
   <script type="text/javascript">
-  var vm = new Vue({
-    el: '#vueapp', //elemento HTML afectado por el VUE
-    data: { //enlazar datos
-      // formulario:{
-      idProv: '',
-      nombre: '',
-      direccion: '',
-      email: '',
-      telefonos: '',
-      departamento: '',
-      ciudad: '',
-      // }
-    },
-    mounted() {
-      CargarDatosprov();
-    },
-    methods: { //metodos personalizados
-      enviarDatos: function(event) {
-        const formulario = new FormData();
-        formulario.set('idProv', this.idProv);
-        formulario.set('nombre', this.nombre);
-        formulario.set('direccion', this.direccion);
-        formulario.set('email', this.email);
-        formulario.set('telefonos', this.telefonos);
-        formulario.set('ciudad', this.ciudad);
-        formulario.set('departamento', this.departamento);
-        //peticion por AXIOS con POST
-        axios({
-          method: 'POST', //metodo
-          url: 'mods/empleados/procesar/adproveedores.php', //archivo donde se envía la información
-          data: formulario
-        }).then(function(respuesta) { //Respuesta del servidor
-          alert(respuesta.data.msg);
-          if (respuesta.data.exito === true) { //Redirección a la página de listado
-            cargarProv();
-          }
-        }).catcht(function() {
-          console.log(error);
-        })
+    var vm = new Vue({
+      el: '#vueapp', //elemento HTML afectado por el VUE
+      data: { //enlazar datos
+        // formulario:{
+        idProv: '',
+        nombre: '',
+        direccion: '',
+        email: '',
+        telefonos: '',        
+        ciudad: '',
+        // }
+      },
+      mounted() {
+        CargarDatosprov();
+      },
+      methods: { //metodos personalizados
+        enviarDatos: function(event) {
+          const formulario = new FormData();
+          formulario.set('idProv', this.idProv);
+          formulario.set('nombre', this.nombre);
+          formulario.set('direccion', this.direccion);
+          formulario.set('email', this.email);
+          formulario.set('telefonos', this.telefonos);
+          formulario.set('ciudad', this.ciudad);          
+          //peticion por AXIOS con POST
+          axios({
+            method: 'POST', //metodo
+            url: 'mods/empleados/procesar/adproveedores.php', //archivo donde se envía la información
+            data: formulario
+          }).then(function(respuesta) { //Respuesta del servidor
+            console.log(respuesta);
+            alert(respuesta.data.msg);
+            if (respuesta.data.exito === true) { //Redirección a la página de listado
+              cargarProv();
+            }
+          }).catcht(function(error) {
+            console.log(error);
+          })
+        }
       }
-    }
 
-  });
+    });
   </script>
 </div>
 
 <!-- Aplicacion VUE -->
 <script>
-$(".alert-success").delay(4000).slideUp(200, function() {
-  $(this).alert - success('close');
-});
+  $(".alert-success").delay(4000).slideUp(200, function() {
+    $(this).alert - success('close');
+  });
 </script>
 <script type="text/javascript">
-$(document).ready( function() {
-  $('#departamento').val(1);
-  recargarLista();
-
-  $('#departamento').change(function() {
+  $(document).ready(function() {
+    $('#departamento').val(1);
     recargarLista();
-  });
-})
+
+    $('#departamento').change(function() {
+      recargarLista();
+    });
+  })
 
 
-function recargarLista(ciu = "PIOJÓ") {
-  //alert(document.getElementById("departamento").value)
-  $.ajax({
+  function recargarLista(ciu = "PIOJÓ") {
+    //alert(document.getElementById("departamento").value)
+    $.ajax({
 
-    type: "POST",
-    url: "mods/empleados/datosprov.php",
-    //data: "dprtmnto=" + $("#departamento").val(),
-    data: { //Para enlazar datos
-      dprtmnto: $("#departamento").val(),
-      ciudad: "CALI",
+      type: "POST",
+      url: "mods/empleados/datosprov.php",
+      //data: "dprtmnto=" + $("#departamento").val(),
+      data: { //Para enlazar datos
+        dprtmnto: $("#departamento").val(),
+        ciudad: "CALI",
 
-    },
+      },
 
-    success: function(r) {
-      $('#ciudad').html(r);
+      success: function(r) {
+        $('#ciudad').html(r);
 
-    }
-  });
-}
+      }
+    });
+  }
 </script>

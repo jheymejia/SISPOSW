@@ -89,7 +89,7 @@ require('../../rq/empmod.php');
               <!-- Botonera para Limpiar el Formulario o hacer un Registro -->
               <div style="text-align: center" class="col"><br>
                 <input class="btn btn-primary" type="reset" value="Limpiar">
-                <input class="btn btn-primary" type="button" value="Registrar" name="registro" @click="enviarDatos();">
+                <input class="btn btn-primary" type="button" value="Registrar" name="registro" @click="enviarDatos();" data-dismiss="modal">
               </div>
               <!-- Botonera para Limpiar el Formulario o hacer un Registro -->
             </div>
