@@ -1,5 +1,4 @@
 <?php
-//Este es el Commit
 require "../datos/conexioncore.php";
 session_start();
 ?>
@@ -242,14 +241,6 @@ ini_set('display_errors', '0');
                       <?php echo "<li><a href='carrito.php'><i class='ion-android-cart'></i><span class='cart-add'>" . $numprod . "</span><span class='cart-total'>$" . number_format($total) . "<i class='fa fa-angle-down'></i></span></a>" ?>
                     </ul>
                   </div>
-								if (isset($_SESSION['rol'])) {
-								?>
-              <div class="col-md-3 col-sm-4 col-xs-12">
-                <div class="mini-cart-area">
-                  <ul>
-                    <?php require('vars.php') ?>
-                    <?php echo "<li><a href='carrito.php'><i class='ion-android-cart'></i><span class='cart-add'>".$numprod."</span><span class='cart-total'>$".number_format($total-15000)."<i class='fa fa-angle-down'></i></span></a>" ?>
-                  </ul>
                 </div>
               <?php } ?>
               <!--Mini Cart End-->
@@ -509,10 +500,7 @@ ini_set('display_errors', '0');
             <!--Shop Product Area Start-->
             <div class="shop-product-area">
               <div class="tab-content">
-
-
-
-                <!--Vista cuadrícula de productos-->
+                <!--Grid View Start-->
                 <div id="grid-view" class="tab-pane fade in active">
                   <div class="row">
                     <div class="product-container">
@@ -563,53 +551,6 @@ ini_set('display_errors', '0');
                                   </div>
                                 </div>
                                 <!-- Fin producto individual -->
-=======
-												$query = $conexion->query("SELECT * FROM productos");
-												if ($query->num_rows > 0) {
-													while ($row = $query->fetch_assoc()) {
-														$Id = $row["id_categoria"];
-														$query2 = $conexion->query("SELECT * FROM categoria WHERE Id_Categoria = '" . $Id . "'");
-														if ($query2->num_rows > 0) {
-															while ($cat = $query2->fetch_assoc()) {
-																$nomcat = $cat["Nombre_Cat"]; ?>
-
-
-                        <!-- Producto individual-->
-                        <div class="col-md-3 col-sm-3 item-col2 product-item" category=<?php echo "$nomcat" ?> id="<?php echo $row['Id_Producto'] ?>">
-                          <div class="single-product">
-                            <div class="product-img">
-                              <a href="single-product.html">
-                                <img class="first-img" src="img/product/<?php echo "$Id" ?>a.jpg" alt="">
-                                <img class="hover-img" src="img/product/<?php echo "$Id" ?>b.jpg" alt="">
-                              </a>
-                              <ul class="product-action">
-                                <li><a href="#" data-toggle="modal" title="Ampliar" data-target="#myModal"><i
-                                      class="ion-android-expand"></i></a></li>
-                              </ul>
-                            </div>
-                            <div class="product-content">
-                              <h2><a href="single-product.html"><?php echo $row['Nombre'] ?></a></h2>
-                              <div class="rating">
-                                <?php echo $nomcat ?>
-                              </div>
-                              <div class="product-price">
-                                <span class="new-price">$ <?php echo $row['ValorUnitario'] ?></span>
-                                <form action="procarrito.php" method="post">
-                                  <input type="hidden" name="id" id="id" value="<?php echo $row['Id_Producto'] ?>">
-                                  <input type="hidden" name="usuario" id="usuario"
-                                    value="<?php echo $_SESSION['id'] ?>">
-                                  <?php
-																						if (isset($_SESSION['rol'])) { ?>
-                                  <button class="btn button add-btn" type="submit" name="boton" data-toggle="tooltip"><i
-                                      class="material-icons">shopping_cart</i></button>
-                                  <?php } ?>
-                                </form>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <!-- Fin producto individual -->
->>>>>>> Stashed changes
 
                         <?php
                               }
