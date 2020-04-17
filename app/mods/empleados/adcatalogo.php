@@ -192,7 +192,8 @@ require('../../rq/catmod.php');
           formulario.set('descripcion', this.descripcion);
           formulario.set('precio', this.precio);
           formulario.set('idCategoria', this.idCategoria);
-          formulario.set('nomProv', this.nomProv);          
+          formulario.set('nomProv', this.nomProv);
+          formulario.set('imagen', this.imagen);
           //peticion por AXIOS con POST
           axios({
             method: 'POST', //metodo
