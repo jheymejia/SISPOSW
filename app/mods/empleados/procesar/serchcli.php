@@ -1,6 +1,3 @@
-<html>
-
-
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     //print_r($_POST);
@@ -53,11 +50,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             break;
     }
     echo "
-<div class='container mt-5'>
+
 <div class='table-wrapper-scroll-y table-scrollbar'>
-   <table class='table table-hover table-sm'>
+   <table class='table table-hover table-sm display' id='Tablas'>
     <thead class='thead-light'>
       <tr>
+      <th class='th-sm'>Editar</th>
       <th class='th-sm'>Número de Documento</th>
       <th class='th-sm'>Nombres</th>
       <th class='th-sm'>Apellidos</th>
@@ -65,25 +63,41 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       <th class='th-sm'>Celular</th>
       <th class='th-sm'>Telefonos</th>
       <th class='th-sm'>Direccion</th>
-      <th class='th-sm'>Acciones</th>
       </tr>
     </thead>
-    <tbody>
-    </div>
-<div>";
+    <tbody>";
     foreach ($resultado as $key => $dato) {
         echo " <tr>
+        <td><a onclick='edCli(" . $dato['numero_identificacion'] . ");'><i class='material-icons'> edit </i></a></td>
             <td>$dato[numero_identificacion]</td>
             <td>$dato[Nombre]</td>
             <td>$dato[Apellido]</td>
             <td>$dato[email]</td>
             <td>$dato[Celular]</td>
             <td>$dato[Telefono]</td>
-            <td>$dato[Direccion]</td>
-            <td><a onclick='edCli(" . $dato['numero_identificacion'] . ");'>Editar</a></td>
+            <td>$dato[Direccion]</td>            
             </tr>";
     }
 }
 ?>
 
-</html>
+</tbody>
+</table>
+</div>
+
+<script type="text/javascript">
+//Datatables
+$(document).ready(function() {
+    $('#Tablas').DataTable( {
+      pageLength : 5,
+      lengthMenu: [[5, 10, 20, -1], [5, 10, 20, 'Todos']],
+      dom: 'Bfrtip',
+      buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5'
+        ]
+    } );
+} );
+</script>

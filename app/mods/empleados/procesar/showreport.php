@@ -1,6 +1,3 @@
-<html>
-
-
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     //print_r($_POST);
@@ -42,13 +39,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             break;
     }
     echo "
-<div class='container mt-5'>
-<div class='table-wrapper-scroll-y table-scrollbar'>
-   <table class='table table-hover table-sm'>
+    <div class='table-wrapper-scroll-y table-scrollbar'>
+   <table class='table table-hover table-sm display' id='Tablas'>
     <thead class='thead-light'>
       <tr>
-      <th class='th-sm'>Id Factura</th>
       <th class='th-sm'>Detalle</th>
+      <th class='th-sm'>Id Factura</th>     
       <th class='th-sm'>Nombre Cliente</th>
       <th class='th-sm'>Documento Cliente</th>
       <th class='th-sm'>Fecha</th>
@@ -61,8 +57,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <div>";
     foreach ($resultado as $key => $dato) {
         echo " <tr>
-            <td>$dato[Id_Venta]</td>
-            <td><a onclick='repDetail(" . $dato['Id_Venta'] . ");'>Ver Detalle</a></td>
+        <td><a onclick='repDetail(" . $dato['Id_Venta'] . ");'><i class='material-icons'> pageview </i></a></td>
+            <td>$dato[Id_Venta]</td>            
             <td>$dato[nom_cliente]</td>
             <td>$dato[doc_cliente]</td>
             <td>$dato[fecha]</td>
@@ -72,5 +68,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 ?>
+</tbody>
+</table>
+</div>
 
-</html>
+<script type="text/javascript">
+//Datatables
+$(document).ready(function() {
+    $('#Tablas').DataTable( {
+      pageLength : 5,
+      lengthMenu: [[5, 10, 20, -1], [5, 10, 20, 'Todos']],
+      dom: 'Bfrtip',
+      buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5'
+        ]
+    } );
+} );
+</script>

@@ -57,7 +57,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
 
-
     echo "
 <div class='table-wrapper-scroll-y table-scrollbar'>
    <table class='table table-hover table-sm display' id='Tablas'>

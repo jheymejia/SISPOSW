@@ -53,35 +53,50 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             break;
     }
     echo "
-<div class='container mt-5'>
 <div class='table-wrapper-scroll-y table-scrollbar'>
-   <table class='table table-hover table-sm'>
+   <table class='table table-hover table-sm display' id='Tablas'>
     <thead class='thead-light'>
       <tr>
+      <th class='th-sm'>Editar</th>
       <th class='th-sm'>Código</th>
       <th class='th-sm'>Nombre</th>
       <th class='th-sm'>Descripción</th>
       <th class='th-sm'>Valor</th>
       <th class='th-sm'>Categoría</th>
-      <th class='th-sm'>Proveedor</th>      
-      <th class='th-sm'>Acciones</th>
+      <th class='th-sm'>Proveedor</th>   
       </tr>
     </thead>
-    <tbody>
-    </div>
-<div>";
+    <tbody>    ";
     foreach ($resultado as $key => $dato) {
         echo " <tr>
+        <td><a onclick='edCat(" . $dato['Id_Producto'] . ");'><i class='material-icons'> edit </i></a></td>
             <td>$dato[Id_Producto]</td>
             <td>$dato[Nombre]</td>
             <td>$dato[Descripcion]</td>
             <td>$dato[ValorUnitario]</td>
             <td>$dato[Nombre_Cat]</td>
-            <td>$dato[proveedor]</td>            
-            <td><a onclick='edCat(" . $dato['Id_Producto'] . ");'>Editar</a></td>
+            <td>$dato[proveedor]</td> 
             </tr>";
     }
 }
 ?>
+</tbody>
+</table>
+</div>
 
-</html>
+<script type="text/javascript">
+//Datatables
+$(document).ready(function() {
+    $('#Tablas').DataTable( {
+      pageLength : 5,
+      lengthMenu: [[5, 10, 20, -1], [5, 10, 20, 'Todos']],
+      dom: 'Bfrtip',
+      buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5'
+        ]
+    } );
+} );
+</script>
