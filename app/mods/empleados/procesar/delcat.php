@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $respuesta['msg'] = 'Registro no borrado';
         $respuesta['exito'] = false;
         //Sentencia SQL que hace la inserccion del Registro
-        $sql1 = "DELETE from productos where Id_Producto = " . $_GET['id'];
+        $sql1 = "DELETE from productos where Id_Producto = " . $_POST['idProducto'];
         $resultado1 = $conexion->query($sql1)
             or die('Error al intentar borrar registro en Producto');
         //Condicional que da la respuesta al archivo principal
