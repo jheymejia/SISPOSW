@@ -7,6 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $descripcion = $_POST['descripcion'];
     $valor = $_POST['precio'];
     $categoria = $_POST['categoria'];    
+    $nomprov = $_POST['nomProv'];   
     //Arreglo asociativo para enviar respuestas json
     $respuesta = [];
     $respuesta['msg'] = 'Hubo un error. Verifique los campos.';
@@ -16,7 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $sql .= "Nombre = '$nombre',";    
     $sql .= "Descripcion = '$descripcion',";
     $sql .= "ValorUnitario = '$valor',";
-    $sql .= "id_categoria = '$categoria'";
+    $sql .= "id_categoria = '$categoria',";
+    $sql .= "proveedor = '$nomprov'";
     $sql .= " WHERE Id_Producto = $idProd"; //Tenga en cuenta el espacio de la condición WHERE
 
     $respuesta['sql'] = $sql;

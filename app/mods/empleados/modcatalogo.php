@@ -61,13 +61,27 @@ $conexion->close();
                     </select>
                 </div>
             </div>
+            <div class="row">
+            <div class="col-lg-6">
+                    <label style="color:black">Proveedor Anterior</label>
+                    <input style="color:black" disabled type="text" v-model="befnomProv" class="form-control" placeholder="" />
+                </div>
+            <div class="col-lg-6">
+                <select v-model="nomProv" id="label2" class="form-control" name="nomPro" required>
+                  <option disabled value="">Proveedor</option>
+                  <?php while ($filas2 = mysqli_fetch_array($res2)) : ?>
+                    <option value="<?php echo $filas2['Nombre_Prov'] ?>"><?php echo $filas2['Nombre_Prov'] ?></option>
+                  <?php endwhile ?>
+                </select>
+              </div>
+            </div>
             <br />
             <!-- Campos de Inserccion -->
             <div class="row">
                 <!-- Botonera para Borrar el Formulario o Editar un Registro -->
                 <div class="col-lg-6">
                     <button @click="enviarDatos()" type="button" class="btn btn-primary">Guardar</button>
-                    <button class="btn btn-danger" onclick="cargarCat()">Cancelar</button>                    
+                    <button class="btn btn-danger" onclick="cargarCat()">Cancelar</button>
                 </div>
                 <div class="col text-right">
                     <?php if ($_SESSION['rol'] == 1) { ?>
@@ -88,6 +102,8 @@ $conexion->close();
                     precio: <?php echo "'" . $fila['ValorUnitario'] . "'" ?>,
                     before: <?php echo "'" . $fila['Nombre_Cat'] . "'" ?>,
                     categoria: '',
+                    befnomProv: <?php echo "'" . $fila['proveedor'] . "'" ?>,      
+                    nomProv: '',        
                     msg: '',
                     mostrarMsg: false
                 },
@@ -98,35 +114,35 @@ $conexion->close();
                     enviarDatos: function(event) {
                         //Formulario
                         switch (this.categoria) {
-                            case "Discos":
-                                this.categoria = 1;
+                            case "Celulares y Smartphones":
+                                this.idCategoria = 1;
                                 break;
-                            case "Memorias":
-                                this.categoria = 2;
+                            case "Accesorios Smartphones":
+                                this.idCategoria = 2;
                                 break;
-                            case "Perifericos":
-                                this.categoria = 3;
+                            case "Tablets":
+                                this.idCategoria = 3;
                                 break;
-                            case "Accesorios":
-                                this.categoria = 4;
+                            case "Portatiles":
+                                this.idCategoria = 4;
                                 break;
-                            case "Routers":
-                                this.categoria = 5;
+                            case "All in One":
+                                this.idCategoria = 5;
                                 break;
-                            case "NoteBooks":
-                                this.categoria = 6;
+                            case "Torres":
+                                this.idCategoria = 6;
                                 break;
-                            case "Escritorios":
-                                this.categoria = 7;
+                            case "Accesorios Computación":
+                                this.idCategoria = 7;
                                 break;
-                            case "AIO":
-                                this.categoria = 8;
+                            case "Cámaras":
+                                this.idCategoria = 8;
                                 break;
-                            case "Monitores":
-                                this.categoria = 9;
+                            case "Audio y Video":
+                                this.idCategoria = 9;
                                 break;
-                            case "Audio":
-                                this.categoria = 10;
+                            case "Linea Gamer":
+                                this.idCategoria = 10;
                                 break;
                             default:
                                 break;
@@ -137,6 +153,7 @@ $conexion->close();
                         formulario.set('descripcion', this.descripcion);
                         formulario.set('precio', this.precio);
                         formulario.set('categoria', this.categoria);
+                        formulario.set('nomProv', this.nomProv);  
                         //Petición POST usando Axios
                         axios({
                             method: 'POST', //Método de envio
