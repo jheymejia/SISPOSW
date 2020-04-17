@@ -6,8 +6,9 @@ $fac = mysqli_query($conexion, "SELECT * FROM venta_cabecera where Id_Venta = " 
 $filfac = mysqli_fetch_array($fac)
 ?>
 <h1 class="text-center">Detalle Factura # <?php echo $_POST['id'] ?> </h1>
-<h2 class="text-center">Cliente: <?php echo $filfac['nom_cliente'] ?></h2>
-<h2 class="text-center">Fecha: <?php echo $filfac['fecha'] ?></h2>
+<h3 class="text-center">Cliente: <?php echo $filfac['nom_cliente'] ?></h3>
+<h3 class="text-center">Documento: <?php echo $filfac['doc_cliente'] ?></h3>
+<h3 class="text-center">Fecha: <?php echo $filfac['fecha'] ?></h3>
 <table class="table table-dark table-hover">
     <thead>
         <tr>
