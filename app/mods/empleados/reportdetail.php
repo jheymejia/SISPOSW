@@ -17,11 +17,12 @@ $filfac = mysqli_fetch_array($fac)
             <th scope="col">Cantidad</th>
             <th scope="col">Valor</th>            
             <th scope="col">Sub Total</th>
+            <th scope="col">Total</th>
         </tr>
     </thead>
     <?php
     if ($fila = mysqli_fetch_array($resultset)) {
-        echo '<br>';
+        echo '<br>'; $flete = 15000;
         // Ciclo que permite rellenar las filas de la tabla
         do {
             $prodset = mysqli_query($conexion, "SELECT * FROM productos where Id_Producto = ".$fila['Id_Producto']);
@@ -31,8 +32,12 @@ $filfac = mysqli_fetch_array($fac)
             // Variable que toma el id del Registro            
             echo "<td>" . $filprod["Nombre"] . "</td>";
             echo "<td>" . $fila["Cantidad"] . "</td>";
-            echo "<td>" . $fila["ValorUnitario"] . "</td></tr>";
+            echo "<td>" . $fila["ValorUnitario"] . "</td>";
+            echo "<td>" . $fila["Cantidad"] * $fila["ValorUnitario"] . "</td></tr>";
+            $total = $total + ($fila["Cantidad"] * $fila["ValorUnitario"]);             
         } while ($fila = mysqli_fetch_array($resultset));
+        $total = $total + $flete;
+        echo "<tr><td></td><td></td><td></td><td></td><td></td><td>".$total."</td></tr>";
         echo "<br>";
     } else {
         echo "</table><div class='alert alert-warning' role='alert'> No se encontraron registros </div>";
