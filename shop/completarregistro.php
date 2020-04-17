@@ -1,6 +1,7 @@
 <?php
 require "../datos/conexion.php";
-
+  session_start();
+  $id = $_SESSION['id'];
   $nombre = $_POST['nom'];
   $apellido = $_POST['ape'];
   $direccion = $_POST['dir'];
@@ -11,5 +12,5 @@ require "../datos/conexion.php";
   
   $regis = new conexion;
   $regis->llenardatos($nombre,$apellido,$direccion,$celular,$telefono,$tipo,$identificacion);
-  $regis->crearcliente2($nombre);
+  $regis->crearcliente2($identificacion, $id);
   $regis->cerrarconex();

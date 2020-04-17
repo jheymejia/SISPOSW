@@ -16,6 +16,7 @@ class conexion
   private $phone;
   private $type;
   private $ident;
+  private $iduser;
 
   public function __construct(){
     $this->conexion = new mysqli($this->server, $this->servuser, $this->password, $this->db);
@@ -58,16 +59,25 @@ class conexion
     }
   }
 
-  public function crearcliente2($name){
-    $this->name = $name;
-    $sql = "SELECT * FROM personas WHERE Nombre='" . $this->name . "'";
-    $consulta1 = $this->conexion->query($sql);
-    if ($consulta1->num_rows > 0) {
-      while ($fila = $consulta1->fetch_array(MYSQLI_ASSOC)) {
-        $idpers = $fila['id_persona'];
+  public function crearcliente2($ident, $id){
+    $this->ident = $ident;
+    $this->iduser = $id;
+
+    $sql1 = "SELECT * FROM identificacion WHERE numero_identificacion = '".$this->ident."'";
+    $result = $this->conexion->query($sql1);
+    if($result->num_rows > 0){
+      while($fila1= $result->fetch_array(MYSQLI_ASSOC)){
+        $idident = $fila1['id_identificacion'];
       }
-      $sql = "UPDATE clientes SET Persona='" . $idpers . "' WHERE Persona='1'";
-      $consulta = $this->conexion->query($sql);
+      $sql = "SELECT * FROM personas WHERE Identificacion='" . $idident . "'";
+      $consulta1 = $this->conexion->query($sql);
+      if ($consulta1->num_rows > 0) {
+        while ($fila = $consulta1->fetch_array(MYSQLI_ASSOC)) {
+          $idpers = $fila['id_persona'];
+        }
+        $sql = "UPDATE clientes SET Persona='" . $idpers . "' WHERE Usuario='".$this->iduser."'";
+        $consulta = $this->conexion->query($sql);
+      }
     }
   }
 
