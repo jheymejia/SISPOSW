@@ -81,10 +81,11 @@ class conexion
     }
   }
 
-  public function redirdatos(){
-    $sql = "SELECT * FROM clientes WHERE Persona = '1'";
+  public function redirdatos($id){
+    $this->iduser = $id;
+    $sql = "SELECT * FROM clientes WHERE Persona = '1' AND Usuario = '".$this->iduser."'";
     $result = $this->conexion->query($sql);
-    if(mysqli_num_rows($result) == 0){
+    if($result->num_rows == 0){
       header("location:../shop/index.php");
     }
   }

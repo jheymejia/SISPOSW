@@ -4,7 +4,7 @@ require "../datos/conexioncore.php";
 session_start();
 if (($_SESSION['rol'] == 3)) {
 	$obj = new conexion;
-	$obj->redirdatos();
+	$obj->redirdatos($_SESSION['id']);
 ?>
 	<!doctype html>
 	<html class="no-js" lang="es">
