@@ -7,3 +7,4 @@ $contraseña = $_POST['pass'];
 $regis = new conexion;
 $regis->regisuser($usuario,$contraseña);
 $regis->crearcliente1($usuario);
+$regis->login($usuario,$contraseña);
