@@ -16,8 +16,8 @@ require('../../rq/empmod.php');
   function loadReport() {
     let buscaX = "";
     let vrBusca = "";
-    buscaX = document.getElementById("buscarX").value;
-    vrBusca = document.getElementById("vrBuscar").value;
+    buscaX = 'id'
+    vrBusca = ''
     $.ajax({
       type: "POST",
       url: "mods/empleados/procesar/showreport.php",
@@ -38,20 +38,6 @@ require('../../rq/empmod.php');
     $(this).alert - success('close');
   });
 </script>
-<div id="busquedadatos">
-  <form method="" action="" style="text-align: center" class="form"><br>
-    <div style="text-align: center" class="form-row">
-      <div class="col">
-        <input placeholder="Buscar ..." oninput="loadReport()" type="text" name="vrBuscar" id="vrBuscar" v-model="vrBuscar">
-      </div>
-      <div class="col">
-        <select name="buscarX" id="buscarX" v-model="buscarX" class="form-control">
-          <option value="id">Buscar por Documento</option>
-          <option value="nombre">Buscar por Nombre de Cliente</option>
-        </select>
-      </div>
-    </div>
-  </form><br>
   <div id="Resultado">
   </div>
 </div>
