@@ -72,6 +72,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </table>
 </div>
 
+<style>.dataTables_filter {display: block}</style>
+
 <script type="text/javascript">
 //Datatables
 $(document).ready(function() {

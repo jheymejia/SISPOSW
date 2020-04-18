@@ -16,7 +16,7 @@
                         <div class="col-md-12">
                             <div class="frequently-content mb-50">
                                 <div class="frequently-title">
-                                    <h4>Below are frequently asked questions, you may find the answer for yourself</h4>
+                                    <h4>Estas son algunas de las preguntas frecuentes de nuestros usuarios</h4>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id erat sagittis, faucibus metus malesuada, eleifend turpis. Mauris semper augue id nisl aliquet, a porta lectus mattis. Nulla at tortor augue. In eget enim diam. Donec gravida tortor sem, ac fermentum nibh rutrum sit amet. Nulla convallis mauris vitae congue consequat. Donec interdum nunc purus, vitae vulputate arcu fringilla quis. Vivamus iaculis euismod dui.</p>
                                 </div>
                             </div>

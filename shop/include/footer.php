@@ -11,7 +11,7 @@
               <!--Footer Logo Start-->
               <div class="footer-logo">
                 <a href="index.php">
-                  <h1 class="brand" style="color: #00bf72">SYSPOSW</h1>
+                  <h1 class="brand" style="color: #00bf72">SysPOSw</h1>
                 </a>
               </div>
               <!--Footer Logo End-->

@@ -137,7 +137,7 @@ class conexion
             header("location:index.php");
             break;
           case 3:
-            header("location:../shop/perfil.php");
+            header("location:../shop/completar_perfil.php");
             break;
           default:
             alert("El usuario no tiene rol definido comuniquese con la tienda");

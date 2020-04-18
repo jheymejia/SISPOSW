@@ -9,8 +9,6 @@ if (($_SESSION['rol'] == 3)) {
 	<!doctype html>
 	<html class="no-js" lang="es">
 
-	<!-- Mirrored from d29u17ylf1ylz9.cloudfront.net/ SysPOSw/contact.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 09 Mar 2020 18:57:19 GMT -->
-
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -96,7 +94,7 @@ if (($_SESSION['rol'] == 3)) {
 														}
 														?>
 													</span></li>
-												<li class="account"><a href="../app/micuenta.php">Mi Cuenta<i class="fa fa-angle-down"></i></a>
+												<li class="account"><a>Opciones<i class="fa fa-angle-down"></i></a>
 													<ul class="ht-dropdown">
 
 														<li><a href='../app/salir.php'>salir</a></li>
@@ -139,7 +137,7 @@ if (($_SESSION['rol'] == 3)) {
 										<!--Logo Sticky Start-->
 										<div class="logo-sticky">
 
-											<a href="/">
+											<a href="#">
 												<h1 class="brand" style="font-size: 33px">SysPOSw</h1>
 											</a>
 
@@ -221,7 +219,7 @@ if (($_SESSION['rol'] == 3)) {
 												</div>
 											</div>
 											<div class="last-name">
-												<button type="submit" class="form-button">ENVIAR</button>
+												<button type="submit" name="boton" value="Enviar" class="form-button">ENVIAR</button>
 											</div>
 										</form>
 										<p class="form-messege"></p>

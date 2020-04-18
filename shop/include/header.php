@@ -157,25 +157,26 @@ session_start();
 													}
 													?>
 												</span></li>
-											<li class="account"><a href="../app/micuenta.php">Mi Cuenta<i class="fa fa-angle-down"></i></a>
+											<li class="account"><a>Opciones<i class="fa fa-angle-down"></i></a>
 												<ul class="ht-dropdown">
 													<?php
 													if (!isset($_SESSION['rol'])) {
 													?>
 														<li><a href="../app/login.php">Ingresar</a></li>
 
-														<li><a href="../app/login.php">Registrate</a></li>
+														<li><a href="../app/login.php">Regístrate</a></li>
 														<?php
 													}
 													if (isset($_SESSION['rol'])) {
 														if ($_SESSION['rol'] == 3) {
 														?>
-															<li><a href="carrito.php">Mi Carrito</a></li>
+															<li><a href="cuenta.php">Cuenta</a></li>
+															<li><a href="carrito.php">Carrito</a></li>
 														<?php } else {
 															echo "<li><a href='../app/index.php'>Panel</a></li> ";
 														}
 														?>
-														<li><a href='../app/salir.php'>salir</a></li>
+														<li><a href='../app/salir.php'>Salir</a></li>
 													<?php } ?>
 												</ul>
 											</li>
@@ -244,7 +245,7 @@ session_start();
 
 
 
-										<a href="/">
+										<a href="#">
 											<h1 class="brand" style="font-size: 33px">SysPOSw</h1>
 										</a>
 
