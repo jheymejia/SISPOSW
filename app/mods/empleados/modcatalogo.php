@@ -67,7 +67,7 @@ $conexion->close();
                 <!-- Botonera para Borrar el Formulario o Editar un Registro -->
                 <div class="col-lg-6">
                     <button @click="enviarDatos()" type="button" class="btn btn-primary">Guardar</button>
-                    <button class="btn btn-danger" onclick="cargarCat()">Cancelar</button>                    
+                    <button class="btn btn-danger" onclick="cargarCat()">Cancelar</button>
                 </div>
                 <div class="col text-right">
                     <?php if ($_SESSION['rol'] == 1) { ?>
@@ -98,34 +98,34 @@ $conexion->close();
                     enviarDatos: function(event) {
                         //Formulario
                         switch (this.categoria) {
-                            case "Discos":
+                            case "Celulares y Smartphones":
                                 this.categoria = 1;
                                 break;
-                            case "Memorias":
+                            case "Accesorios Smartphones":
                                 this.categoria = 2;
                                 break;
-                            case "Perifericos":
+                            case "Tablets":
                                 this.categoria = 3;
                                 break;
-                            case "Accesorios":
+                            case "Portatiles":
                                 this.categoria = 4;
                                 break;
-                            case "Routers":
+                            case "All in One":
                                 this.categoria = 5;
                                 break;
-                            case "NoteBooks":
+                            case "Torres":
                                 this.categoria = 6;
                                 break;
-                            case "Escritorios":
+                            case "Accesorios Computación":
                                 this.categoria = 7;
                                 break;
-                            case "AIO":
+                            case "Cámaras":
                                 this.categoria = 8;
                                 break;
-                            case "Monitores":
+                            case "Audio y Video":
                                 this.categoria = 9;
                                 break;
-                            case "Audio":
+                            case "Linea Gamer":
                                 this.categoria = 10;
                                 break;
                             default:
